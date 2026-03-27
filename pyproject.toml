@@ -3,20 +3,11 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.backends.legacy:build"
 
 [project]
-name = "toke-model"
+name = "toke-models"
 version = "0.1.0"
 requires-python = ">=3.11"
 license = {text = "Apache-2.0"}
 authors = [{name = "M. Karwalski"}]
-
-[project.dependencies]
-mlx = ">=0.16.0,<1.0.0"
-mlx-lm = ">=0.16.0,<1.0.0"
-torch = ">=2.3.0,<3.0.0"
-transformers = ">=4.41.0,<5.0.0"
-peft = ">=0.11.0,<1.0.0"
-tqdm = ">=4.66.0,<5.0.0"
-numpy = ">=1.26.0,<3.0.0"
 
 [project.optional-dependencies]
 dev = [
@@ -32,6 +23,3 @@ target-version = "py311"
 [tool.mypy]
 strict = true
 python_version = "3.11"
-
-[tool.pip-audit]
-require-hashes = false
