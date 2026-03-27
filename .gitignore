@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.venv/
+dist/
+
+# Model weights — never commit
+models/
+adapters/
+*.bin
+*.safetensors
+*.gguf
+*.pth
+
+# Training data — never commit
+training-data/
+training-data-32b/
+
+# Results — commit only aggregated reports, not raw outputs
+results/raw/
+
+.env
+.DS_Store
+.vscode/
