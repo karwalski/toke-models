@@ -1,0 +1,11 @@
+title = "toke-model gitleaks config"
+
+[allowlist]
+description = "Global allowlist"
+paths = [".gitleaks.toml"]
+
+[[rules]]
+id = "generic-api-key"
+description = "Generic API Key"
+regex = '''(?i)(api[_\-\s]?key|apikey|secret|token|password|passwd|pwd)[_\-\s]?[:=][_\-\s]?['"]?[A-Za-z0-9+/]{20,}['"]?'''
+tags = ["key", "secret"]

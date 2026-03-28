@@ -1,0 +1,32 @@
+# Model weights — never commit
+models/
+*.bin
+*.safetensors
+*.gguf
+*.pt
+*.pth
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+dist/
+*.egg-info/
+
+# Credentials
+.env
+.env.*
+*.env
+*.key
+*.pem
+secrets/
+credentials.json
+claude_api_key.txt
+
+# macOS
+.DS_Store
+
+# Editors
+.vscode/
+.idea/
