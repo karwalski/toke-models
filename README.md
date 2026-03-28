@@ -7,7 +7,7 @@ Fine-tuning scripts and evaluation harness for toke language models.
 - Python 3.11+
 - Apple Silicon Mac with MLX (for training)
 - [toke-corpus](https://github.com/karwalski/toke-corpus) — validated corpus
-- [toke-tokenizer](https://github.com/karwalski/toke-tokenizer) — Phase 2 tokenizer
+- [toke-tokenizer](https://github.com/karwalski/toke-tokenizer) — Profile 2 tokenizer
 - [toke-benchmark](https://github.com/karwalski/toke-benchmark) — evaluation tasks
 
 ## Fine-tuning
