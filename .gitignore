@@ -13,7 +13,11 @@ adapters/
 
 # Training data — never commit
 training-data/
+training-data-p2/
 training-data-32b/
+
+# Cloud runtime state
+cloud/.train_state.json
 
 # Results — commit only aggregated reports, not raw outputs
 results/raw/
