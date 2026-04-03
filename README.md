@@ -1,37 +1,51 @@
 # toke-models
 
-Fine-tuning scripts and evaluation harness for toke language models.
+Fine-tuning scripts for toke language models.
+
+## Status
+
+Gate 1 passed (2026-04-03). Qwen 2.5 Coder 7B + QLoRA adapter achieved 63.7% Pass@1 on 1,000 held-out tasks.
 
 ## Requirements
 
-- Python 3.11+
-- Apple Silicon Mac with MLX (for training)
+- Python 3.10+
+- Apple Silicon Mac with MLX (for local training)
 - [toke-corpus](https://github.com/karwalski/toke-corpus) — validated corpus
-- [toke-tokenizer](https://github.com/karwalski/toke-tokenizer) — Profile 2 tokenizer
+- [toke-tokenizer](https://github.com/karwalski/toke-tokenizer) — BPE tokenizer
 - [toke-benchmark](https://github.com/karwalski/toke-benchmark) — evaluation tasks
+- [toke-eval](https://github.com/karwalski/toke-eval) — evaluation toolkit
 
 ## Fine-tuning
 
-    # Prepare training data
-    python finetune/prepare_data.py \
-      --corpus /path/to/corpus \
-      --out training-data/ \
-      --format instruction
+### MLX (Apple Silicon — recommended)
 
-    # Fine-tune Qwen 2.5 Coder 7B
+    python finetune/prepare_mlx_data.py --corpus /path/to/corpus_p2.jsonl --out training-data/
+    python finetune/train_mlx.py --config finetune/configs/7b_mlx.yaml
+    python finetune/merge_mlx.py --adapter results/adapter-mlx --out merged-model/
+
+### QLoRA (GPU)
+
+    python finetune/prepare_data.py --corpus /path/to/corpus --out training-data/ --format instruction
     python finetune/train_qlora.py --config finetune/configs/7b.yaml
 
 ## Evaluation
 
-    python eval/run_benchmark.py \
-      --model /path/to/model \
-      --tasks /path/to/toke-benchmark/tasks/ \
-      --out results/
+Evaluation tools are in [toke-eval](https://github.com/karwalski/toke-eval):
+
+    python -m toke_eval.pass_at_k --solutions-dir solutions/ --tests-dir hidden_tests/ --compiler tkc
+
+## Safety
+
+Model safety evaluation via adversarial prompt testing:
+
+    python eval/safety_eval.py --model-path /path/to/model --output-dir /tmp/eval-out
+
+See [docs/security/model-safety-evals.md](docs/security/model-safety-evals.md).
 
 ## Model releases
 
 Trained model weights are not stored in this repository.
-Releases are published separately when gate criteria are met.
+Releases are published to Hugging Face when gate criteria are met.
 
 ## Licence
 
