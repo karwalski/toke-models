@@ -19,8 +19,9 @@ training-data-32b/
 # Cloud runtime state
 cloud/.train_state.json
 
-# Results — commit only aggregated reports, not raw outputs
-results/raw/
+# Results and output — large, local only
+results/
+output/
 
 .env
 .DS_Store
