@@ -1,0 +1,17 @@
+{
+  "program_count": 4675,
+  "toke": {
+    "mean": 172.86074866310162,
+    "median": 119,
+    "p95": 503.0
+  },
+  "baseline": {
+    "mean": 197.64192513368985,
+    "median": 132,
+    "p95": 580.0
+  },
+  "compression_ratio": 0.8746157908863433,
+  "vocab_utilization": 0.70225,
+  "fertility": 0.3768910477039472,
+  "vocab_size": 8000
+}
