@@ -1,16 +1,18 @@
-# Qwen 2.5 Coder 7B MLX LoRA fine-tuning configuration
-# Adapted from 7b.yaml for Apple Silicon (Mac Studio M4 Max, 128GB unified memory)
+# Qwen 2.5 Coder 7B MLX DoRA fine-tuning — comparison config
+# Matches QLoRA baseline hyperparameters for controlled A/B comparison.
+# Rank 16, alpha 32 (same as QLoRA baseline comparison point).
+# Decision D10=B: DoRA vs QLoRA benchmark (Story 10.7.2)
+# Apple Silicon (Mac Studio M4 Max, 128GB unified memory)
 
 model:
   base: "Qwen/Qwen2.5-Coder-7B-Instruct"
   quantization: true                # 4-bit quantization (MLX default)
 
 lora:
-  rank: 64
-  alpha: 128.0
+  rank: 16
+  alpha: 32.0
   dropout: 0.05
-  # MLX-LM applies LoRA to all linear layers by default when no keys specified.
-  # Explicitly list Qwen2 attention + MLP layers for clarity.
+  use_dora: true                    # Enable DoRA (weight-decomposed LoRA)
   keys:
     - "self_attn.q_proj"
     - "self_attn.k_proj"
@@ -40,5 +42,5 @@ data:
   eval_file: "training-data/eval.jsonl"
 
 output:
-  adapter_dir: "output/7b-mlx/adapter"
-  fused_dir: "output/7b-mlx/fused"
+  adapter_dir: "adapters/dora/"
+  fused_dir: "output/7b-dora-comparison/fused"

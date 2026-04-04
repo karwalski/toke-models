@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
-"""MLX LoRA fine-tuning script for toke code generation on Apple Silicon.
+"""MLX LoRA/DoRA fine-tuning script for toke code generation on Apple Silicon.
 
-Fine-tunes Qwen 2.5 Coder 7B (or other base models) using LoRA with MLX
+Fine-tunes Qwen 2.5 Coder 7B (or other base models) using LoRA or DoRA with MLX
 on prepared toke corpus training data. Designed for Mac Studio M4 Max.
 
 Usage:
     python train_mlx.py --config configs/7b_mlx.yaml
+    python train_mlx.py --config configs/7b_mlx_dora.yaml
     python train_mlx.py --config configs/7b_mlx.yaml --resume output/7b-mlx/adapter
 """
 from __future__ import annotations
@@ -34,7 +35,7 @@ def load_config(config_path: Path) -> dict:
 
 
 def build_lora_config(config: dict) -> dict:
-    """Build LoRA layer configuration dict for mlx-lm."""
+    """Build LoRA/DoRA layer configuration dict for mlx-lm."""
     lora_cfg = config["lora"]
     result: dict = {
         "rank": lora_cfg.get("rank", 64),
@@ -44,6 +45,8 @@ def build_lora_config(config: dict) -> dict:
     }
     if "keys" in lora_cfg:
         result["keys"] = lora_cfg["keys"]
+    if lora_cfg.get("use_dora", False):
+        result["use_dora"] = True
     return result
 
 
@@ -127,11 +130,14 @@ def main(argv: list[str] | None = None) -> int:
     adapter_dir = output_cfg.get("adapter_dir", "output/7b-mlx/adapter")
     lora_cfg = build_lora_config(config)
 
-    print(f"MLX LoRA fine-tuning")
+    use_dora_flag = lora_cfg.get("use_dora", False)
+    adapter_label = "DoRA" if use_dora_flag else "LoRA"
+    print(f"MLX {adapter_label} fine-tuning")
     print(f"  Model: {model_name}")
     print(f"  Quantized: {config['model'].get('quantization', True)}")
-    print(f"  LoRA rank: {lora_cfg['rank']}")
-    print(f"  LoRA alpha: {lora_cfg['alpha']}")
+    print(f"  Adapter: {adapter_label}")
+    print(f"  Rank: {lora_cfg['rank']}")
+    print(f"  Alpha: {lora_cfg['alpha']}")
     print(f"  Epochs: {train_cfg.get('epochs', 3)}")
     eff_batch = train_cfg.get("batch_size", 8) * train_cfg.get("gradient_accumulation_steps", 4)
     print(f"  Effective batch: {eff_batch}")
@@ -140,13 +146,32 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\nLoading model: {model_name}...")
     model, tokenizer = mlx_load(model_name)
 
-    # Apply LoRA layers.
-    print("Applying LoRA adapters...")
+    # Apply LoRA/DoRA layers.
+    use_dora = lora_cfg.pop("use_dora", False)
+    adapter_type = "DoRA" if use_dora else "LoRA"
+    print(f"Applying {adapter_type} adapters...")
+    # num_layers controls how many transformer blocks (from the end) get
+    # adapter layers.  Default large value (999) means "all blocks".
+    num_lora_layers = config["lora"].get("num_layers", 999)
     linear_to_lora_layers(
         model,
-        lora_layers=lora_cfg.get("rank", 64),
-        lora_parameters=lora_cfg,
+        num_layers=num_lora_layers,
+        config=lora_cfg,
+        use_dora=use_dora,
     )
+
+    # Unfreeze embed_tokens and lm_head for custom tokenizer support.
+    # When using a custom BPE tokenizer with tokens absent from the base
+    # model's vocabulary, these layers MUST be fully trainable — otherwise
+    # the model produces random outputs for Toke-specific tokens.
+    # New token embeddings are initialized by MLX's default (zero or random);
+    # averaging sub-word embeddings is handled during tokenizer setup.
+    if config.get("training", {}).get("train_embeddings", True):
+        print("Unfreezing embed_tokens and lm_head for custom tokenizer...")
+        if hasattr(model, "model") and hasattr(model.model, "embed_tokens"):
+            model.model.embed_tokens.unfreeze()
+        if hasattr(model, "lm_head"):
+            model.lm_head.unfreeze()
 
     # Load existing adapter weights if resuming.
     if args.resume:
@@ -240,6 +265,7 @@ def main(argv: list[str] | None = None) -> int:
     # Save training summary.
     summary = {
         "model": model_name,
+        "adapter_type": "dora" if use_dora else "lora",
         "lora_rank": lora_cfg["rank"],
         "lora_alpha": lora_cfg["alpha"],
         "epochs": epochs,

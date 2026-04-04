@@ -1,0 +1,16 @@
+{
+  "tokenizer_class": "Qwen2Tokenizer",
+  "model_type": "qwen2",
+  "bos_token": "<|endoftext|>",
+  "eos_token": "<|endoftext|>",
+  "pad_token": "<|endoftext|>",
+  "chat_template": "{% for message in messages %}{{'<|im_start|>' + message['role'] + '\n' + message['content'] + '<|im_end|>' + '\n'}}{% endfor %}{% if add_generation_prompt %}{{ '<|im_start|>assistant\n' }}{% endif %}",
+  "model_max_length": 32768,
+  "clean_up_tokenization_spaces": false,
+  "added_tokens_decoder": {},
+  "toke_notes": {
+    "source": "toke-tokenizer BPE vocabulary",
+    "base_tokenizer": "Qwen/Qwen2.5-Coder-7B",
+    "description": "Tokenizer config for toke-coder-7b. The tokenizer.json file contains the full BPE vocabulary and merge rules. This config provides metadata and special token mappings required by the transformers library."
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "model_name": "toke-codegen-v0.1",
+  "eval_name": "toke-benchmark-gate1",
+  "eval_date": "2026-04-03",
+  "dataset": "toke-benchmark/phase-a-held-out",
+  "metrics": {
+    "pass_at_1": 0.637,
+    "token_reduction": 0.125,
+    "compilation_rate": 0.923
+  },
+  "benchmark_size": 1000,
+  "task_categories": [
+    "arithmetic",
+    "string",
+    "list",
+    "control-flow",
+    "data-structure"
+  ],
+  "config": {
+    "temperature": 0.2,
+    "max_new_tokens": 512,
+    "timeout_per_task_seconds": 10,
+    "n_samples": 1
+  },
+  "gate": "Gate 1",
+  "gate_thresholds": {
+    "pass_at_1_minimum": 0.60,
+    "compilation_rate_minimum": 0.90
+  },
+  "gate_result": "PASS"
+}

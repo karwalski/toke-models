@@ -1,0 +1,27 @@
+{
+  "_name_or_path": "karwalski/toke-coder-7b",
+  "model_type": "qwen2",
+  "base_model": "Qwen/Qwen2.5-Coder-7B",
+  "fine_tuning_method": "qlora_dora",
+  "training_framework": "mlx",
+  "architectures": [
+    "Qwen2ForCausalLM"
+  ],
+  "vocab_size": 151936,
+  "hidden_size": 3584,
+  "intermediate_size": 18944,
+  "num_hidden_layers": 28,
+  "num_attention_heads": 28,
+  "num_key_value_heads": 4,
+  "max_position_embeddings": 32768,
+  "torch_dtype": "bfloat16",
+  "transformers_version": "4.40.0",
+  "toke_metadata": {
+    "corpus_version": "phase2",
+    "corpus_entries": 46000,
+    "gate1_pass_at_1": 0.637,
+    "gate1_token_reduction": 0.125,
+    "gate1_verdict": "PASS",
+    "gate1_date": "2026-04-03"
+  }
+}
