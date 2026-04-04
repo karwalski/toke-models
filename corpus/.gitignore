@@ -1,0 +1,25 @@
+# Corpus data — never commit (large, local only)
+corpus/
+logs/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+dist/
+*.egg-info/
+
+# Credentials
+.env
+*.key
+
+# Models — never commit weights
+models/
+*.bin
+*.safetensors
+*.gguf
+
+.DS_Store
+.vscode/
+.idea/
