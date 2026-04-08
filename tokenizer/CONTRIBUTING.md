@@ -1,4 +1,4 @@
-# Contributing to toke-tokenizer
+# Contributing to toke-model/tokenizer
 
 ## Rules
 

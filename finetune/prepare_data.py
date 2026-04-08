@@ -8,7 +8,7 @@ Produces three example types:
   3. Multi-language comparison — side-by-side with token counts
 
 Usage:
-    python prepare_data.py --corpus ../toke-tokenizer/corpus.jsonl --output-dir training-data/
+    python prepare_data.py --corpus ../tokenizer/corpus.jsonl --output-dir training-data/
     python prepare_data.py --corpus corpus.jsonl --output-dir training-data/ --split 0.95
 """
 from __future__ import annotations

@@ -15,7 +15,7 @@ set -euo pipefail
 #   - rsync installed locally and on the instance
 #   - setup.sh has already been run on the instance
 
-WORK_DIR="/opt/toke-corpus"
+WORK_DIR="/opt/toke-model/corpus"
 
 info()  { printf "\033[1;34m[INFO]\033[0m  %s\n" "$1"; }
 ok()    { printf "\033[1;32m[OK]\033[0m    %s\n" "$1"; }
@@ -36,7 +36,7 @@ fi
 REMOTE="$1"
 
 # --------------------------------------------------------------------------
-# Resolve local repo root (the toke-corpus directory)
+# Resolve local repo root (the toke-model/corpus directory)
 # --------------------------------------------------------------------------
 
 # This script lives in infra/, so the repo root is one level up.

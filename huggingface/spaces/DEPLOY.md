@@ -32,9 +32,9 @@ Select:
 
 ## Step 3 — Copy files into the Space repo
 
-    cp /path/to/toke-models/huggingface/spaces/app.py .
-    cp /path/to/toke-models/huggingface/spaces/requirements.txt .
-    cp /path/to/toke-models/huggingface/spaces/README.md .
+    cp /path/to/toke-model/huggingface/spaces/app.py .
+    cp /path/to/toke-model/huggingface/spaces/requirements.txt .
+    cp /path/to/toke-model/huggingface/spaces/README.md .
 
 ## Step 4 — Commit and push
 

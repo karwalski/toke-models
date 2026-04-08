@@ -5,7 +5,7 @@ set -euo pipefail
 # Idempotent: safe to run multiple times.
 # Must be run as root (or with sudo).
 
-WORK_DIR="/opt/toke-corpus"
+WORK_DIR="/opt/toke-model/corpus"
 
 # --------------------------------------------------------------------------
 # Helpers
@@ -103,9 +103,9 @@ GEMINI_API_KEY=
 DEEPSEEK_API_KEY=
 
 # Paths (defaults — change only if layout differs)
-TKC_PATH=/opt/toke-corpus/bin/tkc
-CORPUS_DIR=/opt/toke-corpus/corpus
-LOG_DIR=/opt/toke-corpus/logs
+TKC_PATH=/opt/toke-model/corpus/bin/tkc
+CORPUS_DIR=/opt/toke-model/corpus/corpus
+LOG_DIR=/opt/toke-model/corpus/logs
 ENVEOF
 
 ok ".env.template written"

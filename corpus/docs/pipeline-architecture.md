@@ -18,7 +18,7 @@ Only entries that pass all four stages enter the corpus.
 
 ## Holdout isolation
 
-Benchmark task IDs in `toke-benchmark/tasks/` are checked against generated
+Benchmark task IDs in `toke-eval/benchmark/tasks/` are checked against generated
 task IDs before any batch is finalised. This prevents training data contamination.
 Held-out test cases in `benchmark/hidden_tests/` are never read by this pipeline.
 

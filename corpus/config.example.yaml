@@ -2,10 +2,10 @@ phase: A
 total_tasks: 50000
 seed: 42
 
-tkc_path: /opt/toke-corpus/bin/tkc  # or from TKC_PATH env
-corpus_dir: /opt/toke-corpus/corpus
-metrics_dir: /opt/toke-corpus/metrics
-log_dir: /opt/toke-corpus/logs
+tkc_path: /opt/toke-model/corpus/bin/tkc  # or from TKC_PATH env
+corpus_dir: /opt/toke-model/corpus/corpus
+metrics_dir: /opt/toke-model/corpus/metrics
+log_dir: /opt/toke-model/corpus/logs
 
 prompts_dir: prompts/
 

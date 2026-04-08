@@ -5,9 +5,9 @@
 #
 # What it does:
 #   1. Installs all system packages (gcc, python3, java, tmux, git, etc.)
-#   2. Creates the /opt/toke-corpus directory structure
+#   2. Creates the /opt/toke-model/corpus/ directory structure
 #   3. Sets up a Python venv
-#   4. Clones the toke-corpus repo (if REPO_URL is set) or leaves it for deploy.sh
+#   4. Clones the toke-model repo (if REPO_URL is set) or leaves it for deploy.sh
 #   5. Writes the .env.template
 #   6. Prints a summary to the log
 #
@@ -16,7 +16,7 @@
 
 set -euo pipefail
 
-WORK_DIR="/opt/toke-corpus"
+WORK_DIR="/opt/toke-model/corpus"
 VENV_DIR="${WORK_DIR}/.venv"
 LOG_TAG="[toke-setup]"
 
@@ -77,9 +77,9 @@ GEMINI_API_KEY=
 DEEPSEEK_API_KEY=
 
 # Paths
-TKC_PATH=/opt/toke-corpus/bin/tkc
-CORPUS_DIR=/opt/toke-corpus/corpus
-LOG_DIR=/opt/toke-corpus/logs
+TKC_PATH=/opt/toke-model/corpus/bin/tkc
+CORPUS_DIR=/opt/toke-model/corpus/corpus
+LOG_DIR=/opt/toke-model/corpus/logs
 ENVEOF
 
 # --------------------------------------------------------------------------

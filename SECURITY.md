@@ -47,5 +47,5 @@ extended timeline before the deadline passes.
 
 Email: security@tokelang.dev
 GitHub: Use "Report a vulnerability" in the Security tab of this repository.
-CVE process: See the tkc repository at
-[github.com/karwalski/tkc](https://github.com/karwalski/tkc) for the CVE process.
+CVE process: See the toke repository at
+[github.com/karwalski/toke](https://github.com/karwalski/toke) for the CVE process.

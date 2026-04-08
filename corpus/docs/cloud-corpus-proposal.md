@@ -47,7 +47,7 @@ The bottleneck is not API calls (those are async/batched) — it's the **validat
 ### Software Stack
 
 ```
-tkc                     (cross-compiled from tkc repo, Linux amd64)
+tkc                     (cross-compiled from toke repo, Linux amd64)
 gcc 13+                 (apt install build-essential)
 python 3.11+            (apt install python3)
 openjdk 21+             (apt install openjdk-21-jdk)

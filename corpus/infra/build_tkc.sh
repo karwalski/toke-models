@@ -2,7 +2,7 @@
 set -euo pipefail
 
 # build_tkc.sh — Build (or cross-compile) the tkc compiler for Linux amd64
-# and install it to /opt/toke-corpus/bin/tkc.
+# and install it to /opt/toke-model/corpus/bin/tkc.
 #
 # Usage:
 #   On the cloud instance (native build):
@@ -13,7 +13,7 @@ set -euo pipefail
 #
 # The tkc source directory must contain a Makefile at its root.
 
-WORK_DIR="/opt/toke-corpus"
+WORK_DIR="/opt/toke-model/corpus"
 BIN_DIR="${WORK_DIR}/bin"
 
 info()  { printf "\033[1;34m[INFO]\033[0m  %s\n" "$1"; }
@@ -76,8 +76,8 @@ if [ "${CROSS}" = "--cross" ]; then
         echo "       docker cp <container>:/src/tkc ${BIN_DIR}/tkc"
         echo ""
         echo "  3. Build on the cloud instance instead (recommended):"
-        echo "       scp -r ${TKC_SRC} user@<instance-host>:/opt/toke-corpus/tkc-src"
-        echo "       ssh user@<instance-host> 'cd /opt/toke-corpus/tkc-src && make clean && make'"
+        echo "       scp -r ${TKC_SRC} user@<instance-host>:/opt/toke-model/corpus/tkc-src"
+        echo "       ssh user@<instance-host> 'cd /opt/toke-model/corpus/tkc-src && make clean && make'"
         echo ""
         fail "Cross-compiler x86_64-linux-gnu-gcc not found on PATH"
     fi

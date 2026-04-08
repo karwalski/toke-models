@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 #
-# AWS Cloud Burst Training Script for toke-models
+# AWS Cloud Burst Training Script for toke-model
 #
 # Provisions a g5.xlarge spot instance, uploads training data,
 # runs QLoRA fine-tuning, uploads results to GitHub Release,
@@ -31,16 +31,16 @@ KEY_FILE="${KEY_FILE:-$HOME/.ssh/toke-training.pem}"
 SPOT_MAX_PRICE="0.60"                  # Max spot bid (on-demand is ~$1.01)
 VOLUME_SIZE=50                         # GB — model weights (~4GB) + data + checkpoints + OS
 
-GITHUB_REPO="${GITHUB_REPO:-karwalski/toke-models}"
+GITHUB_REPO="${GITHUB_REPO:-karwalski/toke-model}"
 GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 
 STATE_FILE="$(dirname "$0")/.train_state.json"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 PROJECT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
-CORPUS_FILE="${CORPUS_FILE:-$HOME/tk/toke-tokenizer/corpus.jsonl}"
+CORPUS_FILE="${CORPUS_FILE:-$HOME/tk/toke-model/tokenizer/corpus.jsonl}"
 
 REMOTE_USER="ubuntu"
-REMOTE_DIR="/home/ubuntu/toke-models"
+REMOTE_DIR="/home/ubuntu/toke-model"
 
 # ─── Helper functions ─────────────────────────────────────────────────────────
 
@@ -314,7 +314,7 @@ upload_post_train_script() {
 #!/usr/bin/env bash
 set -euo pipefail
 
-WORK_DIR="/home/ubuntu/toke-models"
+WORK_DIR="/home/ubuntu/toke-model"
 GITHUB_TOKEN_FILE="$WORK_DIR/.github_token"
 GITHUB_REPO_FILE="$WORK_DIR/.github_repo"
 
@@ -576,7 +576,7 @@ else
 fi
 echo ""
 echo "=== Last 20 lines of train.log ==="
-tail -20 /home/ubuntu/toke-models/train.log 2>/dev/null || echo "(no log file)"
+tail -20 /home/ubuntu/toke-model/train.log 2>/dev/null || echo "(no log file)"
 echo ""
 echo "=== GPU ==="
 nvidia-smi --query-gpu=utilization.gpu,memory.used,memory.total --format=csv,noheader 2>/dev/null || true
@@ -609,8 +609,8 @@ Optional environment:
   AMI_ID              Override AMI (auto-detected if empty)
   KEY_NAME            EC2 key pair name (default: toke-training)
   KEY_FILE            SSH key file path (default: ~/.ssh/toke-training.pem)
-  CORPUS_FILE         Path to corpus.jsonl (default: ~/tk/toke-tokenizer/corpus.jsonl)
-  GITHUB_REPO         GitHub repo for releases (default: karwalski/toke-models)
+  CORPUS_FILE         Path to corpus.jsonl (default: ~/tk/toke-model/tokenizer/corpus.jsonl)
+  GITHUB_REPO         GitHub repo for releases (default: karwalski/toke-model)
 EOF
 }
 

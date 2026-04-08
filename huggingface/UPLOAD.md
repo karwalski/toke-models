@@ -36,17 +36,17 @@ Or via the web UI at https://huggingface.co/new.
 Copy the following into the cloned repo:
 
     # Model card (this is the HF README)
-    cp /path/to/toke-models/huggingface/README.md .
+    cp /path/to/toke-model/huggingface/README.md .
 
     # Model config
-    cp /path/to/toke-models/huggingface/config.json .
+    cp /path/to/toke-model/huggingface/config.json .
 
     # Merged model weights (from adapter merge step)
-    cp -r /path/to/toke-models/merged-model/* .
+    cp -r /path/to/toke-model/merged-model/* .
 
     # Tokenizer files
-    cp /path/to/toke-tokenizer/output/tokenizer.json .
-    cp /path/to/toke-tokenizer/output/tokenizer_config.json .
+    cp /path/to/toke-model/tokenizer/output/tokenizer.json .
+    cp /path/to/toke-model/tokenizer/output/tokenizer_config.json .
 
 ## Step 5: Track large files with git-lfs
 
@@ -88,7 +88,7 @@ api.upload_folder(
 If publishing the adapter without merged weights:
 
     # Copy adapter files instead of merged model
-    cp -r /path/to/toke-models/results/train-results-*/adapter-mlx/* .
+    cp -r /path/to/toke-model/results/train-results-*/adapter-mlx/* .
 
     # Include adapter_config.json so users can load with PEFT
     # Users will need the base model (Qwen2.5-Coder-7B) separately

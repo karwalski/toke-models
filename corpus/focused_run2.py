@@ -22,9 +22,9 @@ logging.basicConfig(
 logger = logging.getLogger("focused")
 
 # --- Config ---
-TKC = "/opt/toke-corpus/bin/tkc"
-CORPUS_DIR = Path("/opt/toke-corpus/corpus/phase_a")
-PROMPTS_DIR = Path("/opt/toke-corpus/prompts")
+TKC = "/opt/toke-model/corpus/bin/tkc"
+CORPUS_DIR = Path("/opt/toke-model/corpus/corpus/phase_a")
+PROMPTS_DIR = Path("/opt/toke-model/corpus/prompts")
 
 # Load prompts
 system_base = (PROMPTS_DIR / "system_base.md").read_text()
@@ -34,7 +34,7 @@ gen_prompt = (PROMPTS_DIR / "generate_toke.md").read_text()
 FULL_SYSTEM = system_base + "\n\n" + system_prompt
 
 # Load tasks
-with open("/opt/toke-corpus/generator/new_tasks.json") as f:
+with open("/opt/toke-model/corpus/generator/new_tasks.json") as f:
     new_tasks_raw = json.load(f)
 
 tasks = []

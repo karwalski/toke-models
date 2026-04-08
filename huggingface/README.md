@@ -13,7 +13,7 @@ tags:
   - domain-specific-language
 base_model: Qwen/Qwen2.5-Coder-7B
 datasets:
-  - karwalski/toke-corpus
+  - karwalski/toke-model
 metrics:
   - pass_at_1
   - token_reduction
@@ -24,8 +24,8 @@ model-index:
           type: text-generation
           name: Toke Code Generation
         dataset:
-          type: karwalski/toke-benchmark
-          name: toke-benchmark
+          type: karwalski/toke-eval
+          name: toke-eval/benchmark
           split: test
         metrics:
           - type: pass_at_1
@@ -69,7 +69,7 @@ The model was trained on Apple Silicon hardware using MLX and achieves strong re
 
 ## Training Data
 
-The model was fine-tuned on **toke-corpus**, a curated dataset of 46,000+ validated toke programs covering:
+The model was fine-tuned on **toke-model/corpus**, a curated dataset of 46,000+ validated toke programs covering:
 
 - Arithmetic and logical expressions
 - Control flow (if/else, loops, match)
@@ -81,7 +81,7 @@ The model was fine-tuned on **toke-corpus**, a curated dataset of 46,000+ valida
 
 All corpus entries are compilation-verified against the toke compiler (`tkc`). The corpus includes both Phase 1 (core language) and Phase 2 (advanced features) programs.
 
-Source repository: [karwalski/toke-corpus](https://github.com/karwalski/toke-corpus)
+Source repository: [karwalski/toke-model](https://github.com/karwalski/toke-model)
 
 ## Training Procedure
 
@@ -108,7 +108,7 @@ Source repository: [karwalski/toke-corpus](https://github.com/karwalski/toke-cor
 
 ## Evaluation Results
 
-Evaluated on 1,000 held-out benchmark tasks from [toke-benchmark](https://github.com/karwalski/toke-benchmark).
+Evaluated on 1,000 held-out benchmark tasks from [toke-eval/benchmark](https://github.com/karwalski/toke-eval).
 
 | Metric | Value | Gate 1 Threshold |
 |--------|-------|-------------------|
@@ -167,4 +167,4 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
 ## Model Card Contact
 
-For questions or issues, open an issue on [GitHub](https://github.com/karwalski/toke-models).
+For questions or issues, open an issue on [GitHub](https://github.com/karwalski/toke-model).

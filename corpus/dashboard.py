@@ -34,19 +34,19 @@ def _sanitize_for_json(obj):
 
 
 PORT = 443
-CERT_FILE = Path("/opt/toke-corpus/dashboard.crt")
-KEY_FILE = Path("/opt/toke-corpus/dashboard.key")
-CORPUS_DIR = Path("/opt/toke-corpus/corpus")
-METRICS_DIR = Path("/opt/toke-corpus/metrics")
-LOGS_DIR = Path("/opt/toke-corpus/logs")
+CERT_FILE = Path("/opt/toke-model/corpus/dashboard.crt")
+KEY_FILE = Path("/opt/toke-model/corpus/dashboard.key")
+CORPUS_DIR = Path("/opt/toke-model/corpus/corpus")
+METRICS_DIR = Path("/opt/toke-model/corpus/metrics")
+LOGS_DIR = Path("/opt/toke-model/corpus/logs")
 PROGRESS_FILE = METRICS_DIR / "progress.json"
 DEFERRED_FILE = LOGS_DIR / "deferred_failures.jsonl"
 TOTAL_TARGET = 25000
-PHASE_B_DIR = Path("/opt/toke-corpus/corpus/phase_b")
+PHASE_B_DIR = Path("/opt/toke-model/corpus/corpus/phase_b")
 PHASE_B_TARGET = 10000
-PHASE_C_DIR = Path("/opt/toke-corpus/corpus/phase_c")
+PHASE_C_DIR = Path("/opt/toke-model/corpus/corpus/phase_c")
 PHASE_C_TARGET = 5000
-PHASE_D_DIR = Path("/opt/toke-corpus/corpus/phase_d")
+PHASE_D_DIR = Path("/opt/toke-model/corpus/corpus/phase_d")
 PHASE_D_TARGET = 5000
 SCORECARD_FILE = METRICS_DIR / "scorecard.json"
 TRIAL_RESULTS_FILE = METRICS_DIR / "trial_results.json"

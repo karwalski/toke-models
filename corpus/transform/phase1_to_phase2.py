@@ -947,8 +947,8 @@ def _validate_with_tkc(source: str, tkc_path: str) -> bool:
 def _find_tkc() -> Optional[str]:
     """Find the tkc binary."""
     candidates = [
-        os.path.expanduser("~/tk/tkc/tkc"),
-        os.path.expanduser("~/tk/tkc/bin/tkc"),
+        os.path.expanduser("~/tk/toke/tkc"),
+        os.path.expanduser("~/tk/toke/bin/tkc"),
     ]
     for c in candidates:
         if os.path.isfile(c) and os.access(c, os.X_OK):

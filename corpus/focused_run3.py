@@ -16,15 +16,15 @@ from collections import Counter
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s", datefmt="%H:%M:%S")
 logger = logging.getLogger("focused")
 
-TKC = "/opt/toke-corpus/bin/tkc"
-CORPUS_DIR = Path("/opt/toke-corpus/corpus/phase_a")
-PROMPTS_DIR = Path("/opt/toke-corpus/prompts")
+TKC = "/opt/toke-model/corpus/bin/tkc"
+CORPUS_DIR = Path("/opt/toke-model/corpus/corpus/phase_a")
+PROMPTS_DIR = Path("/opt/toke-model/corpus/prompts")
 
 system_base = (PROMPTS_DIR / "system_base.md").read_text()
 system_prompt = (PROMPTS_DIR / "system.md").read_text()
 FULL_SYSTEM = system_base + "\n\n" + system_prompt
 
-with open("/opt/toke-corpus/generator/new_tasks.json") as f:
+with open("/opt/toke-model/corpus/generator/new_tasks.json") as f:
     new_tasks_raw = json.load(f)
 
 # Build tasks

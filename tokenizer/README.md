@@ -1,7 +1,7 @@
-# toke-tokenizer
+# toke-model/tokenizer
 
 Purpose-built BPE tokenizer for Phase 2 of
-[toke](https://github.com/karwalski/toke-spec).
+[toke](https://github.com/karwalski/toke).
 
 ## What this produces
 
@@ -12,7 +12,7 @@ for toke programs.
 ## Requirements
 
 - Python 3.11+
-- Validated Phase 1 corpus from [toke-corpus](https://github.com/karwalski/toke-corpus)
+- Validated Phase 1 corpus from [toke-model/corpus](../corpus/)
 
 ## Usage
 

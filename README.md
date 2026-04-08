@@ -1,4 +1,4 @@
-# toke-models
+# toke-model
 
 Fine-tuning scripts for toke language models.
 
@@ -10,9 +10,9 @@ Gate 1 passed (2026-04-03). Qwen 2.5 Coder 7B + QLoRA adapter achieved 63.7% Pas
 
 - Python 3.10+
 - Apple Silicon Mac with MLX (for local training)
-- [toke-corpus](https://github.com/karwalski/toke-corpus) — validated corpus
-- [toke-tokenizer](https://github.com/karwalski/toke-tokenizer) — BPE tokenizer
-- [toke-benchmark](https://github.com/karwalski/toke-benchmark) — evaluation tasks
+- [toke-model/corpus](corpus/) — validated corpus (this repo)
+- [toke-model/tokenizer](tokenizer/) — BPE tokenizer (this repo)
+- [toke-eval/benchmark](https://github.com/karwalski/toke-eval) — evaluation tasks
 - [toke-eval](https://github.com/karwalski/toke-eval) — evaluation toolkit
 
 ## Fine-tuning

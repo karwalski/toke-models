@@ -1,7 +1,7 @@
-# toke-corpus
+# toke-model/corpus
 
 Corpus generation and validation pipeline for
-[toke](https://github.com/karwalski/toke-spec).
+[toke](https://github.com/karwalski/toke).
 
 Generates training data for toke language models using:
 - Programmatic task curriculum generation
@@ -14,7 +14,7 @@ Generates training data for toke language models using:
 - Python 3.11+
 - Apple Silicon Mac with MLX and Qwen 2.5 Coder 32B (for local generation)
 - Claude API key (for escalation)
-- [tkc](https://github.com/karwalski/tkc) on PATH
+- [tkc](https://github.com/karwalski/toke) on PATH
 
 ## Setup
 

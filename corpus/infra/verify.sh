@@ -5,7 +5,7 @@ set -euo pipefail
 # toolchains, packages, and environment variables are correctly configured.
 # Idempotent: safe to run multiple times.
 
-WORK_DIR="/opt/toke-corpus"
+WORK_DIR="/opt/toke-model/corpus"
 VENV_DIR="${WORK_DIR}/.venv"
 TMP_DIR=$(mktemp -d)
 

@@ -1,8 +1,8 @@
 {
   "model_name": "toke-codegen-v0.1",
-  "eval_name": "toke-benchmark-gate1",
+  "eval_name": "toke-eval-benchmark-gate1",
   "eval_date": "2026-04-03",
-  "dataset": "toke-benchmark/phase-a-held-out",
+  "dataset": "toke-eval/benchmark/phase-a-held-out",
   "metrics": {
     "pass_at_1": 0.637,
     "token_reduction": 0.125,

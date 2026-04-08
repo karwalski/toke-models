@@ -9,7 +9,7 @@
   "clean_up_tokenization_spaces": false,
   "added_tokens_decoder": {},
   "toke_notes": {
-    "source": "toke-tokenizer BPE vocabulary",
+    "source": "toke-model/tokenizer BPE vocabulary",
     "base_tokenizer": "Qwen/Qwen2.5-Coder-7B",
     "description": "Tokenizer config for toke-coder-7b. The tokenizer.json file contains the full BPE vocabulary and merge rules. This config provides metadata and special token mappings required by the transformers library."
   }
