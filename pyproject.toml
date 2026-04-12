@@ -19,7 +19,7 @@ cuda = [
     "accelerate>=0.25",
 ]
 mlx = [
-    "mlx>=0.22",
+    "mlx>=0.31.1",
     "mlx-lm>=0.21",
     "pyyaml>=6",
 ]
