@@ -1,0 +1,90 @@
+{
+  "model_name": "toke-codegen-v0.2",
+  "eval_name": "toke-eval-benchmark-gate2",
+  "eval_date": "YYYY-MM-DD",
+  "dataset": "toke-eval/benchmark/phase2-held-out",
+  "base_model": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "adapter": "QLoRA (rank=64, alpha=128, all-linear, nf4)",
+  "training": {
+    "corpus_version": "phase2-2026-04-12",
+    "train_examples": 18890,
+    "eval_examples": 994,
+    "epochs": 3,
+    "effective_batch_size": 32,
+    "learning_rate": 2e-4,
+    "max_seq_length": 1024,
+    "optimizer": "paged_adamw_8bit",
+    "lr_scheduler": "cosine",
+    "training_time_hours": null
+  },
+  "metrics": {
+    "pass_at_1": null,
+    "compilation_rate": null,
+    "token_reduction_8k": 0.125,
+    "token_reduction_32k": 0.131
+  },
+  "corpus_quality": {
+    "unique_programs": 19884,
+    "seed_diversity_ratio": 0.958,
+    "category_coverage": 30,
+    "distinct_module_names": 5769,
+    "complexity_mix": {
+      "simple_pct": 20.3,
+      "medium_pct": 36.4,
+      "complex_pct": 20.6,
+      "application_pct": 22.6,
+      "unclassified_pct": 0.0
+    },
+    "error_handling_pct": 12.2,
+    "match_arm_idiom_pct": 2.5,
+    "stdlib_functions_at_20": "22/74"
+  },
+  "benchmark_size": null,
+  "task_categories": [
+    "arithmetic",
+    "string",
+    "list",
+    "control-flow",
+    "data-structure",
+    "error-handling",
+    "stdlib",
+    "match-arm",
+    "module-composition",
+    "type-system"
+  ],
+  "config": {
+    "temperature": 0.0,
+    "do_sample": false,
+    "max_new_tokens": 512,
+    "timeout_per_task_seconds": 30,
+    "n_samples": 1,
+    "checker": "tkc --check"
+  },
+  "gate": "Gate 2",
+  "gate_thresholds": {
+    "pass_at_1_minimum": 0.75,
+    "compilation_rate_minimum": 0.95,
+    "corpus_size_minimum": 18000,
+    "category_coverage_minimum": 10,
+    "error_handling_minimum_pct": 3.0,
+    "seed_diversity_minimum_pct": 70.0,
+    "match_arm_idiom_target_pct": 5.0
+  },
+  "gate_result": "PENDING",
+  "gate_1_baseline": {
+    "pass_at_1": 0.637,
+    "compilation_rate": 0.923,
+    "gate_result": "PASS"
+  },
+  "delta_from_gate_1": {
+    "pass_at_1_delta": null,
+    "compilation_rate_delta": null
+  },
+  "notes": [
+    "Simple tier floored at 20% via stratified resampling (1,073 unique + 1,576 oversampled)",
+    "Application tier capped at 25% (B-CMP/COMPOSE-NEW deprioritised)",
+    "BIFI repair examples capped at 12.2% (was 22.7%)",
+    "Stdlib coverage gap: 52/74 functions below 20-example threshold (corpus-level limitation)",
+    "Match-arm idiom at 2.5% vs 5% target (limited by corpus match-arm density)"
+  ]
+}

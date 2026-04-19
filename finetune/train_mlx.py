@@ -24,6 +24,7 @@ import mlx.optimizers as optim
 import mlx.utils
 import yaml
 from mlx_lm import load as mlx_load
+from mlx_lm.tuner.datasets import ChatDataset
 from mlx_lm.tuner.trainer import TrainingArgs, train as mlx_train
 from mlx_lm.tuner.utils import linear_to_lora_layers
 
@@ -72,43 +73,24 @@ def setup_training_args(config: dict, adapter_dir: str) -> TrainingArgs:
         val_batches=25,
         steps_per_report=train_cfg.get("steps_per_report", 10),
         steps_per_eval=train_cfg.get("steps_per_eval", 250),
-        save_every=train_cfg.get("save_every", 500),
-        adapter_path=adapter_dir,
+        steps_per_save=train_cfg.get("save_every", 500),
+        adapter_file=str(Path(adapter_dir) / "adapters.safetensors"),
         max_seq_length=train_cfg.get("max_seq_length", 2048),
         grad_checkpoint=train_cfg.get("grad_checkpoint", True),
+        grad_accumulation_steps=train_cfg.get("gradient_accumulation_steps", 4),
     )
 
 
-def load_data(config: dict) -> tuple[list[dict], list[dict]]:
-    """Load training and evaluation JSONL data.
-
-    The existing training data has a 'text' field with pre-formatted ChatML.
-    MLX-LM's completions format expects a 'text' field, which matches.
-    """
-    data_cfg = config["data"]
-    train_path = Path(data_cfg["train_file"])
-    eval_path = Path(data_cfg["eval_file"])
-
-    if not train_path.exists():
-        raise FileNotFoundError(f"Training data not found: {train_path}")
-
-    def read_jsonl(path: Path) -> list[dict]:
-        examples = []
-        with open(path, encoding="utf-8") as f:
-            for line in f:
-                line = line.strip()
-                if not line:
-                    continue
-                record = json.loads(line)
-                # MLX-LM expects a "text" field for completions-style training.
-                if "text" in record:
-                    examples.append({"text": record["text"]})
-        return examples
-
-    train_data = read_jsonl(train_path)
-    eval_data = read_jsonl(eval_path) if eval_path.exists() else []
-
-    return train_data, eval_data
+def load_jsonl(path: Path) -> list[dict]:
+    """Load JSONL data as a list of dicts."""
+    examples = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            examples.append(json.loads(line))
+    return examples
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -189,11 +171,23 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  Trainable parameters: {trainable_params:,}")
     print(f"  Trainable %: {100 * trainable_params / total_params:.2f}%")
 
-    # Load data.
+    # Load data and create tokenized datasets.
+    # Data uses OpenAI messages format: {"messages": [{role, content}, ...]}
     print(f"\nLoading training data...")
-    train_data, eval_data = load_data(config)
-    print(f"  Train examples: {len(train_data):,}")
-    print(f"  Eval examples: {len(eval_data):,}")
+    data_cfg = config["data"]
+    train_path = Path(data_cfg["train_file"])
+    eval_path = Path(data_cfg["eval_file"])
+    if not train_path.exists():
+        print(f"ERROR: training data not found: {train_path}", file=sys.stderr)
+        return 1
+    train_raw = load_jsonl(train_path)
+    eval_raw = load_jsonl(eval_path) if eval_path.exists() else []
+    print(f"  Train examples: {len(train_raw):,}")
+    print(f"  Eval examples: {len(eval_raw):,}")
+
+    # Wrap in ChatDataset for tokenization.
+    train_data = ChatDataset(train_raw, tokenizer, chat_key="messages")
+    eval_data = ChatDataset(eval_raw, tokenizer, chat_key="messages") if eval_raw else None
 
     # Compute iterations from epochs.
     batch_size = train_cfg.get("batch_size", 8)
@@ -243,11 +237,10 @@ def main(argv: list[str] | None = None) -> int:
 
     mlx_train(
         model=model,
-        tokenizer=tokenizer,
         args=training_args,
         optimizer=optimizer,
         train_dataset=train_data,
-        val_dataset=eval_data if eval_data else None,
+        val_dataset=eval_data,
     )
 
     elapsed = time.time() - start_time
@@ -274,8 +267,8 @@ def main(argv: list[str] | None = None) -> int:
         "gradient_accumulation_steps": grad_accum,
         "learning_rate": lr,
         "training_time_seconds": elapsed,
-        "train_examples": len(train_data),
-        "eval_examples": len(eval_data),
+        "train_examples": len(train_raw),
+        "eval_examples": len(eval_raw),
         "total_parameters": total_params,
         "trainable_parameters": trainable_params,
     }

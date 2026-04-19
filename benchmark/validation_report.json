@@ -1,0 +1,1211 @@
+{
+  "validation_date": "2026-04-12 14:57:56",
+  "total": 200,
+  "compiled": 0,
+  "executed": 0,
+  "exit_zero": 0,
+  "output_match": 0,
+  "elapsed_seconds": 1584.3,
+  "results": [
+    {
+      "task_id": "A-A-STR-0015v8-28acf15e",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0116v17-ebc7e977",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0027v27-bb65b704",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0084v4-1287766b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":53,\"line\":1,\"col\":54},\"span_start\":53,\"span_end\":53,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n/tmp/tkc_7j6T01.ll:104:24: error: use of undefined value '%u64'\n  104 |   %t12 = load i64, ptr %u64\n      |                        ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E9003\",\"severity\":\"error"
+    },
+    {
+      "task_id": "A-A-ERR-0015v70-0b310ab5",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":110,\"line\":1,\"col\":111},\"span_start\":110,\"span_end\":110,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":176,\"line\":1,\"col\":177},\"span_start\":176,\"span_end\":176,\"cont"
+    },
+    {
+      "task_id": "A-A-ERR-0003v14-714ea0bb",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0081v16-b42d8907",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0019v33-6b9c4e95",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0079v32-30754d1d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":100,\"line\":1,\"col\":101},\"span_start\":100,\"span_end\":100,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":117,\"line\":1,\"col\":118},\"span_start\":117,\"span_end\":117,\"cont"
+    },
+    {
+      "task_id": "A-A-ARR-0105v18-2d6d480d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0030v6-7f41a563",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'neg'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":83,\"line\":1,\"col\":84},\"span_start\":83,\"span_end\":83,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-STR-0083v5-25cd87b1",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0046v37-94575362",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0086v7-b03cf137",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0088v14-50d21a76",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0069v41-ad058967",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_Co6AGV.ll:122:28: error: '%t18' defined with type 'i64' but expected 'double'\n  122 |   %t19 = fadd double %t17, %t18\n      |                            ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ARR-0033v30-6b3a4734",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0031v35-4cb51ac4",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0094v4-d62f0588",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0076-bd60705e",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0090v7-03788554",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0024v49-af6234f8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0100-055d2304",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0028v5-a2ee7545",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0056v5-d1853666",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0055v36-9fb925fa",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0058v29-5ce600dc",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0020v24-77b638b8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0044v1-39da2e31",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'm'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":73,\"line\":1,\"col\":74},\"span_start\":73,\"span_end\":73,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-SRT-0046v24-0be00df5",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0067v44-2618bf0d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'dx'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":322,\"line\":1,\"col\":323},\"span_start\":322,\"span_end\":322,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'dy'"
+    },
+    {
+      "task_id": "A-A-CND-0078v13-97971149",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'n'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":137,\"line\":1,\"col\":138},\"span_start\":137,\"span_end\":137,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-MTH-0105v1-a960f6d7",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0086v5-e2bf05a0",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0017v26-6d2af652",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":122,\"line\":1,\"col\":123},\"span_start\":122,\"span_end\":122,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-ARR-0009v22-556d0d79",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0031v39-c195a90f",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0040v27-dda2bb99",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":48,\"line\":1,\"col\":49},\"span_start\":48,\"span_end\":48,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: lin"
+    },
+    {
+      "task_id": "A-A-MTH-0070v38-2445e2bb",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0072v21-dc12cac6",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0017v16-e7876a77",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0029v14-95079dbf",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0072v31-b71b8b73",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0067v4-707f8606",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_n8Ds1e.ll:136:10: error: '%t19' defined with type 'ptr' but expected 'i1'\n  136 |   ret i1 %t19\n      |          ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ARR-0105-2ee050ab",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0093v4-72ebe641",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_qH1RvQ.ll:118:29: error: '%t17' defined with type 'double' but expected 'i64'\n  118 |   %t18 = icmp slt i64 %t16, %t17\n      |                             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-MTH-0029v31-512621b9",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'u64' to 'i64'\",\"file\":\"\",\"pos\":{\"offset\":86,\"line\":1,\"col\":87},\"span_start\":86,\"span_end\":86,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'u64' to 'i64'\",\"file\":\"\",\"pos\":{\"offset\":136,\"line\":1,\"col\":137},\"span_start\":136,\"span_end\":136,\"context\""
+    },
+    {
+      "task_id": "A-A-ARR-0098v22-3555bed6",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":99,\"line\":1,\"col\":100},\"span_start\":99,\"span_end\":99,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: li"
+    },
+    {
+      "task_id": "A-A-MTH-0002v19-f5e2f574",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":97,\"line\":1,\"col\":98},\"span_start\":97,\"span_end\":97,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: lin"
+    },
+    {
+      "task_id": "A-A-ERR-0077v17-8f0e63cb",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":240,\"line\":1,\"col\":241},\"span_start\":240,\"span_end\":240,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-STR-0001v3-aa94eead",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0011v5-eaaca8e7",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":138,\"line\":1,\"col\":139},\"span_start\":138,\"span_end\":138,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-ARR-0044v15-f408b399",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_d8P1DT.ll:110:29: error: '%t14' defined with type 'double' but expected 'i64'\n  110 |   %t15 = icmp slt i64 %t13, %t14\n      |                             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-STR-0072v27-ece636a2",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4031\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"type mismatch: expected 'i64', got 'u8'\",\"file\":\"\",\"pos\":{\"offset\":183,\"line\":1,\"col\":184},\"span_start\":183,\"span_end\":183,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"cast RHS to i64 using 'as'\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E4031\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"type mismatch: expected 'i64', got 'u8'\",\"file\":\"\",\"pos\":{\"offset"
+    },
+    {
+      "task_id": "A-A-MTH-0118v5-85bd8f67",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0041v38-875df2a9",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":308,\"line\":1,\"col\":309},\"span_start\":308,\"span_end\":308,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-CND-0010-3bd8e3d0",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0028v26-3a96687b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":59,\"line\":1,\"col\":60},\"span_start\":59,\"span_end\":59,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":72,\"line\":1,\"col\":73},\"span_start\":72,\"span_end\":72,\"context\":[],"
+    },
+    {
+      "task_id": "A-A-ARR-0079v16-94a14678",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":161,\"line\":1,\"col\":162},\"span_start\":161,\"span_end\":161,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-SRT-0050v17-c20458de",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_gyHWwk.ll:170:29: error: '%t41' defined with type 'double' but expected 'i64'\n  170 |   %t42 = icmp sgt i64 %t40, %t41\n      |                             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ERR-0025v12-b5184834",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_PVFKJk.ll:103:21: error: '%t3' defined with type 'double' but expected 'i64'\n  103 |   %t4 = icmp ne i64 %t3, 0\n      |                     ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-STR-0011v61-e2d9a47c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0007v56-3871a2c8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0005v5-53895996",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0073v17-91922bfa",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0051v41-599bd0cf",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0047v17-b714b3ca",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0069v14-5b244728",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0046v19-13f13762",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0024v75-5d9e921d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":129,\"line\":1,\"col\":130},\"span_start\":129,\"span_end\":129,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":239,\"line\":1,\"col\":240},\"span_start\":239,\"span_end\":239,\"cont"
+    },
+    {
+      "task_id": "A-A-CND-0086v23-5b93b9c5",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0022v6-46edba0f",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":124,\"line\":1,\"col\":125},\"span_start\":124,\"span_end\":124,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-ARR-0080v10-d782391a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0091v10-23f9cfae",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0103v23-7d3ecd44",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0029v38-85013439",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0017v2-35379d95",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0110v19-07f62426",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_trvYYD.ll:150:3: error: multiple definition of local value named 't2'\n  150 |   %t2 = alloca i64\n      |   ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-STR-0014v39-edaed640",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":92,\"line\":1,\"col\":93},\"span_start\":92,\"span_end\":92,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":111,\"line\":1,\"col\":112},\"span_start\":111,\"span_end\":111,\"context\""
+    },
+    {
+      "task_id": "A-A-MTH-0010v24-ab78b11a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0033v25-e41e543d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0019-224a6309",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0092v20-8b55713d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":114,\"line\":1,\"col\":115},\"span_start\":114,\"span_end\":114,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":335,\"line\":1,\"col\":336},\"span_start\":335,\"span_end\":335,\"cont"
+    },
+    {
+      "task_id": "A-A-CND-0067v10-953277f8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0028v22-750eb96d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_rYf2WA.ll:149:50: error: '%t33' defined with type 'i64' but expected 'ptr'\n  149 |   %t35 = call ptr @tk_array_concat(ptr %t27, ptr %t33)\n      |                                                  ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ERR-0012v60-6185cd82",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":305,\"line\":1,\"col\":306},\"span_start\":305,\"span_end\":305,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-STR-0044v24-458bcb21",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0033v60-559c73d7",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0019v43-61817c72",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":49,\"line\":1,\"col\":50},\"span_start\":49,\"span_end\":49,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":106,\"line\":1,\"col\":107},\"span_start\":106,\"span_end\":106,\"context\""
+    },
+    {
+      "task_id": "A-A-ARR-0071v37-385ac96d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'u64' to 'i64'\",\"file\":\"\",\"pos\":{\"offset\":78,\"line\":1,\"col\":79},\"span_start\":78,\"span_end\":78,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'u64' to 'i64'\",\"file\":\"\",\"pos\":{\"offset\":105,\"line\":1,\"col\":106},\"span_start\":105,\"span_end\":105,\"context\""
+    },
+    {
+      "task_id": "A-A-STR-0003v48-4d3442b4",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0014v16-f35ba62b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":147,\"line\":1,\"col\":148},\"span_start\":147,\"span_end\":147,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":193,\"line\":1,\"col\":194},\"span_start\":193,\"span_end\":193,\"cont"
+    },
+    {
+      "task_id": "A-A-CND-0038v19-4b7b265f",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0040v30-70cb6773",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'a'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":246,\"line\":1,\"col\":247},\"span_start\":246,\"span_end\":246,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'a'; "
+    },
+    {
+      "task_id": "A-A-STR-0072v1-cdc20e69",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'n'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":662,\"line\":1,\"col\":663},\"span_start\":662,\"span_end\":662,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-ERR-0003v110-7242e45a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0033v48-1f5838f8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0001v61-31fb5caf",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0029v14-30b8edbc",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'u64' to 'i64'\",\"file\":\"\",\"pos\":{\"offset\":39,\"line\":1,\"col\":40},\"span_start\":39,\"span_end\":39,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: lin"
+    },
+    {
+      "task_id": "A-A-ERR-0013v92-caaa59bc",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":120,\"line\":1,\"col\":121},\"span_start\":120,\"span_end\":120,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-STR-0016v16-85000d6a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":147,\"line\":1,\"col\":148},\"span_start\":147,\"span_end\":147,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":162,\"line\":1,\"col\":163},\"span_start\":162,\"span_end\":162,\"cont"
+    },
+    {
+      "task_id": "A-A-STR-0035v53-e26532d0",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0052v53-bf3f210c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0077v14-1fd8a81d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0034v12-b6efa324",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_c83Mm5.ll:115:19: error: use of undefined value '@contains'\n  115 |   %t18 = call i64 @contains( i64 %t17)\n      |                   ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ERR-0052v29-7640da66",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0056v18-812cf15f",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0087v24-6923e7be",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0033v6-e15c5169",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0042v29-e2db161a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":217,\"line\":1,\"col\":218},\"span_start\":217,\"span_end\":217,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-MTH-0050v26-6d2e5729",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0013v100-adb3c789",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":115,\"line\":1,\"col\":116},\"span_start\":115,\"span_end\":115,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":179,\"line\":1,\"col\":180},\"span_start\":179,\"span_end\":179,\"cont"
+    },
+    {
+      "task_id": "A-A-ARR-0065v28-ecd9b9dd",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0068v22-8d41ad94",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0062v8-f30e7502",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0060v30-c01fb2ae",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_M3wGoK.ll:113:28: error: '%t16' defined with type 'i8' but expected 'i64'\n  113 |   %t17 = icmp eq i64 %t14, %t16\n      |                            ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ERR-0041v5-9478f8bf",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":105,\"line\":1,\"col\":106},\"span_start\":105,\"span_end\":105,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":173,\"line\":1,\"col\":174},\"span_start\":173,\"span_end\":173,\"cont"
+    },
+    {
+      "task_id": "A-A-CND-0069v6-e6f54a0c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0022v41-5d477606",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0021v33-b9cd0e25",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":194,\"line\":1,\"col\":195},\"span_start\":194,\"span_end\":194,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":270,\"line\":1,\"col\":271},\"span_start\":270,\"span_end\":270,\"cont"
+    },
+    {
+      "task_id": "A-A-MTH-0044v26-951d8c08",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":42,\"line\":1,\"col\":43},\"span_start\":42,\"span_end\":42,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":53,\"line\":1,\"col\":54},\"span_start\":53,\"span_end\":53,\"context\":[],"
+    },
+    {
+      "task_id": "A-A-STR-0017v26-5898c75e",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":134,\"line\":1,\"col\":135},\"span_start\":134,\"span_end\":134,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":194,\"line\":1,\"col\":195},\"span_start\":194,\"span_end\":194,\"cont"
+    },
+    {
+      "task_id": "A-A-MTH-0118v11-6b302201",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0021v32-5c275e6f",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0011v67-740dd0f1",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":122,\"line\":1,\"col\":123},\"span_start\":122,\"span_end\":122,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":214,\"line\":1,\"col\":215},\"span_start\":214,\"span_end\":214,\"cont"
+    },
+    {
+      "task_id": "A-A-CND-0019v36-0b91f906",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0004v12-299cd028",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0088v28-9ca7df54",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":527,\"line\":2,\"col\":25},\"span_start\":527,\"span_end\":527,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: "
+    },
+    {
+      "task_id": "A-A-SRT-0056v9-2ba6cf08",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":93,\"line\":1,\"col\":94},\"span_start\":93,\"span_end\":93,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":112,\"line\":1,\"col\":113},\"span_start\":112,\"span_end\":112,\"context\""
+    },
+    {
+      "task_id": "A-A-SRT-0043-6dbbb6ac",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0010v76-0f51a114",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":122,\"line\":1,\"col\":123},\"span_start\":122,\"span_end\":122,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n/tmp/tkc_AR8Hx7.ll:105:14: error: '%t7' defined with type 'ptr' but expected 'double'\n  105 |   ret double %t7\n      |              ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E9003\",\"severity\":\""
+    },
+    {
+      "task_id": "A-A-STR-0090v30-e1a038c6",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'mod26'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":308,\"line\":1,\"col\":309},\"span_start\":308,\"span_end\":308,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-SRT-0081v1-55452a78",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0077v21-6a75c692",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0079-c0de458a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":224,\"line\":1,\"col\":225},\"span_start\":224,\"span_end\":224,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":260,\"line\":1,\"col\":261},\"span_start\":260,\"span_end\":260,\"cont"
+    },
+    {
+      "task_id": "A-A-MTH-0048v28-b6993bae",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0006v23-4bafbe1c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0076v5-a6f61e29",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0018v48-1a618c9a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0026v66-7f657885",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0018v31-a2d6f4a4",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":95,\"line\":1,\"col\":96},\"span_start\":95,\"span_end\":95,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n/tmp/tkc_6PTq6m.ll:104:16: error: '%t13' defined with type 'i64' but expected 'double'\n  104 |   store double %t13, ptr %left\n      |                ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E9003\""
+    },
+    {
+      "task_id": "A-A-ARR-0091v25-d4d3351d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":195,\"line\":1,\"col\":196},\"span_start\":195,\"span_end\":195,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-STR-0100v13-2f9a2f8a",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":197,\"line\":1,\"col\":198},\"span_start\":197,\"span_end\":197,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-ARR-0047v23-5b3eafa1",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0114v12-f9261e14",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0027v33-f0894eb2",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_p5ezC2.ll:89:26: error: '%t1' defined with type 'i64' but expected 'double'\n   89 |   %t2 = fadd double %t0, %t1\n      |                          ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-STR-0011v25-035fb89d",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0031v5-2387b4b8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0032v37-048bf63b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0069v8-117a89db",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_WY91Mb.ll:114:68: error: '%t15' defined with type 'double' but expected 'i64'\n  114 |   %t16 = call {i64, i1} @llvm.smul.with.overflow.i64(i64 %t14, i64 %t15)\n      |                                                                    ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0094v33-3006800b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":153,\"line\":1,\"col\":154},\"span_start\":153,\"span_end\":153,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-ARR-0063v11-3c22f57e",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0034-e2f01b0c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0030v7-3e56320e",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0094v12-45825e4b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":74,\"line\":1,\"col\":75},\"span_start\":74,\"span_end\":74,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":120,\"line\":1,\"col\":121},\"span_start\":120,\"span_end\":120,\"context\""
+    },
+    {
+      "task_id": "A-A-SRT-0004v54-3180c165",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0037v41-0f41a684",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":113,\"line\":1,\"col\":114},\"span_start\":113,\"span_end\":113,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-ERR-0005v93-2e9bc75b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":131,\"line\":1,\"col\":132},\"span_start\":131,\"span_end\":131,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":304,\"line\":1,\"col\":305},\"span_start\":304,\"span_end\":304,\"cont"
+    },
+    {
+      "task_id": "A-A-SRT-0050v57-f6b4bf25",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_k71s9V.ll:173:29: error: '%t40' defined with type 'double' but expected 'i64'\n  173 |   %t41 = icmp sgt i64 %t39, %t40\n      |                             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-ARR-0014v23-3f2201f0",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":63,\"line\":1,\"col\":64},\"span_start\":63,\"span_end\":63,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: lin"
+    },
+    {
+      "task_id": "A-A-STR-0032v3-203e5e79",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'lhs'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":255,\"line\":1,\"col\":256},\"span_start\":255,\"span_end\":255,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-STR-0063v23-9de0bcc0",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0001v1-6f2e1f2b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0032v88-e1862073",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'x'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":81,\"line\":1,\"col\":82},\"span_start\":81,\"span_end\":81,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'fraction"
+    },
+    {
+      "task_id": "A-A-SRT-0041v63-2f6d41ba",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0095v13-6e9ce5c8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":72,\"line\":1,\"col\":73},\"span_start\":72,\"span_end\":72,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":89,\"line\":1,\"col\":90},\"span_start\":89,\"span_end\":89,\"context\":[],"
+    },
+    {
+      "task_id": "A-A-ERR-0012v55-fa9533d8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0016v45-1db56b42",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":103,\"line\":1,\"col\":104},\"span_start\":103,\"span_end\":103,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":183,\"line\":1,\"col\":184},\"span_start\":183,\"span_end\":183,\"cont"
+    },
+    {
+      "task_id": "A-A-ERR-0072v19-4c427872",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0116v25-10567c26",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0025v24-7b96792c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_6sBnhT.ll:120:14: error: '%t12' defined with type 'ptr' but expected 'double'\n  120 |   ret double %t12\n      |              ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-MTH-0085v19-1caad487",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "/tmp/tkc_yNxjlw.ll:97:13: error: '%t3' defined with type 'double' but expected 'i64'\n   97 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\"col\":0},\"span_start\":0,\"span_end\":0,\"context\":[],\"expected\":\"\",\"got\":\"\"}"
+    },
+    {
+      "task_id": "A-A-CND-0030v48-8190aeda",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0110v5-444a2477",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0006v10-1b51515f",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'other'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":88,\"line\":1,\"col\":89},\"span_start\":88,\"span_end\":88,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'val'"
+    },
+    {
+      "task_id": "A-A-STR-0064v5-9fdfa7e6",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":58,\"line\":1,\"col\":59},\"span_start\":58,\"span_end\":58,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: lin"
+    },
+    {
+      "task_id": "A-A-STR-0062v21-be5447bb",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":60,\"line\":1,\"col\":61},\"span_start\":60,\"span_end\":60,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":169,\"line\":1,\"col\":170},\"span_start\":169,\"span_end\":169,\"context\""
+    },
+    {
+      "task_id": "A-A-ERR-0011v108-0dacd649",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":122,\"line\":1,\"col\":123},\"span_start\":122,\"span_end\":122,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":176,\"line\":1,\"col\":177},\"span_start\":176,\"span_end\":176,\"cont"
+    },
+    {
+      "task_id": "A-A-SRT-0022v16-b50194bd",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":157,\"line\":1,\"col\":158},\"span_start\":157,\"span_end\":157,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":246,\"line\":1,\"col\":247},\"span_start\":246,\"span_end\":246,\"cont"
+    },
+    {
+      "task_id": "A-A-CND-0042v30-10e6ff23",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0025v64-3b9c5b26",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":77,\"line\":1,\"col\":78},\"span_start\":77,\"span_end\":77,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n/tmp/tkc_xE0ibl.ll:108:28: error: '%t13' defined with type 'double' but expected 'i64'\n  108 |   %t14 = icmp eq i64 %t12, %t13\n      |                            ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_"
+    },
+    {
+      "task_id": "A-A-ARR-0110v11-24812256",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0010v35-59dac123",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0028v2-09185556",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":136,\"line\":1,\"col\":137},\"span_start\":136,\"span_end\":136,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":217,\"line\":1,\"col\":218},\"span_start\":217,\"span_end\":217,\"cont"
+    },
+    {
+      "task_id": "A-A-STR-0015v64-0530aaa9",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-STR-0003v41-aa0f94a4",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0055v4-68327797",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0024v20-4492aa1e",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-CND-0032v44-8e9e3fc8",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0043v20-b349aa49",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0038v25-c0fe1b8c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0001v9-d4d46115",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0097v12-c19e3e0b",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ERR-0052v24-232319cd",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-SRT-0015v51-4d24b08c",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":94,\"line\":1,\"col\":95},\"span_start\":94,\"span_end\":94,\"context\":[],\"expected\":\"\",\"got\":\"\"}\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0002\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":419,\"line\":1,\"col\":420},\"span_start\":419,\"span_end\":419,\"context\""
+    },
+    {
+      "task_id": "A-A-ARR-0022v33-2ad26c12",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-ARR-0116v8-f9aefb10",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    },
+    {
+      "task_id": "A-A-MTH-0007v43-1af675b2",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E4070\",\"severity\":\"error\",\"stage\":\"type_check\",\"message\":\"cannot assign to immutable binding 'absrhs'; declare with 'mut' to make mutable\",\"file\":\"\",\"pos\":{\"offset\":116,\"line\":1,\"col\":117},\"span_start\":116,\"span_end\":116,\"context\":[],\"expected\":\"\",\"got\":\"\",\"fix\":\"let x = mut.expr\"}"
+    },
+    {
+      "task_id": "A-A-ERR-0034v22-903b9fb5",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":141,\"line\":1,\"col\":142},\"span_start\":141,\"span_end\":141,\"context\":[],\"expected\":\"\",\"got\":\"\"}\nwarning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error:"
+    },
+    {
+      "task_id": "A-A-CND-0098v18-fdba5dd6",
+      "compiled": false,
+      "error": "compile failed",
+      "diagnostics": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /lib/x86_64-linux-gnu/Scrt1.o: in function `_start':\n(.text+0x1b): undefined reference to `main'\nclang: error: linker command failed with exit code 1 (use -v to see invocation)\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"E9003\",\"severity\":\"error\",\"stage\":\"codegen\",\"message\":\"clang invocation failed with exit code 256\",\"file\":\"\",\"pos\":{\"offset\":0,\"line\":0,\""
+    }
+  ]
+}

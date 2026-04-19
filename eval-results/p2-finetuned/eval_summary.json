@@ -1,0 +1,34 @@
+{
+  "eval_date": "2026-04-14 00:25:09",
+  "model_base": "Qwen/Qwen2.5-Coder-7B-Instruct",
+  "adapter_dir": "output/7b-qlora-p2/adapter",
+  "tasks_file": "benchmark/tasks.jsonl",
+  "n_tasks": 200,
+  "pass_at_1": 0.0,
+  "compile_rate": 0.025,
+  "exit_zero_rate": 0.01,
+  "output_match_rate": 0.0,
+  "n_passed": 0,
+  "n_compiled": 5,
+  "n_exit_zero": 2,
+  "n_output_match": 0,
+  "elapsed_seconds": 2923.8,
+  "max_new_tokens": 512,
+  "temperature": 0.0,
+  "compile_only": false,
+  "dry_run": false,
+  "sandbox": {
+    "cpu_seconds": 5,
+    "mem_mb": 256,
+    "fsize_kb": 1024,
+    "nproc": 0,
+    "timeout_s": 10,
+    "unshare_net": false
+  },
+  "gate": "Gate 2",
+  "gate_thresholds": {
+    "pass_at_1_minimum": 0.75,
+    "compilation_rate_minimum": 0.95
+  },
+  "gate_result": "FAIL"
+}

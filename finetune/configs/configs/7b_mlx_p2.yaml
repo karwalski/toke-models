@@ -1,0 +1,43 @@
+# Qwen 2.5 Coder 7B MLX LoRA fine-tuning — Phase 2 corpus (2026-04-12)
+# Mac Studio M4 Max, 128GB unified memory
+# Training data: 18,890 train / 994 eval (post-stratified resampling)
+
+model:
+  base: "Qwen/Qwen2.5-Coder-7B-Instruct"
+  quantization: true                # 4-bit quantization (MLX default)
+
+lora:
+  rank: 64
+  alpha: 128.0
+  dropout: 0.05
+  keys:
+    - "self_attn.q_proj"
+    - "self_attn.k_proj"
+    - "self_attn.v_proj"
+    - "self_attn.o_proj"
+    - "mlp.gate_proj"
+    - "mlp.up_proj"
+    - "mlp.down_proj"
+
+training:
+  train_embeddings: true          # Unfreeze embed_tokens + lm_head for custom tokenizer
+  epochs: 3
+  batch_size: 8
+  gradient_accumulation_steps: 4    # effective batch = 32
+  learning_rate: 2.0e-4
+  lr_schedule: "cosine"
+  warmup_steps: 100
+  max_seq_length: 2048
+  grad_checkpoint: true
+  steps_per_report: 10
+  steps_per_eval: 250
+  save_every: 500
+  max_grad_norm: 1.0
+
+data:
+  train_file: "training-data-p2/train.jsonl"
+  eval_file: "training-data-p2/eval.jsonl"
+
+output:
+  adapter_dir: "output/7b-mlx-p2/adapter"
+  fused_dir: "output/7b-mlx-p2/fused"

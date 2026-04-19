@@ -22,13 +22,13 @@ The following toke program failed to compile. Fix the errors and return the corr
 
 **Correction rules:**
 - Output ONLY the corrected toke source code. No explanations, no markdown fences.
-- The program must start with `M=` module declaration.
+- The program must start with `m=` module declaration.
 - Fix ONLY the errors indicated by the diagnostic. Do not rewrite the logic unless the output is wrong.
 - Remember these common fixes:
   - Parameters and arguments use `;` not `,`
   - Array elements use `;` not `,`
   - Return is `<` not `return`
-  - String type is `Str` not `string`/`String`
+  - String type is `str` not `string`/`String`/`Str`
   - Else is `el` not `else`
   - Loop is `lp` not `for`/`while`
   - Loop init uses `let`: `lp(let i=0;i<n;i=i+1)` not `lp(mut i:i64=0;...)`
@@ -36,12 +36,12 @@ The following toke program failed to compile. Fix the errors and return the corr
   - No type annotations on let: `let x=42` not `let x:i64=42`
   - Equality is `=` not `==` in expressions. No `!=`, `<=`, `>=`, `&&`, `||` operators.
   - No comments (`//`, `#`, `/* */` are illegal)
-  - Every file must start with `M=name;`
+  - Every file must start with `m=name;`
   - Break in loops is `br` not `break`
-  - Error types are struct-like: `T=MyErr{{Variant:bool}};`
-  - Error union return type: `F=f():T!MyErr{{...}};`
-  - Return error: `<MyErr{{Variant:true}};` — variant names start with uppercase
-  - Propagate errors: `let val=call()!MyErr;`
-  - Match on result: `result|{{Ok:v expr;Err:e expr}}` — arm bodies are expressions, not statements
+  - Error types are struct-like: `t=$myerr{{$variant:bool}};`
+  - Error union return type: `f=f():$t!$myerr{{...}};`
+  - Return error: `<$myerr{{$variant:true}};` — variant names use $ prefix
+  - Propagate errors: `let val=call()!$myerr;`
+  - Match on result: `result|{{$ok:v expr;$err:e expr}}` — arm bodies are expressions, not statements
   - Do NOT use `<` (return) inside match arms — they are expressions
 - The corrected program must produce the expected output shown above.

@@ -1,0 +1,47 @@
+# Qwen 2.5 Coder 7B QLoRA fine-tuning — Phase 2 corpus (2026-04-12)
+# A10G GPU (23GB VRAM), 16GB system RAM
+# Training data: 18,890 train / 994 eval (post-stratified resampling)
+
+model:
+  base: "Qwen/Qwen2.5-Coder-7B-Instruct"
+  quantization: "nf4"
+  bnb_4bit_compute_dtype: "bfloat16"
+  bnb_4bit_use_double_quant: true
+
+lora:
+  rank: 64
+  alpha: 128
+  dropout: 0.05
+  target_modules: "all-linear"
+  bias: "none"
+  task_type: "CAUSAL_LM"
+
+training:
+  epochs: 3
+  batch_size: 2                        # reduced from 4: OOM at step 250 with batch=4
+  gradient_accumulation_steps: 16      # effective batch = 32 (same)
+  learning_rate: 2.0e-4
+  lr_scheduler: "cosine"
+  warmup_steps: 100
+  max_seq_length: 1024                 # median 300 chars, P95 948; 1.2% truncated
+  fp16: false
+  bf16: true
+  gradient_checkpointing: true
+  optim: "paged_adamw_8bit"
+  weight_decay: 0.01
+  max_grad_norm: 1.0
+  save_steps: 250                      # save earlier to avoid losing progress on OOM
+  logging_steps: 10
+  eval_strategy: "steps"
+  eval_steps: 250
+  save_total_limit: 3
+  load_best_model_at_end: true
+
+data:
+  train_file: "training-data-p2/train.jsonl"
+  eval_file: "training-data-p2/eval.jsonl"
+
+output:
+  dir: "output/7b-qlora-p2"
+  adapter_dir: "output/7b-qlora-p2/adapter"
+  merged_dir: "output/7b-merged-p2"

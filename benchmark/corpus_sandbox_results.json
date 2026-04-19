@@ -1,0 +1,834 @@
+{
+  "total": 100,
+  "check": 100,
+  "compiled": 31,
+  "executed": 31,
+  "exit_zero": 17,
+  "has_stdout": 0,
+  "results": [
+    {
+      "id": 0,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_fLOVDr-51ad8e.o: in function `tk_main':\ntkc_fLOVDr.ll:(.text+0x9): "
+    },
+    {
+      "id": 1,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_irp2Us.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 2,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_3fuVbu.ll:90:13: error: '%t4' defined with type 'double' but expected 'i64'\n   90 |   store i64 %t4, ptr %t5\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 3,
+      "module": "m=gradecalc",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 2521
+    },
+    {
+      "id": 4,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_yjUBAn.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 5,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_KY74kX-9ffda2.o: in function `tk_main':\ntkc_KY74kX.ll:(.text+0x1f):"
+    },
+    {
+      "id": 6,
+      "module": "m=scheduler",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_yP977Z-7ee2f9.o: in function `insertsorted':\ntkc_yP977Z.ll:(.text+0"
+    },
+    {
+      "id": 7,
+      "module": "m=main",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "{\"level\":\"error\",\"msg\":\"age cannot be negative\",\"ts\":\"2026-04-12T21:32:03.943Z\"}\n{\"level\":\"error\",\"msg\":\"age seems unrealistic\",\"ts\":\"2026-04-12T21:32:03.943Z\"}",
+      "chars": 240
+    },
+    {
+      "id": 8,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_mEw9Tb.ll:109:13: error: '%t18' defined with type 'double' but expected 'i64'\n  109 |   store i64 %t18, ptr %t19\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_i"
+    },
+    {
+      "id": 9,
+      "module": "m=acccountprimes",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 617
+    },
+    {
+      "id": 10,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_5ICyEc.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 11,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_m1MHHG.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 12,
+      "module": "m=textprocessor",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 284
+    },
+    {
+      "id": 13,
+      "module": "m=textprocessor",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 306
+    },
+    {
+      "id": 14,
+      "module": "m=ceilingcalculator",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_ATXOkt.ll:86:20: error: '%t0' defined with type 'double' but expected 'i64'\n   86 |   %t1 = add i64 0, %t0 ; type coerce fallback\n      |                    ^\n1 error generated.\n{\"schema_vers"
+    },
+    {
+      "id": 15,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_hb2vgu.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 16,
+      "module": "m=acccountprimes",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 668
+    },
+    {
+      "id": 17,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_BDPGbp-a8ec83.o: in function `tk_main':\ntkc_BDPGbp.ll:(.text+0x17):"
+    },
+    {
+      "id": 18,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_Q93rVS-0f57f7.o: in function `tk_main':\ntkc_Q93rVS.ll:(.text+0x1f):"
+    },
+    {
+      "id": 19,
+      "module": "m=main",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 160
+    },
+    {
+      "id": 20,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_qIOldK-a93b6e.o: in function `tk_main':\ntkc_qIOldK.ll:(.text+0x16):"
+    },
+    {
+      "id": 21,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_bDSYzG.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 22,
+      "module": "m=statsuite",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_JIsqy8.ll:108:27: error: '%t10' defined with type 'i64' but expected 'double'\n  108 |   %t11 = fadd double %t9, %t10\n      |                           ^\n1 error generated.\n{\"schema_version\":\""
+    },
+    {
+      "id": 23,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_suUIeM.ll:97:19: error: use of undefined value '@json_dec'\n   97 |   %t10 = call i64 @json_dec( i64 %t9)\n      |                   ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\""
+    },
+    {
+      "id": 24,
+      "module": "m=lib",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_2Aqvrq.ll:86:20: error: '%t2' defined with type 'double' but expected 'i64'\n   86 |   %t3 = add i64 0, %t2 ; type coerce fallback\n      |                    ^\n1 error generated.\n{\"schema_vers"
+    },
+    {
+      "id": 25,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_i4kYGR.ll:97:21: error: '%t7' defined with type 'double' but expected 'i64'\n   97 |   %t12 = add i64 0, %t7 ; type coerce fallback\n      |                     ^\n1 error generated.\n{\"schema_ve"
+    },
+    {
+      "id": 26,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_PXvcpO-979aa6.o: in function `tk_main':\ntkc_PXvcpO.ll:(.text+0x1f):"
+    },
+    {
+      "id": 27,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_Y9kOkF.ll:86:20: error: '%t2' defined with type 'double' but expected 'i64'\n   86 |   %t3 = add i64 0, %t2 ; type coerce fallback\n      |                    ^\n1 error generated.\n{\"schema_vers"
+    },
+    {
+      "id": 28,
+      "module": "m=prog",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "{\"level\":\"info\",\"msg\":\"alice\",\"ts\":\"2026-04-12T21:33:50.801Z\"}",
+      "chars": 249
+    },
+    {
+      "id": 29,
+      "module": "m=tempconverter",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_EAXwsG.ll:226:28: error: '%t58' defined with type 'i64' but expected 'double'\n  226 |   %t59 = fadd double %t54, %t58\n      |                            ^\n1 error generated.\n{\"schema_version\""
+    },
+    {
+      "id": 30,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_Vr84cL.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 31,
+      "module": "m=repeat",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_HFqGna-690c79.o: in function `tk_main':\ntkc_HFqGna.ll:(.text+0x11):"
+    },
+    {
+      "id": 32,
+      "module": "m=run",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "{\"level\":\"info\",\"msg\":\"alice\",\"ts\":\"2026-04-12T21:34:11.110Z\"}",
+      "chars": 248
+    },
+    {
+      "id": 33,
+      "module": "m=collatzstepsmain",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 678
+    },
+    {
+      "id": 34,
+      "module": "m=configparser",
+      "check": true,
+      "compiled": false,
+      "link_error": "{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\":\"W1001\",\"severity\":\"warning\",\"stage\":\"lex\",\"message\":\"lossy cast from 'i64' to 'u64'\",\"file\":\"\",\"pos\":{\"offset\":381,\"line\":1,\"col\":382},\"sp"
+    },
+    {
+      "id": 35,
+      "module": "m=fibonacci",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 55,
+      "stdout": "",
+      "stderr": "",
+      "chars": 208
+    },
+    {
+      "id": 36,
+      "module": "m=impl",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_tXksvC-98a582.o: in function `tk_main':\ntkc_tXksvC.ll:(.text+0x1f):"
+    },
+    {
+      "id": 37,
+      "module": "m=clamp",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 245
+    },
+    {
+      "id": 38,
+      "module": "m=chain",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 20,
+      "stdout": "",
+      "stderr": "",
+      "chars": 167
+    },
+    {
+      "id": 39,
+      "module": "m=validation",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_9Dptrf.ll:136:19: error: use of undefined value '@contains'\n  136 |   %t21 = call i64 @contains( i64 %t20)\n      |                   ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_i"
+    },
+    {
+      "id": 40,
+      "module": "m=fibcalc",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_vXYUkH-33973f.o: in function `tk_main':\ntkc_vXYUkH.ll:(.text+0x69):"
+    },
+    {
+      "id": 41,
+      "module": "m=tempconverter",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_4eABDn.ll:283:28: error: '%t75' defined with type 'i64' but expected 'double'\n  283 |   %t76 = fadd double %t74, %t75\n      |                            ^\n1 error generated.\n{\"schema_version\""
+    },
+    {
+      "id": 42,
+      "module": "m=calculator",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_LpHjGf-a07c0b.o: in function `tk_main':\ntkc_LpHjGf.ll:(.text+0x74):"
+    },
+    {
+      "id": 43,
+      "module": "m=tempconvert",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 170
+    },
+    {
+      "id": 44,
+      "module": "m=caesarcipher",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": -11,
+      "stdout": "",
+      "stderr": "",
+      "chars": 1977
+    },
+    {
+      "id": 45,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_cdWzxM.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 46,
+      "module": "m=padapp",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_6fmA3z-551494.o: in function `formatnumber':\ntkc_6fmA3z.ll:(.text+0"
+    },
+    {
+      "id": 47,
+      "module": "m=acccollatzsteps",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 793
+    },
+    {
+      "id": 48,
+      "module": "m=abstests",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_4RIfn0.ll:121:21: error: '%t16' defined with type 'i1' but expected 'i64'\n  121 |   %t17 = add i64 0, %t16 ; type coerce fallback\n      |                     ^\n1 error generated.\n{\"schema_ver"
+    },
+    {
+      "id": 49,
+      "module": "m=powercalc",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_r9FjOH.ll:91:20: error: '%t0' defined with type 'double' but expected 'i64'\n   91 |   %t3 = add i64 0, %t0 ; type coerce fallback\n      |                    ^\n1 error generated.\n{\"schema_vers"
+    },
+    {
+      "id": 50,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_GThmRg.ll:90:10: error: '%t3' defined with type 'ptr' but expected 'i1'\n   90 |   ret i1 %t3\n      |          ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code\""
+    },
+    {
+      "id": 51,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_5d1ixu.ll:111:13: error: '%t19' defined with type 'double' but expected 'i64'\n  111 |   store i64 %t19, ptr %t20\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_i"
+    },
+    {
+      "id": 52,
+      "module": "m=run",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_U4HQtY.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 53,
+      "module": "m=ispositiveothermain",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 601
+    },
+    {
+      "id": 54,
+      "module": "m=reqlogger",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "{\"level\":\"info\",\"msg\":\"method=get path=/api/users status=200 duration=42\",\"ts\":\"2026-04-12T21:36:04.526Z\"}\n{\"level\":\"info\",\"msg\":\"method=post path=/api/login status=401 duration=15\",\"ts\":\"2026-04-12T2",
+      "chars": 630
+    },
+    {
+      "id": 55,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_xWiNwR.ll:97:21: error: '%t7' defined with type 'double' but expected 'i64'\n   97 |   %t12 = add i64 0, %t7 ; type coerce fallback\n      |                     ^\n1 error generated.\n{\"schema_ve"
+    },
+    {
+      "id": 56,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_HAotaI-4661e2.o: in function `tk_main':\ntkc_HAotaI.ll:(.text+0x1f):"
+    },
+    {
+      "id": 57,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_dzqGPJ-205ac9.o: in function `tk_main':\ntkc_dzqGPJ.ll:(.text+0x1f):"
+    },
+    {
+      "id": 58,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_MjJIDw.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 59,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_KQTIB8.ll:102:10: error: '%t9' defined with type 'ptr' but expected 'i1'\n  102 |   ret i1 %t9\n      |          ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\"D0001\",\"error_code"
+    },
+    {
+      "id": 60,
+      "module": "m=mathmaze",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 226,
+      "stdout": "",
+      "stderr": "",
+      "chars": 2036
+    },
+    {
+      "id": 61,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_oW9HPS.ll:90:13: error: '%t4' defined with type 'double' but expected 'i64'\n   90 |   store i64 %t4, ptr %t5\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 62,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_kUl0gE.ll:111:13: error: '%t19' defined with type 'double' but expected 'i64'\n  111 |   store i64 %t19, ptr %t20\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_i"
+    },
+    {
+      "id": 63,
+      "module": "m=mod",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_zWvmfx-d6a43d.o: in function `tk_main':\ntkc_zWvmfx.ll:(.text+0x1f):"
+    },
+    {
+      "id": 64,
+      "module": "m=fizzbuzzmain",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 577
+    },
+    {
+      "id": 65,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_KvypSV.ll:97:19: error: use of undefined value '@json_dec'\n   97 |   %t10 = call i64 @json_dec( i64 %t9)\n      |                   ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\""
+    },
+    {
+      "id": 66,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_iKZFEe.ll:111:13: error: '%t19' defined with type 'double' but expected 'i64'\n  111 |   store i64 %t19, ptr %t20\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_i"
+    },
+    {
+      "id": 67,
+      "module": "m=jsonparser",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 433
+    },
+    {
+      "id": 68,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_vf5AIW-e4cc7c.o: in function `tk_main':\ntkc_vf5AIW.ll:(.text+0x1f):"
+    },
+    {
+      "id": 69,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_Yl3PXl.ll:97:19: error: use of undefined value '@json_dec'\n   97 |   %t10 = call i64 @json_dec( i64 %t9)\n      |                   ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\""
+    },
+    {
+      "id": 70,
+      "module": "m=impl",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_ziZ0n0.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 71,
+      "module": "m=acccountprimes",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 694
+    },
+    {
+      "id": 72,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_Ebls66.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 73,
+      "module": "m=validate",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_lFFPKy-3c14d2.o: in function `findmissingkeys':\ntkc_lFFPKy.ll:(.tex"
+    },
+    {
+      "id": 74,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_uidz9b.ll:90:13: error: '%t4' defined with type 'double' but expected 'i64'\n   90 |   store i64 %t4, ptr %t5\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 75,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_EoyPrv.ll:86:20: error: '%t2' defined with type 'double' but expected 'i64'\n   86 |   %t3 = add i64 0, %t2 ; type coerce fallback\n      |                    ^\n1 error generated.\n{\"schema_vers"
+    },
+    {
+      "id": 76,
+      "module": "m=numtostrmain",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_0j4VxC.ll:406:24: error: '%t153' defined with type 'i8' but expected 'i64'\n  406 |   %t154 = inttoptr i64 %t153 to ptr ; as-cast to ptr\n      |                        ^\n1 error generated.\n{\"s"
+    },
+    {
+      "id": 77,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_LbjIY2.ll:90:13: error: '%t4' defined with type 'double' but expected 'i64'\n   90 |   store i64 %t4, ptr %t5\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 78,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_2kpyTI-fc50df.o: in function `tk_main':\ntkc_2kpyTI.ll:(.text+0x9): "
+    },
+    {
+      "id": 79,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_ueVoiB-7a70d0.o: in function `tk_main':\ntkc_ueVoiB.ll:(.text+0x1f):"
+    },
+    {
+      "id": 80,
+      "module": "m=ceiling",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_mx9075.ll:101:20: error: '%t7' defined with type 'double' but expected 'i64'\n  101 |   %t8 = add i64 0, %t7 ; type coerce fallback\n      |                    ^\n1 error generated.\n{\"schema_ver"
+    },
+    {
+      "id": 81,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_y53Scj.ll:97:21: error: '%t7' defined with type 'double' but expected 'i64'\n   97 |   %t12 = add i64 0, %t7 ; type coerce fallback\n      |                     ^\n1 error generated.\n{\"schema_ve"
+    },
+    {
+      "id": 82,
+      "module": "m=runlengthencode",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": -11,
+      "stdout": "",
+      "stderr": "",
+      "chars": 889
+    },
+    {
+      "id": 83,
+      "module": "m=matrixops",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 2423
+    },
+    {
+      "id": 84,
+      "module": "m=main",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 197
+    },
+    {
+      "id": 85,
+      "module": "m=main",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": -11,
+      "stdout": "",
+      "stderr": "",
+      "chars": 354
+    },
+    {
+      "id": 86,
+      "module": "m=impl",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_oaOHi4.ll:109:13: error: '%t18' defined with type 'double' but expected 'i64'\n  109 |   store i64 %t18, ptr %t19\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_i"
+    },
+    {
+      "id": 87,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_v2IVnk-70f11c.o: in function `tk_main':\ntkc_v2IVnk.ll:(.text+0x17):"
+    },
+    {
+      "id": 88,
+      "module": "m=validatenonneg",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 366
+    },
+    {
+      "id": 89,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_RQM381.ll:97:21: error: '%t7' defined with type 'double' but expected 'i64'\n   97 |   %t12 = add i64 0, %t7 ; type coerce fallback\n      |                     ^\n1 error generated.\n{\"schema_ve"
+    },
+    {
+      "id": 90,
+      "module": "m=errorlogger",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "{\"level\":\"info\",\"msg\":\"== error report ==\",\"ts\":\"2026-04-12T21:39:10.198Z\"}\n{\"level\":\"info\",\"msg\":\"error code: \",\"ts\":\"2026-04-12T21:39:10.198Z\"}\n{\"level\":\"info\",\"msg\":\"4\",\"ts\":\"2026-04-12T21:39:10.19",
+      "chars": 1548
+    },
+    {
+      "id": 91,
+      "module": "m=acccountprimes",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 9,
+      "stdout": "",
+      "stderr": "",
+      "chars": 817
+    },
+    {
+      "id": 92,
+      "module": "m=tests",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_jrk1ZM-be8f55.o: in function `tk_main':\ntkc_jrk1ZM.ll:(.text+0x1f):"
+    },
+    {
+      "id": 93,
+      "module": "m=repeatstr",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "",
+      "chars": 233
+    },
+    {
+      "id": 94,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_uxU3wF.ll:90:13: error: '%t4' defined with type 'double' but expected 'i64'\n   90 |   store i64 %t4, ptr %t5\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    },
+    {
+      "id": 95,
+      "module": "m=app",
+      "check": true,
+      "compiled": true,
+      "executed": true,
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": "{\"level\":\"info\",\"msg\":\"alice\",\"ts\":\"2026-04-12T21:39:35.751Z\"}",
+      "chars": 252
+    },
+    {
+      "id": 96,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_3UoKE1-72258e.o: in function `tk_main':\ntkc_3UoKE1.ll:(.text+0x9): "
+    },
+    {
+      "id": 97,
+      "module": "m=example",
+      "check": true,
+      "compiled": false,
+      "link_error": "warning: overriding the module target triple with x86_64-pc-linux-gnu [-Woverride-module]\n1 warning generated.\n/usr/bin/ld: /tmp/tkc_IVsJcu-2958e5.o: in function `tk_main':\ntkc_IVsJcu.ll:(.text+0x56):"
+    },
+    {
+      "id": 98,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_kYSQLh.ll:97:21: error: '%t7' defined with type 'double' but expected 'i64'\n   97 |   %t12 = add i64 0, %t7 ; type coerce fallback\n      |                     ^\n1 error generated.\n{\"schema_ve"
+    },
+    {
+      "id": 99,
+      "module": "m=main",
+      "check": true,
+      "compiled": false,
+      "link_error": "/tmp/tkc_xV3IQy.ll:89:13: error: '%t3' defined with type 'double' but expected 'i64'\n   89 |   store i64 %t3, ptr %t4\n      |             ^\n1 error generated.\n{\"schema_version\":\"1.0\",\"diagnostic_id\":\""
+    }
+  ]
+}

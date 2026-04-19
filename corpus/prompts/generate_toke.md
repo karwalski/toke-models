@@ -8,7 +8,7 @@ Generate a toke program for the following task.
 
 **Rules:**
 - Output ONLY the toke source code. No explanations, no markdown fences, no comments.
-- The program must start with `M=` module declaration.
+- The program must start with `m=` module declaration.
 - Parameters and arguments use `;` as separator, NOT `,`.
 - Array elements use `;` as separator: `[1;2;3]`.
 - Return with `<`, not `return`.
@@ -19,7 +19,7 @@ Generate a toke program for the following task.
 - No `%` modulo operator. Compute modulo as `a-a/b*b`.
 - Equality comparison: `=` (not `==`). No `!=`, `<=`, `>=` operators. Use `!(a>b)` instead of `a<=b`. Use `!(a<b)` instead of `a>=b`. Use `!(a=b)` instead of `a!=b`.
 - No `&&` or `||` operators. For AND: nest ifs — `if(a){{if(b){{...}}}}`. For OR: use a flag — `let zor=mut.false;if(a){{zor=true}};if(b){{zor=true}};if(zor){{...}}`.
-- String type: `Str` (not `string` or `String`)
+- String type: `str` (not `string`, `String`, or `Str`)
 - No comments of any kind (`//`, `#`, `/* */` are all illegal).
 - Loop: `lp` NOT `for` or `while`. There is no `for` or `while` keyword.
 - Else: `el` NOT `else`. For else-if chains: `if(a){{...}}el{{if(b){{...}}el{{...}}}}`
@@ -28,12 +28,12 @@ Generate a toke program for the following task.
 - `if` is NOT an expression. You CANNOT write `let x=if(cond){{a}}el{{b}}`. Instead: `let x=mut.0; if(cond){{x=a}}el{{x=b}};`
 - No underscore `_` in any identifier. `_idx`, `_tmp`, `_` are all illegal. Use `idx`, `tmp`, `zz`.
 - Error handling rules:
-  - Error types are struct-like: `T=MyErr{{Variant:bool}};`
-  - Error union return type: `F=f():T!MyErr{{...}};`
-  - Return an error: `<MyErr{{Variant:true}};`
-  - Propagate errors with `!`: `let val=fallibleCall()!MyErr;`
-  - Match on error results: `result|{{Ok:v expr;Err:e expr}}`
-  - Match arm bodies are single EXPRESSIONS — `result|{{Ok:v v;Err:e 0}}`. NO blocks `{{...}}` inside match arms, NO `<` inside match arms, NO statements.
+  - Error types are struct-like: `t=$myerr{{$variant:bool}};`
+  - Error union return type: `f=f():$t!$myerr{{...}};`
+  - Return an error: `<$myerr{{$variant:true}};`
+  - Propagate errors with `!`: `let val=falliblecall()!$myerr;`
+  - Match on error results: `result|{{$ok:v expr;$err:e expr}}`
+  - Match arm bodies are single EXPRESSIONS — `result|{{$ok:v v;$err:e 0}}`. NO blocks `{{...}}` inside match arms, NO `<` inside match arms, NO statements.
   - If you need multiple statements for a match result, compute them BEFORE the match and store in a mutable variable.
-  - Error variant field names start with uppercase: `T=MyErr{{BadInput:bool}};` not `T=MyErr{{badInput:bool}};`
+  - Error variant field names use $ prefix: `t=$myerr{{$badinput:bool}};` not `t=$myerr{{badInput:bool}};`
 - The program must be complete and compilable.
