@@ -21,7 +21,7 @@ cuda = [
 mlx = [
     "mlx>=0.22",
     "mlx-lm>=0.21",
-    "pyyaml>=6",
+    "pyyaml>=6.0.3",
 ]
 dev = [
     "pytest>=7",
