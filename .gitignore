@@ -11,6 +11,13 @@ adapters/
 *.gguf
 *.pth
 
+# Checkpoints — large, local only
+checkpoints/*.pt
+checkpoints/*.safetensors
+
+# Training logs — local only
+logs/*.jsonl
+
 # Training data — never commit
 training-data/
 training-data-p2/
