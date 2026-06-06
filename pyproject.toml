@@ -16,7 +16,7 @@ cuda = [
     "peft>=0.7",
     "bitsandbytes>=0.41",
     "datasets>=2.14",
-    "accelerate>=0.25",
+    "accelerate>=1.13.0",
 ]
 mlx = [
     "mlx>=0.22",
