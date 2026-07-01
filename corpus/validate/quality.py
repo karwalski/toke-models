@@ -14,6 +14,8 @@ import tiktoken
 
 from validate.compiler import CompileResult
 from validate.diff_test import DiffResult
+from judge.qwen_judge import IDIOM_FLOOR
+from judge.qwen_judge import score as idiom_score
 
 logger = logging.getLogger(__name__)
 
@@ -131,6 +133,20 @@ class QualityScorer:
             if "differential test failed" not in " ".join(reasons):
                 reasons.append("toke output does not match majority")
 
+        # ---- Idiom quality (hard reject below the floor) -------------
+        # Enforces docs/spec/idiom-v0.4.md via the rule-based judge. Per the
+        # rubric, an entry scoring below IDIOM_FLOOR on idiom quality is rejected
+        # regardless of other criteria — this replaces the previously-unwired,
+        # empty qwen_judge stub.
+        idiom, idiom_notes = idiom_score(toke_src)
+        partial_scores["idiom"] = idiom
+        idiom_rejected = idiom < IDIOM_FLOOR
+        if idiom_rejected:
+            reasons.append(
+                f"idiom quality {idiom:.2f} < {IDIOM_FLOOR} "
+                f"(anti-patterns: {', '.join(idiom_notes)})"
+            )
+
         # ---- Holdout isolation (hard reject) -------------------------
         holdout_rejected = task_id in self.holdout_task_ids
         if holdout_rejected:
@@ -139,7 +155,8 @@ class QualityScorer:
             )
 
         # ---- Final score ---------------------------------------------
-        total = sum(partial_scores.values())
+        # idiom is a hard gate, not a weighted term (weights already sum to 1.0).
+        total = sum(v for k, v in partial_scores.items() if k != "idiom")
         # Clamp to [0.0, 1.0].
         total = max(0.0, min(1.0, total))
 
@@ -148,6 +165,7 @@ class QualityScorer:
             and compiler_clean
             and diff_passed
             and not holdout_rejected
+            and not idiom_rejected
         )
 
         return QualityScore(
