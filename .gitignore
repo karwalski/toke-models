@@ -19,9 +19,7 @@ checkpoints/*.safetensors
 logs/*.jsonl
 
 # Training data — never commit
-training-data/
-training-data-p2/
-training-data-32b/
+training-data*/
 
 # Cloud runtime state
 cloud/.train_state.json
@@ -29,6 +27,10 @@ cloud/.train_state.json
 # Results and output — large, local only
 results/
 output/
+
+# Ollama conversion artifacts — large, local only
+ollama/*.gguf
+ollama/hf-model/
 
 .env
 .DS_Store
