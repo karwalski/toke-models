@@ -1,0 +1,39 @@
+# toke inference — GPU (NVIDIA)
+# Usage: docker compose up
+#
+# Requires: NVIDIA GPU with 8 GB+ VRAM, nvidia-container-toolkit installed.
+# Model weights are cached in the named volume so subsequent starts are fast.
+
+services:
+  toke:
+    build: .
+    image: karwalski/toke-inference:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - model-cache:/data
+    environment:
+      - MODEL_ID=karwalski/toke
+      - QUANTIZE=awq
+      - MAX_INPUT_LENGTH=4096
+      - MAX_TOTAL_TOKENS=4608
+      - MAX_BATCH_PREFILL_TOKENS=4096
+      - MAX_CONCURRENT_REQUESTS=4
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 120s
+    restart: unless-stopped
+
+volumes:
+  model-cache:

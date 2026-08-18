@@ -1,0 +1,32 @@
+# toke inference — CPU-only fallback (no GPU required)
+# Usage: docker compose -f docker-compose.cpu.yml up
+#
+# WARNING: CPU inference with a 7B model is slow (~30-60 s per response).
+# Useful for testing the API without a GPU.
+
+services:
+  toke:
+    build: .
+    image: karwalski/toke-inference:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - model-cache:/data
+    environment:
+      - MODEL_ID=karwalski/toke
+      - MAX_INPUT_LENGTH=2048
+      - MAX_TOTAL_TOKENS=2560
+      - MAX_BATCH_PREFILL_TOKENS=2048
+      - MAX_CONCURRENT_REQUESTS=1
+      - HUGGING_FACE_HUB_TOKEN=${HUGGING_FACE_HUB_TOKEN:-}
+    # No GPU reservation — runs on CPU
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health"]
+      interval: 60s
+      timeout: 30s
+      retries: 5
+      start_period: 300s
+    restart: unless-stopped
+
+volumes:
+  model-cache:

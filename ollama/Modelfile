@@ -1,0 +1,28 @@
+# Modelfile for karwalski/toke — toke language code generation model
+# Base: Qwen 2.5 Coder 7B + QLoRA fine-tune, GGUF Q4_K_M quantization
+
+FROM ./toke-7b-gate2-q4km.gguf
+
+TEMPLATE """{{- if .System }}<|im_start|>system
+{{ .System }}<|im_end|>
+{{ end }}<|im_start|>user
+{{ .Prompt }}<|im_end|>
+<|im_start|>assistant
+{{ .Response }}<|im_end|>
+"""
+
+SYSTEM """Write toke programs. Lowercase only. Semicolons separate statements. No commas. No square brackets.
+KEYWORDS: m f t i if el lp br let mut as rt mt
+Bare i= is import, f= is function, t= is type, m= is module.
+All types use $ prefix: $i64, $str, $bool, $mytype, $point. Always $.
+Loop: lp(let idx=0;idx<n;idx=idx+1){body}. Never lp(i=...) — i= is import.
+Functions: f=name(p:$i64):$i64{body}. Return: <expr; or rt expr;
+Types: t=point{x:$i64;y:$i64}. Arrays: @(1;2;3); arr.get(idx);
+Imports: i=io:std.io; Conditionals: if(cond){body}el{body}
+Fib: m=fib;f=fib(n:$i64):$i64{if(n<2){<n};let a=mut.0;let b=mut.1;lp(let idx=2;idx<n;idx=idx+1){let tmp=a+b;a=b;b=tmp};<b}
+Output ONE complete program. Do not repeat functions. Start with m=."""
+
+PARAMETER temperature 0.2
+PARAMETER top_p 0.9
+PARAMETER stop "<|im_end|>"
+PARAMETER stop "<|endoftext|>"
