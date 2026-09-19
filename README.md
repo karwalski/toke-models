@@ -2,7 +2,27 @@
 
 toke-model fine-tunes open-source language models to write code in the [toke](https://github.com/karwalski/toke) programming language. It takes a corpus of example toke programs (produced by the toke-corpus pipeline), prepares it into chat-format training data, and trains and evaluates adapters on top of open base models.
 
-**Status.** The best completed result is historical: a Qwen 2.5 Coder 7B QLoRA model that achieved Gate 1 certification with 63.7% pass@1 (2026-04-03), trained on the v0.3-era corpus. Epic 128 — the training strategy reset (base-model bake-off, fine-tune vs from-scratch; see `toke/docs/progress.md`) — supersedes that pipeline choice. The next training run follows the Epic 128 plan against the Epic 129 corpus freeze, so treat the commands below as the mechanics of the previous runs, not a statement of the current strategy.
+**Status.** Every trained-model result on record is historical and v0.3-era. Gate 1 (2026-04-03): 63.7% compile Pass@1, Qwen 2.5 Coder 7B + QLoRA. Gate 2 (2026-05-22): **100% compile Pass@1** and **55.6% functional** (272/489) — on the *curated* 500-hidden + 200-eval set the model was optimised against, and the 100% is never to be quoted without it. The honest floor is the full-local re-audit of all 1,748 v0.3.9 corpus programs: **37.5% compile** (655/1,748), **about 2.2% fully correct** (38 PASS). No v0.4-native model exists. Epic 128 — the training strategy reset (base-model bake-off, fine-tune vs from-scratch; see `toke/docs/progress.md`) — supersedes that pipeline choice. The next training run follows the Epic 128 plan against the Epic 129 corpus freeze, so treat the commands below as the mechanics of the previous runs, not a statement of the current strategy.
+
+## About toke
+
+> toke: a compiled language designed for LLM code generation, with a small grammar, one
+> canonical form and compiler verification.
+
+toke is a compiled programming language designed for LLM code generation. It has 14
+keywords, a 55-character set, a backtrack-free grammar with bounded lookahead, and one
+canonical form per construct, chosen by measurement in a 46-pattern catalogue and
+reproduced by `tkc --min`. That makes generated code cheap to constrain during decoding,
+cheap for a compiler to verify afterwards, and compact to emit. Token efficiency is one
+measured property of toke, always reported with its tokenizer and its baseline, not the
+whole claim.
+
+*The one-liner and the paragraph above are reproduced word for word from the canonical
+description,
+[`docs/about/canonical.md`](https://github.com/karwalski/toke/blob/main/docs/about/canonical.md).
+Every number published about toke comes from
+[`docs/metrics-baseline.md`](https://github.com/karwalski/toke/blob/main/docs/metrics-baseline.md)
+and nowhere else.*
 
 ## What This Repository Contains
 
