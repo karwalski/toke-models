@@ -92,20 +92,21 @@ def make_comparison_example(entry: dict) -> dict | None:
     c_source = refs.get("c_source", "")
     c_tokens = refs.get("c_tokens", 0)
 
-    ratio = py_tokens / tk_tokens if tk_tokens > 0 else 0
-
+    # Story 132.15: this used to append "[RATIO] {x}x fewer tokens than Python" to every
+    # comparison example, baking a withdrawn claim into the training data — and a
+    # direction the measurements contradict (under one shared tokenizer toke costs
+    # 1.34x [1.22, 1.48] the tokens of equivalent Python, N = 60; see
+    # toke/docs/metrics-baseline.md). The token counts stay; the claim about them does
+    # not, and nothing here establishes that both sides were counted with the same
+    # tokenizer.
     prompt = (
-        f"Show equivalent implementations in Python and toke, "
-        f"comparing token efficiency.\n"
+        f"Show equivalent implementations in Python and toke.\n"
         f"[PYTHON {py_tokens}t]\n{py_source}"
     )
     if c_source:
         prompt += f"\n[C {c_tokens}t]\n{c_source}"
 
-    response = (
-        f"[TK {tk_tokens}t]\n{tk_source}\n"
-        f"[RATIO] {ratio:.1f}x fewer tokens than Python."
-    )
+    response = f"[TK {tk_tokens}t]\n{tk_source}"
 
     return {
         "type": "comparison",

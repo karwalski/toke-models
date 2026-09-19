@@ -42,18 +42,14 @@ def _count_toke_tokens(code: str, tokenizer) -> int:
     return len(tokenizer.encode(code, add_special_tokens=False))
 
 
-def _estimate_python_tokens(code: str, tokenizer) -> int:
-    """Estimate equivalent Python token count.
-
-    Heuristic: toke is designed to be ~12% more token-efficient than Python
-    for equivalent programs. We reverse that ratio to estimate what the
-    Python equivalent would cost.
-    """
-    toke_tokens = _count_toke_tokens(code, tokenizer)
-    # Reverse the ~12.5% reduction: python_tokens * 0.875 ~ toke_tokens
-    if toke_tokens == 0:
-        return 0
-    return int(round(toke_tokens / 0.875))
+# Removed 2026-09-19 (story 132.15): `_estimate_python_tokens()` synthesised a Python
+# token count by dividing the toke count by 0.875 — the withdrawn Gate 1 "12.5%
+# reduction" — and the page then displayed the arithmetic back as a measured "token
+# reduction". It was a claim with no measurement behind it, and its direction is wrong:
+# under one shared tokenizer (cl100k_base) toke costs 1.34x [1.22, 1.48] the tokens of
+# equivalent Python on the 60 Gate-1 tasks (N = 60, 2026-09-19). A real comparison needs
+# a real Python program tokenized by the same tokenizer; see
+# toke/docs/metrics-baseline.md.
 
 
 # ---------------------------------------------------------------------------
@@ -102,18 +98,11 @@ def generate_toke(prompt: str, max_tokens: int, temperature: float) -> tuple:
 
     # --- token stats ---
     toke_count = _count_toke_tokens(generated, tokenizer)
-    python_estimate = _estimate_python_tokens(generated, tokenizer)
-    if python_estimate > 0:
-        reduction = (1 - toke_count / python_estimate) * 100
-    else:
-        reduction = 0.0
 
     stats = (
         "| Metric | Value |\n"
         "|--------|-------|\n"
-        f"| Toke tokens | {toke_count} |\n"
-        f"| Est. Python tokens | {python_estimate} |\n"
-        f"| Token reduction | {reduction:.1f}% |\n"
+        f"| Toke tokens (this model's tokenizer) | {toke_count} |\n"
     )
 
     return generated, stats

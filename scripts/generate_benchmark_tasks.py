@@ -81,7 +81,11 @@ def extract_training_sources(training_path: Path) -> set[str]:
 # Phase 2 validation
 # ---------------------------------------------------------------------------
 
-# Characters allowed outside strings in Phase 2 (56-char set).
+# Characters this generator accepts outside strings. It is NOT the toke alphabet and
+# never was: the default profile is 59 characters, lowercase only (26 + 10 digits + 23
+# symbols, derived from src/lexer.c — toke/docs/metrics-baseline.md), while the set
+# below still admits A-Z for the Phase-2 migration checks further down this file. The
+# "56-char set" label it used to carry was wrong on both counts (story 132.15).
 _ALLOWED_OUTSIDE_STRINGS = set(
     "abcdefghijklmnopqrstuvwxyz"
     "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
