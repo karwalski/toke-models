@@ -1,170 +1,169 @@
 ---
 language:
-  - toke
+  - en
 license: apache-2.0
 library_name: transformers
 tags:
   - toke
   - code-generation
-  - fine-tuned
+  - programming-language
+  - qwen2
   - qlora
-  - dora
-  - mlx
-  - domain-specific-language
-base_model: Qwen/Qwen2.5-Coder-7B
-datasets:
-  - karwalski/toke-model
-metrics:
-  - pass_at_1
-  - token_reduction
+  - fine-tuned
+  - awq
+  - 4bit
+base_model: Qwen/Qwen2.5-Coder-7B-Instruct
+pipeline_tag: text-generation
 model-index:
-  - name: toke-coder-7b
+  - name: toke-7b-gate2
     results:
       - task:
           type: text-generation
-          name: Toke Code Generation
-        dataset:
-          type: karwalski/toke-eval
-          name: toke-eval/benchmark
-          split: test
+          name: Code Generation (toke v0.3 syntax)
         metrics:
-          - type: pass_at_1
-            value: 63.7
-            name: Pass@1
-          - type: token_reduction
-            value: 12.5
-            name: Token Reduction (%)
+          - name: Compilation Pass@1 (curated 500-hidden + 200-eval set, 2026-05-22)
+            type: pass@1
+            value: 100
+          - name: Functional Pass@1 (same curated set, 272/489)
+            type: pass@1
+            value: 55.6
+          - name: Compilation Pass@1 (full-local re-audit, all 1,748 v0.3.9 corpus programs)
+            type: pass@1
+            value: 37.5
 ---
 
-# toke-coder-7b
+<!--
+  This file is the model card for the PUBLISHED Hugging Face model
+  https://huggingface.co/karwalski/toke (toke-7b-gate2). Story 132.4 rewrote it:
+  the live card carried "52% fewer tokens", "13 keywords", a "55-character
+  alphabet" and an unqualified "100% of the time", all of which are withdrawn or
+  wrong (toke/docs/about/canonical.md §11, toke/docs/metrics-baseline.md).
 
-A fine-tuned code generation model for the **toke** programming language, based on Qwen 2.5 Coder 7B.
+  Every fact here comes from toke/docs/about/canonical.{md,json} and
+  toke/docs/metrics-baseline.md. Change those first, then re-copy here, then run
+  `make check-canonical` in the toke repo.
 
-## Model Description
+  Uploading this card to the Hub is an owner action — see UPLOAD.md and
+  toke/docs/about/registry-descriptions.md.
+-->
 
-toke-coder-7b is a QLoRA/DoRA adapter fine-tuned on top of [Qwen/Qwen2.5-Coder-7B](https://huggingface.co/Qwen/Qwen2.5-Coder-7B) for generating syntactically correct and semantically valid toke source code. Toke is a domain-specific programming language designed for concise, structured program representation with significant token efficiency gains over general-purpose languages.
+# toke-7b-gate2
 
-The model was trained on Apple Silicon hardware using MLX and achieves strong results on held-out toke programming tasks.
+A 7B code-generation model fine-tuned to write **toke**, published as
+[`karwalski/toke`](https://huggingface.co/karwalski/toke).
 
-- **Base model:** Qwen 2.5 Coder 7B
-- **Fine-tuning method:** QLoRA with DoRA (Weight-Decomposed Low-Rank Adaptation)
-- **Training framework:** MLX (Apple Silicon native)
-- **Reward modelling:** GRPO (Group Relative Policy Optimisation)
-- **Developed by:** [karwalski](https://github.com/karwalski)
-- **License:** Apache 2.0
+## About toke
 
-## Intended Uses
+> toke: a compiled language designed for LLM code generation, with a small grammar, one
+> canonical form and compiler verification.
 
-### Primary use
+toke is a compiled programming language designed for LLM code generation. It has 14
+keywords, a 59-character set, a backtrack-free grammar with bounded lookahead, and one
+canonical form per construct, chosen by measurement in a 46-pattern catalogue and
+reproduced by `tkc --min`. That makes generated code cheap to constrain during decoding,
+cheap for a compiler to verify afterwards, and compact to emit. Token efficiency is one
+measured property of toke, always reported with its tokenizer and its baseline, not the
+whole claim.
 
-- Generating toke source code from natural language descriptions or partial code prompts.
-- Code completion and infilling for toke programs.
-- Assisting developers learning the toke language.
+- Website: [tokelang.dev](https://tokelang.dev)
+- Compiler, specification and standard library:
+  [github.com/karwalski/toke](https://github.com/karwalski/toke)
+- Training and evaluation code:
+  [github.com/karwalski/toke-models](https://github.com/karwalski/toke-models)
 
-### Out-of-scope uses
+*The one-liner and the paragraph above are reproduced word for word from the canonical
+description,
+[`docs/about/canonical.md`](https://github.com/karwalski/toke/blob/main/docs/about/canonical.md).
+Every number published about toke comes from
+[`docs/metrics-baseline.md`](https://github.com/karwalski/toke/blob/main/docs/metrics-baseline.md)
+and nowhere else.*
 
-- This model is trained exclusively on toke language data. It is not intended for general-purpose code generation in other languages.
-- The model should not be used to generate code for safety-critical systems without human review.
-- Not suitable for generating natural language prose or non-code content.
+## Read this before quoting the model
 
-## Training Data
+**This model writes v0.3 toke, and the language is on v0.4.** No v0.4-native model
+exists, and no model has been trained since April 2026. Output from this model will not
+match the v0.4 specification, the v0.4 canonical forms, or `tkc --min` on a current
+compiler; it is published as the Gate 2 research artefact, not as a current tool.
 
-The model was fine-tuned on **toke-model/corpus**, a curated dataset of 46,000+ validated toke programs covering:
+## Model details
 
-- Arithmetic and logical expressions
-- Control flow (if/else, loops, match)
-- Function definitions and calls
-- Type declarations and struct types
-- Module imports and namespacing
-- Error handling patterns
-- Standard library usage
+| Property | Value |
+|---|---|
+| Base model | [Qwen 2.5 Coder 7B-Instruct](https://huggingface.co/Qwen/Qwen2.5-Coder-7B-Instruct) |
+| Method | QLoRA (rank 64, alpha 128, 3 epochs) |
+| Target syntax | toke **v0.3** |
+| Weights | AWQ 4-bit quantised |
+| Context length | 32,768 tokens |
+| Tokenizer | Qwen's own (151K vocab) — this model does **not** use a toke tokenizer |
+| Licence | Apache-2.0 |
 
-All corpus entries are compilation-verified against the toke compiler (`tkc`). The corpus includes both Phase 1 (core language) and Phase 2 (advanced features) programs.
+## Results, with the set they were measured on
 
-Source repository: [karwalski/toke-model](https://github.com/karwalski/toke-model)
+**Gate 2, 2026-05-22 — curated set.** On the curated 500-hidden + 200-eval set, the model
+reached **100% compile Pass@1** and **55.6% functional** (272/489).
 
-## Training Procedure
+**The honest floor — full-local re-audit.** Across all 1,748 v0.3.9 corpus programs the
+same artefact compiles **37.5%** (655/1,748) and is **about 2.2% fully correct**
+(38 PASS).
 
-### Hardware
+Never quote the 100% without the curated set it was measured on. The August 2026 corpus
+work was a training-data quality freeze, not a model gate: the most recent model gate
+remains Gate 2 above.
 
-- Apple Mac Studio, M4 Max
-- Training performed entirely on Apple Silicon using MLX
+*Source: [`docs/metrics-baseline.md`](https://github.com/karwalski/toke/blob/main/docs/metrics-baseline.md)
+§ Correctness and § 2026-08.*
 
-### Hyperparameters
+## Token efficiency
 
-- **Method:** QLoRA with DoRA adapters
-- **Epochs:** 1
-- **Training loss:** 0.197
-- **Eval loss:** 0.158
-- **Training runtime:** ~23.6 hours
-- **Precision:** Mixed (MLX native)
+**Token efficiency, measured:** under one shared tokenizer (cl100k_base) toke costs
+**1.34× [1.22, 1.48]** the tokens of equivalent Python on the 60 Gate-1 tasks (N = 60,
+2026-09-19) — more, not fewer. The v0.3-era "52% fewer tokens" figure was a
+*tokenizer-vs-tokenizer* measurement on identical toke text (Toke-16K v0.3 vs cl100k_base,
+N = 42) and is superseded: on canonical v0.4 text the shipped 8K tokenizer needs **15.4%
+more** tokens than cl100k_base (N = 2,000). See `docs/metrics-baseline.md`.
 
-### Fine-tuning details
+## Intended use and limitations
 
-1. **Data preparation:** Corpus entries converted to instruction-following format (prompt/completion pairs).
-2. **Adapter training:** QLoRA adapters trained on Qwen 2.5 Coder 7B base weights using MLX.
-3. **Reward modelling:** GRPO reward model trained to prefer compilable, token-efficient toke output.
-4. **Adapter merging:** Trained adapters merged into base model for inference.
+- **Intended:** research on constrained decoding and on code generation into a small,
+  canonical target language; reproducing the Gate 2 result.
+- **Not intended:** production code generation, general-purpose coding in other
+  languages, or safety-critical work. Output is v0.3 syntax and must be reviewed and
+  migrated (`tkc --migrate`) before it is used against a current compiler.
+- The model generates toke only; prompts in other languages produce poor results.
 
-## Evaluation Results
-
-Evaluated on 1,000 held-out benchmark tasks from [toke-eval/benchmark](https://github.com/karwalski/toke-eval).
-
-| Metric | Value | Gate 1 Threshold |
-|--------|-------|-------------------|
-| Compilation rate | 92.3% (923/1000) | — |
-| Pass@1 | **63.7%** (588/923) | >60% |
-| Token reduction | **12.5%** (8K vocab) | >10% |
-| Token reduction | 13.1% (32K vocab) | — |
-
-**Gate 1 verdict:** PASS (2026-04-03)
-
-### Benchmark methodology
-
-- 500 original + 500 expanded held-out tasks
-- Each task tested against hidden test inputs
-- Compilation checked via `tkc` compiler
-- Pass@1 measured as fraction of compilable solutions that produce correct output
-
-## Ethical Considerations
-
-- **Training data provenance:** All training data is synthetically generated and manually curated. No copyrighted code or personally identifiable information is included.
-- **Bias:** The model is narrowly scoped to a single domain-specific language. It does not generate natural language and has limited potential for harmful text generation.
-- **Dual use:** Toke is a research language. The model's capabilities are confined to toke code generation and are unlikely to enable harmful applications.
-- **Environmental impact:** Training was performed on consumer Apple Silicon hardware with modest energy consumption (~24 hours on a single Mac Studio).
-
-## Limitations
-
-- The model only generates toke code. Prompts in other programming languages will produce poor results.
-- Complex multi-module programs may require iterative generation and human review.
-- The model was trained on Phase 1 and Phase 2 corpus data; language features added after the training cutoff are not supported.
-- Generation quality degrades for programs significantly longer than those in the training distribution.
-
-## How to Use
+## Usage
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-model = AutoModelForCausalLM.from_pretrained("karwalski/toke-coder-7b")
-tokenizer = AutoTokenizer.from_pretrained("karwalski/toke-coder-7b")
+model = AutoModelForCausalLM.from_pretrained("karwalski/toke", device_map="auto")
+tokenizer = AutoTokenizer.from_pretrained("karwalski/toke")
 
-prompt = "Write a toke function that returns the factorial of n"
-inputs = tokenizer(prompt, return_tensors="pt")
-outputs = model.generate(**inputs, max_new_tokens=256)
-print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+prompt = """<|im_start|>system
+Write toke programs (v0.3 syntax). m=mod; f=name(p:type):ret{body}; let x=42; <expr return.
+<|im_end|>
+<|im_start|>user
+Write a hello world program
+<|im_end|>
+<|im_start|>assistant
+"""
+
+inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+outputs = model.generate(**inputs, max_new_tokens=256, temperature=0.2, do_sample=True)
+print(tokenizer.decode(outputs[0][inputs["input_ids"].shape[1]:], skip_special_tokens=True))
 ```
 
 ## Citation
 
 ```bibtex
-@misc{toke-coder-7b,
-  title={toke-coder-7b: Fine-tuned Code Generation for the Toke Language},
-  author={karwalski},
-  year={2026},
-  url={https://huggingface.co/karwalski/toke-coder-7b}
+@misc{toke-7b-gate2,
+  title  = {toke-7b-gate2: a 7B model fine-tuned to generate toke (v0.3 syntax)},
+  author = {Watt, Matthew},
+  year   = {2026},
+  url    = {https://huggingface.co/karwalski/toke}
 }
 ```
 
-## Model Card Contact
+## Contact
 
-For questions or issues, open an issue on [GitHub](https://github.com/karwalski/toke-model).
+Open an issue at [github.com/karwalski/toke](https://github.com/karwalski/toke/issues).
