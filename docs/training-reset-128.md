@@ -105,7 +105,7 @@ ledger 128.1 owes, so 128.9 can record which reopened decisions get re-locked.
   counted in any efficiency number.
 - **TEMSpec §6.2**: one tokenizer on both sides of any cross-language comparison, always.
 - **Quality ≫ quantity** for SFT data selection.
-- **The CI-gated project facts** (59 charset / 14 keywords / 57 stdlib modules / 228
+- **The CI-gated project facts** (59 charset / 14 keywords / 56 stdlib modules / 228
   conformance cases), enforced by `toke/scripts/verify_project_facts.py`.
 
 ---
