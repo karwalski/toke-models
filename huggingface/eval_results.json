@@ -2,13 +2,26 @@
   "model_name": "toke-codegen-v0.1",
   "eval_name": "toke-eval-benchmark-gate1",
   "eval_date": "2026-04-03",
+  "corrected_date": "2026-09-19",
   "dataset": "toke-eval/benchmark/phase-a-held-out",
   "metrics": {
-    "pass_at_1": 0.637,
+    "pass_at_1": 0.588,
     "token_reduction": 0.125,
     "compilation_rate": 0.923
   },
   "benchmark_size": 1000,
+  "pass_at_1_derivation": {
+    "solutions_generated": 1000,
+    "solutions_compiled": 923,
+    "solutions_passing_all_hidden_tests": 588,
+    "corrected_pass_at_1": "588 / 1000 = 0.588",
+    "compilation_rate": "923 / 1000 = 0.923",
+    "previously_published_pass_at_1": 0.637,
+    "previously_published_derivation": "588 / 923 = 0.637 -- WRONG DENOMINATOR",
+    "why_923_was_the_wrong_denominator": "load_toke_solutions() dropped every generated solution that failed to compile (continue, no record kept), so those 77 solutions never became a TaskResult and left the denominator entirely. 588/923 is therefore Pass@1 GIVEN THAT THE SOLUTION COMPILED -- a different and strictly more generous quantity. A solution that fails to compile is a failed attempt, not an absent one, so the denominator is the 1,000 solutions generated. The inconsistency was visible inside this file: benchmark_size was already 1000 alongside pass_at_1 0.637.",
+    "no_rerun_required": "The correction is arithmetic over artefacts already on disk (toke-eval/benchmark/solutions/*.toke, n = 1000). No evaluation was re-run to produce it.",
+    "corrected_by": "story 128.19; defect recorded in toke-eval/docs/suspect-numbers-128-1c.md section 1"
+  },
   "task_categories": [
     "arithmetic",
     "string",
@@ -27,5 +40,7 @@
     "pass_at_1_minimum": 0.60,
     "compilation_rate_minimum": 0.90
   },
-  "gate_result": "PASS"
+  "gate_result": "OPEN",
+  "gate_result_as_originally_published": "PASS",
+  "gate_result_note": "Recorded as PASS on 2026-04-03 against the withdrawn 0.637 figure. The corrected Pass@1 of 0.588 is BELOW the declared pass_at_1_minimum of 0.60, so on its own criterion Gate 1 is not met. The compilation_rate criterion (0.923 >= 0.90) is still met. Re-deciding the Gate 1 verdict is an owner action and is deliberately not made here (story 128.19)."
 }

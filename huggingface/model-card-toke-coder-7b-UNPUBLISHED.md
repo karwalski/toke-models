@@ -10,6 +10,15 @@
   a record of what was believed at the time. Do not copy anything from it to a
   public surface; the live facts are in toke/docs/about/canonical.md and
   toke/docs/metrics-baseline.md.
+
+  CORRECTED 2026-09-19 (story 128.19). The Pass@1 this card carried, 63.7%, was
+  588/923 — it dropped the 77 generated solutions that failed to compile out of
+  the denominator. The correct figure is 588/1000 = 58.8%. Both the model-index
+  metric and the results table below have been corrected, with the original
+  claim kept visible beside each. 58.8% is below Gate 1's declared
+  pass_at_1_minimum of 0.60, so the Gate 1 verdict is re-opened; re-deciding it
+  is an owner action and is not done here. Nothing in this file has been or is
+  to be uploaded.
 -->
 
 ---
@@ -42,9 +51,13 @@ model-index:
           name: toke-eval/benchmark
           split: test
         metrics:
+          # Corrected 2026-09-19 (story 128.19): 588 passed / 1000 generated.
+          # Previously carried 63.7, which was 588/923 (non-compiling solutions
+          # dropped from the denominator). Never uploaded.
           - type: pass_at_1
-            value: 63.7
+            value: 58.8
             name: Pass@1
+            verified: false
           - type: token_reduction
             value: 12.5
             name: Token Reduction (%)
@@ -127,11 +140,35 @@ Evaluated on 1,000 held-out benchmark tasks from [toke-eval/benchmark](https://g
 | Metric | Value | Gate 1 Threshold |
 |--------|-------|-------------------|
 | Compilation rate | 92.3% (923/1000) | — |
-| Pass@1 | **63.7%** (588/923) | >60% |
+| Pass@1 (functional) | **58.8%** (588/1000) | >60% — **not met** |
 | Token reduction | **12.5%** (8K vocab) | >10% |
 | Token reduction | 13.1% (32K vocab) | — |
 
-**Gate 1 verdict:** PASS (2026-04-03)
+**Pass@1 correction (2026-09-19, story 128.19).** This row previously read
+**63.7% (588/923)**. The derivation:
+
+| Quantity | Value |
+|---|---|
+| Solutions generated | 1,000 (`benchmark/solutions/*.toke`) |
+| Solutions that compiled | 923 |
+| Solutions that passed every hidden test | 588 |
+| Previously published "Pass@1" = 588/923 | 63.7% — **withdrawn** |
+| **Corrected Pass@1 = 588/1000** | **58.8%** |
+
+923 was the wrong denominator: `load_toke_solutions()` dropped every generated
+solution that failed to compile, so those 77 never became a scored result and
+left the denominator entirely. 588/923 is Pass@1 *given that the solution
+compiled* — a different and strictly more generous quantity. A solution that
+fails to compile is a failed attempt, not an absent one, so the denominator is
+the 1,000 solutions generated. The error was visible inside `eval_results.json`,
+which recorded `benchmark_size: 1000` alongside `pass_at_1: 0.637`. No
+re-evaluation was run: the correction is arithmetic over artefacts already on
+disk.
+
+**Gate 1 verdict:** **OPEN** — originally recorded as PASS (2026-04-03) on the
+withdrawn 63.7% figure. 58.8% is below the declared `pass_at_1_minimum: 0.60`,
+so on its own criterion Gate 1 is not met. Re-deciding the verdict is the
+owner's call and is not made here.
 
 ### Benchmark methodology
 

@@ -19,9 +19,15 @@
   "toke_metadata": {
     "corpus_version": "phase2",
     "corpus_entries": 46000,
-    "gate1_pass_at_1": 0.637,
+    "gate1_pass_at_1": 0.588,
+    "gate1_pass_at_1_derivation": "588 passed / 1000 generated = 0.588",
+    "gate1_pass_at_1_as_originally_published": 0.637,
+    "gate1_pass_at_1_correction_note": "Corrected 2026-09-19 (story 128.19). The published 0.637 was 588/923, which dropped the 77 generated solutions that failed to compile out of the denominator -- that is Pass@1 given the solution compiled, not Pass@1. The denominator is the 1000 solutions generated. See huggingface/eval_results.json and toke-eval/docs/suspect-numbers-128-1c.md section 1.",
     "gate1_token_reduction": 0.125,
-    "gate1_verdict": "PASS",
-    "gate1_date": "2026-04-03"
+    "gate1_verdict": "OPEN",
+    "gate1_verdict_as_originally_published": "PASS",
+    "gate1_verdict_note": "0.588 is below the declared pass_at_1_minimum of 0.60. Re-deciding the Gate 1 verdict is an owner action, not made here.",
+    "gate1_date": "2026-04-03",
+    "gate1_corrected_date": "2026-09-19"
   }
 }
