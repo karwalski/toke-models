@@ -27,7 +27,7 @@ tags:
   - domain-specific-language
 base_model: Qwen/Qwen2.5-Coder-7B
 datasets:
-  - karwalski/toke-model
+  - karwalski/toke-models
 metrics:
   - pass_at_1
   - token_reduction
@@ -95,7 +95,7 @@ The model was fine-tuned on **toke-model/corpus**, a curated dataset of 46,000+ 
 
 All corpus entries are compilation-verified against the toke compiler (`tkc`). The corpus includes both Phase 1 (core language) and Phase 2 (advanced features) programs.
 
-Source repository: [karwalski/toke-model](https://github.com/karwalski/toke-model)
+Source repository: [karwalski/toke-models](https://github.com/karwalski/toke-models)
 
 ## Training Procedure
 
@@ -181,4 +181,4 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 
 ## Model Card Contact
 
-For questions or issues, open an issue on [GitHub](https://github.com/karwalski/toke-model).
+For questions or issues, open an issue on [GitHub](https://github.com/karwalski/toke-models).
