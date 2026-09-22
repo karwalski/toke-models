@@ -107,8 +107,8 @@ ledger 128.1 owes, so 128.9 can record which reopened decisions get re-locked.
 - **Quality ≫ quantity** for SFT data selection.
 - **The CI-gated project facts** (<!--fact:charset_total-->59<!--/fact--> charset /
   <!--fact:keywords-->14<!--/fact--> keywords /
-  <!--fact:stdlib_modules-->57<!--/fact--> stdlib modules /
-  <!--fact:conformance_cases_total-->268<!--/fact--> conformance cases), enforced by
+  <!--fact:stdlib_modules-->65<!--/fact--> stdlib modules /
+  <!--fact:conformance_cases_total-->270<!--/fact--> conformance cases), enforced by
   `toke/scripts/verify_project_facts.py` — the numbers above are written into this
   document by that script (`--sync`), never typed (story 132.36).
 
