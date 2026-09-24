@@ -3,6 +3,7 @@ set -euo pipefail
 
 WORK_DIR="/home/ubuntu/toke-model"
 REPO_DIR="/home/ubuntu/toke-model-repo"
+GITHUB_REPO="${GITHUB_REPO:-karwalski/toke-models}"
 BRANCH="train-results-$(date -u +%Y%m%d-%H%M%S)"
 
 log() { echo "[$(date '+%H:%M:%S')] POST-TRAIN: $*" | tee -a "$WORK_DIR/train.log"; }
@@ -85,6 +86,6 @@ Config: NF4 4-bit, LoRA rank 64, 3 epochs, lr 2e-4"
 log "Pushing results to GitHub branch $BRANCH..."
 git push origin "$BRANCH" 2>&1 | tail -5
 
-log "Results pushed to: https://github.com/karwalski/toke-model/tree/$BRANCH"
+log "Results pushed to: https://github.com/$GITHUB_REPO/tree/$BRANCH"
 log "Shutting down instance in 60 seconds..."
 sudo shutdown -h +1 "Training complete. Results pushed to GitHub."

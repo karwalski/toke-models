@@ -31,7 +31,7 @@ KEY_FILE="${KEY_FILE:-$HOME/.ssh/toke-training.pem}"
 SPOT_MAX_PRICE="0.60"                  # Max spot bid (on-demand is ~$1.01)
 VOLUME_SIZE=50                         # GB — model weights (~4GB) + data + checkpoints + OS
 
-GITHUB_REPO="${GITHUB_REPO:-karwalski/toke-model}"
+GITHUB_REPO="${GITHUB_REPO:-karwalski/toke-models}"
 GITHUB_TOKEN="${GITHUB_TOKEN:-}"
 
 STATE_FILE="$(dirname "$0")/.train_state.json"
@@ -610,7 +610,7 @@ Optional environment:
   KEY_NAME            EC2 key pair name (default: toke-training)
   KEY_FILE            SSH key file path (default: ~/.ssh/toke-training.pem)
   CORPUS_FILE         Path to corpus.jsonl (default: ~/tk/toke-model/tokenizer/corpus.jsonl)
-  GITHUB_REPO         GitHub repo for releases (default: karwalski/toke-model)
+  GITHUB_REPO         GitHub repo for releases (default: karwalski/toke-models)
 EOF
 }
 
