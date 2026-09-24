@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 import sys
-sys.path.insert(0, "/Users/matthew.watt/tk/toke-model")
+from pathlib import Path
+
+# Import this checkout's model package, whichever clone or worktree runs the test.
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from model.model import TokeModel, TokeModelConfig, count_parameters, _BACKEND
 
