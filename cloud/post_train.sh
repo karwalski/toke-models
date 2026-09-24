@@ -16,8 +16,10 @@ set -euo pipefail
 #   POST_TRAIN_PUSH=0        commit locally but do not push
 #   POST_TRAIN_SHUTDOWN=0    do not shut the instance down afterwards
 #
-# NOTE: cloud/aws_train.sh currently uploads its own embedded post-training
-# script over this file on the instance; see story 132.77's report.
+# This is the only post-training script: cloud/aws_train.sh uploads this
+# file, and cloud/run_training.sh runs it after training (story 132.82).
+# A non-zero exit here trips run_training.sh's cost guard, which shuts the
+# instance down after a grace period.
 
 WORK_DIR="${WORK_DIR:-/home/ubuntu/toke-model}"
 REPO_DIR="${REPO_DIR:-/home/ubuntu/toke-model-repo}"
@@ -27,7 +29,7 @@ BRANCH="train-results-$(date -u +%Y%m%d-%H%M%S)"
 MAX_COMMIT_BYTES=$((5 * 1024 * 1024))
 
 log() { echo "[$(date '+%H:%M:%S')] POST-TRAIN: $*" | tee -a "$WORK_DIR/train.log"; }
-die() { log "ERROR: $*"; log "Instance will NOT shut down."; exit 1; }
+die() { log "ERROR: $*"; exit 1; }
 
 sha256_of() {
     if command -v sha256sum >/dev/null 2>&1; then sha256sum "$1" | cut -d' ' -f1
