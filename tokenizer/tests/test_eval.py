@@ -5,7 +5,9 @@ import json
 from pathlib import Path
 from unittest.mock import MagicMock, patch
 
-from eval import (
+# 132.85: import through the package. A bare `eval` resolved to the
+# repository's top-level eval/ when pytest ran from the root.
+from tokenizer.eval import (
     build_report,
     compute_compression_ratio,
     compute_fertility,

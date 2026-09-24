@@ -5,7 +5,8 @@ import json
 import tempfile
 from pathlib import Path
 
-from prepare import (
+# 132.85: import through the package, so the suite collects from the root.
+from tokenizer.prepare import (
     deduplicate,
     load_jsonl,
     main,

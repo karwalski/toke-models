@@ -7,10 +7,9 @@ from unittest.mock import patch
 
 import pytest
 
-# Ensure the project root is importable.
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-
-import train
+# 132.85: import through the package. A bare `import train` found the
+# repository's top-level train/ package whenever tests/ was collected first.
+from tokenizer import train
 
 
 # ---------------------------------------------------------------------------
