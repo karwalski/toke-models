@@ -10,6 +10,13 @@ adapters/
 *.safetensors
 *.gguf
 *.pth
+*.ckpt
+*.npz
+# Packed weights (132.77): cloud/post_train.sh uploads these to the model
+# store and commits only adapter-weights.pointer.json.
+adapter-weights*.tar*
+*.tar.gz
+*.tgz
 
 # Checkpoints — large, local only
 checkpoints/*.pt
