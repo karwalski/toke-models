@@ -16,8 +16,9 @@
   the denominator. The correct figure is 588/1000 = 58.8%. Both the model-index
   metric and the results table below have been corrected, with the original
   claim kept visible beside each. 58.8% is below Gate 1's declared
-  pass_at_1_minimum of 0.60, so the Gate 1 verdict is re-opened; re-deciding it
-  is an owner action and is not done here. Nothing in this file has been or is
+  pass_at_1_minimum of 0.60, so the Gate 1 verdict was re-opened, and on
+  2026-09-22 the owner decided Gate 1 NOT PASSED (story 128.19,
+  toke/docs/decisions/gate1-decision.md). Nothing in this file has been or is
   to be uploaded.
 -->
 
@@ -165,10 +166,10 @@ which recorded `benchmark_size: 1000` alongside `pass_at_1: 0.637`. No
 re-evaluation was run: the correction is arithmetic over artefacts already on
 disk.
 
-**Gate 1 verdict:** **OPEN** — originally recorded as PASS (2026-04-03) on the
-withdrawn 63.7% figure. 58.8% is below the declared `pass_at_1_minimum: 0.60`,
-so on its own criterion Gate 1 is not met. Re-deciding the verdict is the
-owner's call and is not made here.
+**Gate 1 verdict:** **NOT PASSED** — owner decision 2026-09-22 (story 128.19,
+`toke/docs/decisions/gate1-decision.md`). Originally recorded as PASS
+(2026-04-03) on the withdrawn 63.7% figure; 58.8% is below the declared
+`pass_at_1_minimum: 0.60`, so on its own criterion Gate 1 is not met.
 
 ### Benchmark methodology
 
