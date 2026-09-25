@@ -4,18 +4,34 @@ set -euo pipefail
 # AWS Cloud Burst Training Script for toke-model
 #
 # Provisions a g5.xlarge spot instance, uploads training data,
-# runs QLoRA fine-tuning, uploads results to GitHub Release,
-# and self-terminates. No laptop needed after launch.
+# runs QLoRA fine-tuning, and hands the results to cloud/post_train.sh, which
+# uploads the adapter to the model store (MODEL_STORE_URI), pushes a pointer
+# and the metrics to a results branch, and shuts the instance down.
+# No laptop needed after launch.
+#
+# One post-train script (story 132.82): the checked-in cloud/post_train.sh is
+# uploaded as-is, and cloud/run_training.sh runs training then it on the
+# instance. Weights are never published as GitHub Release assets.
+#
+# Cost guards (132.82) — a failure must not leave a GPU instance running:
+#   - here: if this script fails after it has provisioned an instance and
+#     before training is launched, it terminates that instance
+#     (KEEP_INSTANCE_ON_ERROR=1 keeps it, and says so);
+#   - on the instance: run_training.sh arms a dead-man's switch
+#     (MAX_RUNTIME_MIN, default 720) and shuts down FAILURE_GRACE_MIN
+#     (default 30) minutes after any failure (KEEP_ALIVE_ON_FAILURE=1 opts
+#     out). See cloud/run_training.sh.
 #
 # Prerequisites:
 #   - AWS CLI configured (aws configure)
-#   - GitHub token with repo + write:packages scope (GITHUB_TOKEN env var)
+#   - GitHub token that can push to GITHUB_REPO (GITHUB_TOKEN env var)
+#   - MODEL_STORE_URI, and write access to it from the instance
 #
 # Usage:
 #   ./aws_train.sh                       # Fire-and-forget: provision + train + upload + shutdown
 #   ./aws_train.sh --instance-id i-xxx   # Attach to existing instance
 #   ./aws_train.sh --status              # Check training status
-#   ./aws_train.sh --download            # Download results locally from GitHub release
+#   ./aws_train.sh --download            # Download a pre-132.82 run's GitHub Release
 #   ./aws_train.sh --terminate           # Manual terminate if needed
 #
 # Cost estimate: ~$3-5 total (g5.xlarge spot @ $0.35-0.50/hr x 6-10 hours)
@@ -33,6 +49,8 @@ VOLUME_SIZE=50                         # GB — model weights (~4GB) + data + ch
 
 GITHUB_REPO="${GITHUB_REPO:-karwalski/toke-models}"
 GITHUB_TOKEN="${GITHUB_TOKEN:-}"
+MODEL_STORE_URI="${MODEL_STORE_URI:-}"
+KEEP_INSTANCE_ON_ERROR="${KEEP_INSTANCE_ON_ERROR:-0}"
 
 STATE_FILE="$(dirname "$0")/.train_state.json"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -41,11 +59,42 @@ CORPUS_FILE="${CORPUS_FILE:-$HOME/tk/toke-model/tokenizer/corpus.jsonl}"
 
 REMOTE_USER="ubuntu"
 REMOTE_DIR="/home/ubuntu/toke-model"
+REMOTE_REPO_DIR="/home/ubuntu/toke-model-repo"   # the clone post_train.sh commits into
 
 # ─── Helper functions ─────────────────────────────────────────────────────────
 
 log() { echo "[$(date '+%H:%M:%S')] $*"; }
 die() { echo "ERROR: $*" >&2; exit 1; }
+
+# ─── Local cost guard ─────────────────────────────────────────────────────────
+#
+# Set once this run has provisioned an instance; cleared once training is
+# running on it (from then on run_training.sh's guard owns the instance).
+
+GUARD_INSTANCE=""
+ATTACHED_INSTANCE=""   # --instance-id / --skip-provision: never terminated here
+
+on_local_exit() {
+    local code=$?
+    [[ $code -ne 0 ]] || return 0
+    if [[ -n "$ATTACHED_INSTANCE" ]]; then
+        echo "WARNING: failed with exit $code; attached instance $ATTACHED_INSTANCE is still running" \
+             "and billing. Terminate it with: $0 --terminate" >&2
+        return 0
+    fi
+    [[ -n "$GUARD_INSTANCE" ]] || return 0
+    if [[ "$KEEP_INSTANCE_ON_ERROR" == 1 ]]; then
+        echo "WARNING: failed with exit $code; instance $GUARD_INSTANCE is still running and billing" \
+             "(KEEP_INSTANCE_ON_ERROR=1). Terminate it with: $0 --terminate" >&2
+        return 0
+    fi
+    echo "ERROR: failed with exit $code before training started; terminating $GUARD_INSTANCE" \
+         "(set KEEP_INSTANCE_ON_ERROR=1 to keep it)" >&2
+    aws ec2 terminate-instances --region "$REGION" --instance-ids "$GUARD_INSTANCE" \
+        --query 'TerminatingInstances[0].CurrentState.Name' --output text >&2 \
+        || echo "ERROR: terminate failed; terminate $GUARD_INSTANCE by hand" >&2
+}
+trap on_local_exit EXIT
 
 save_state() {
     cat > "$STATE_FILE" <<STEOF
@@ -222,6 +271,7 @@ provision_spot() {
     fi
 
     log "Instance: $INSTANCE_ID"
+    GUARD_INSTANCE="$INSTANCE_ID"
     aws ec2 wait instance-running --region "$REGION" --instance-ids "$INSTANCE_ID"
 
     PUBLIC_IP=$(aws ec2 describe-instances \
@@ -303,163 +353,53 @@ upload_data() {
     log "Upload complete."
 }
 
-# ─── Upload the post-training script ─────────────────────────────────────────
+# ─── Upload the post-training scripts ────────────────────────────────────────
 
 upload_post_train_script() {
-    log "Uploading post-training script..."
+    log "Uploading post-training scripts..."
 
-    # Write the script that runs on the instance after training completes.
-    # It packages results, uploads to GitHub Release, and shuts down.
-    cat <<'POST_SCRIPT_EOF' | ssh_cmd "cat > $REMOTE_DIR/cloud/post_train.sh && chmod +x $REMOTE_DIR/cloud/post_train.sh"
-#!/usr/bin/env bash
-set -euo pipefail
+    # The checked-in scripts, as they are: there is no second copy (132.82).
+    scp_to "$SCRIPT_DIR/run_training.sh" "$REMOTE_DIR/cloud/run_training.sh"
+    scp_to "$SCRIPT_DIR/post_train.sh" "$REMOTE_DIR/cloud/post_train.sh"
 
-WORK_DIR="/home/ubuntu/toke-model"
-GITHUB_TOKEN_FILE="$WORK_DIR/.github_token"
-GITHUB_REPO_FILE="$WORK_DIR/.github_repo"
+    # Settings for both, read on the instance by run_training.sh.
+    {
+        printf 'WORK_DIR=%q\n' "$REMOTE_DIR"
+        printf 'REPO_DIR=%q\n' "$REMOTE_REPO_DIR"
+        printf 'GITHUB_REPO=%q\n' "$GITHUB_REPO"
+        printf 'MODEL_STORE_URI=%q\n' "$MODEL_STORE_URI"
+        local v
+        for v in MAX_RUNTIME_MIN FAILURE_GRACE_MIN KEEP_ALIVE_ON_FAILURE \
+                 POST_TRAIN_PUSH POST_TRAIN_SHUTDOWN; do
+            if [[ -n "${!v:-}" ]]; then printf '%s=%q\n' "$v" "${!v}"; fi
+        done
+    } | ssh_cmd "cat > $REMOTE_DIR/cloud/post_train.env"
 
-log() { echo "[$(date '+%H:%M:%S')] POST-TRAIN: $*" | tee -a "$WORK_DIR/train.log"; }
+    # post_train.sh pushes a results branch: give the instance a clone and
+    # the token, over stdin rather than on a command line. run_training.sh
+    # deletes the credential when it exits.
+    printf 'https://x-access-token:%s@github.com\n' "$GITHUB_TOKEN" \
+        | ssh_cmd "umask 077 && cat > ~/.git-credentials && git config --global credential.helper store"
+    ssh_cmd "test -d $REMOTE_REPO_DIR/.git || git clone -q https://github.com/$GITHUB_REPO.git $REMOTE_REPO_DIR"
 
-GITHUB_TOKEN=$(cat "$GITHUB_TOKEN_FILE" 2>/dev/null || echo "")
-GITHUB_REPO=$(cat "$GITHUB_REPO_FILE" 2>/dev/null || echo "")
-
-if [[ -z "$GITHUB_TOKEN" || -z "$GITHUB_REPO" ]]; then
-    log "ERROR: Missing GitHub token or repo. Skipping upload. Instance will NOT shut down."
-    exit 1
-fi
-
-RELEASE_TAG="train-$(date -u +%Y%m%d-%H%M%S)"
-ADAPTER_DIR="$WORK_DIR/output/7b-qlora/adapter"
-PACKAGE_DIR="$WORK_DIR/output/release-package"
-
-log "Packaging results for GitHub release $RELEASE_TAG..."
-
-mkdir -p "$PACKAGE_DIR"
-
-# Collect training metrics.
-cp "$WORK_DIR/output/7b-qlora/training_metrics.json" "$PACKAGE_DIR/" 2>/dev/null || true
-cp "$WORK_DIR/output/7b-qlora/eval_metrics.json" "$PACKAGE_DIR/" 2>/dev/null || true
-cp "$WORK_DIR/train.log" "$PACKAGE_DIR/" 2>/dev/null || true
-
-# Tar the adapter weights (typically 100-300MB).
-if [[ -d "$ADAPTER_DIR" ]]; then
-    log "Compressing adapter weights..."
-    cd "$WORK_DIR/output/7b-qlora"
-    tar czf "$PACKAGE_DIR/adapter-weights.tar.gz" adapter/
-    ADAPTER_SIZE=$(du -sh "$PACKAGE_DIR/adapter-weights.tar.gz" | cut -f1)
-    log "Adapter archive: $ADAPTER_SIZE"
-else
-    log "WARNING: No adapter directory found at $ADAPTER_DIR"
-fi
-
-# Build release notes from metrics.
-NOTES="## QLoRA Training Results\n\n"
-NOTES+="- **Model:** Qwen 2.5 Coder 7B Instruct\n"
-NOTES+="- **Method:** QLoRA (4-bit NF4, rank 64)\n"
-NOTES+="- **Corpus:** 46,754 toke programs\n"
-NOTES+="- **Training examples:** ~73K (direct + comparison)\n"
-NOTES+="- **Instance:** $(curl -s http://169.254.169.254/latest/meta-data/instance-type 2>/dev/null || echo 'g5.xlarge')\n"
-NOTES+="- **GPU:** $(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null || echo 'N/A')\n\n"
-
-if [[ -f "$PACKAGE_DIR/training_metrics.json" ]]; then
-    TRAIN_LOSS=$(python3 -c "import json; d=json.load(open('$PACKAGE_DIR/training_metrics.json')); print(f\"{d.get('train_loss', 'N/A'):.4f}\")" 2>/dev/null || echo "N/A")
-    NOTES+="- **Final train loss:** $TRAIN_LOSS\n"
-fi
-if [[ -f "$PACKAGE_DIR/eval_metrics.json" ]]; then
-    EVAL_LOSS=$(python3 -c "import json; d=json.load(open('$PACKAGE_DIR/eval_metrics.json')); print(f\"{d.get('eval_loss', 'N/A'):.4f}\")" 2>/dev/null || echo "N/A")
-    NOTES+="- **Eval loss:** $EVAL_LOSS\n"
-fi
-
-NOTES+="\n### Assets\n"
-NOTES+="- \`adapter-weights.tar.gz\` — LoRA adapter weights (merge with base model using merge_adapters.py)\n"
-NOTES+="- \`training_metrics.json\` — Training loss curve\n"
-NOTES+="- \`eval_metrics.json\` — Evaluation metrics\n"
-NOTES+="- \`train.log\` — Full training log\n"
-
-# Install gh CLI if not present.
-if ! command -v gh &>/dev/null; then
-    log "Installing GitHub CLI..."
-    (type -p wget >/dev/null || (sudo apt update && sudo apt-get install wget -y))
-    sudo mkdir -p -m 755 /etc/apt/keyrings
-    wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg > /dev/null
-    sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli-stable.list > /dev/null
-    sudo apt update -qq && sudo apt install gh -y -qq
-fi
-
-# Authenticate gh.
-echo "$GITHUB_TOKEN" | gh auth login --with-token
-
-# Create GitHub release with assets.
-log "Creating GitHub release $RELEASE_TAG on $GITHUB_REPO..."
-RELEASE_NOTES=$(echo -e "$NOTES")
-
-cd "$PACKAGE_DIR"
-ASSET_FLAGS=""
-for f in adapter-weights.tar.gz training_metrics.json eval_metrics.json train.log; do
-    if [[ -f "$f" ]]; then
-        ASSET_FLAGS="$ASSET_FLAGS $f"
-    fi
-done
-
-gh release create "$RELEASE_TAG" \
-    --repo "$GITHUB_REPO" \
-    --title "Training run $RELEASE_TAG" \
-    --notes "$RELEASE_NOTES" \
-    $ASSET_FLAGS
-
-log "Release created: https://github.com/$GITHUB_REPO/releases/tag/$RELEASE_TAG"
-
-# Clean up token.
-rm -f "$GITHUB_TOKEN_FILE"
-
-log "Upload complete. Shutting down instance in 60 seconds..."
-log "(Cancel with: sudo shutdown -c)"
-sudo shutdown -h +1 "Training complete. Results uploaded to GitHub. Shutting down."
-POST_SCRIPT_EOF
-
-    # Upload GitHub credentials securely (deleted after use by post_train.sh).
-    ssh_cmd "echo '$GITHUB_TOKEN' > $REMOTE_DIR/.github_token && chmod 600 $REMOTE_DIR/.github_token"
-    ssh_cmd "echo '$GITHUB_REPO' > $REMOTE_DIR/.github_repo"
-
-    log "Post-training script uploaded."
+    log "Post-training scripts uploaded."
 }
 
 # ─── Launch fire-and-forget training ─────────────────────────────────────────
 
 run_fire_and_forget() {
     log "Starting FIRE-AND-FORGET training on $INSTANCE_ID ($PUBLIC_IP)..."
-    log "Instance will upload results to GitHub and self-terminate when done."
+    log "Instance will upload results to the model store and shut down when done."
 
+    # tmux so it survives SSH disconnect. run_training.sh carries the
+    # instance-side cost guard.
     ssh_cmd "bash -s" <<TRAIN_EOF
 set -euo pipefail
-
-# Run everything in tmux so it survives SSH disconnect.
 tmux kill-session -t train 2>/dev/null || true
-tmux new-session -d -s train bash -c '
-    set -euo pipefail
-    source ~/toke-venv/bin/activate
-    cd $REMOTE_DIR
-
-    echo "=== Training started at \$(date -u) ===" | tee train.log
-    echo "GPU: \$(nvidia-smi --query-gpu=name,memory.total --format=csv,noheader)" | tee -a train.log
-
-    # Run training.
-    python3 finetune/train_qlora.py --config finetune/configs/7b.yaml 2>&1 | tee -a train.log
-    TRAIN_EXIT=\$?
-
-    echo "" | tee -a train.log
-    echo "=== Training finished at \$(date -u) with exit code \$TRAIN_EXIT ===" | tee -a train.log
-
-    if [[ \$TRAIN_EXIT -eq 0 ]]; then
-        echo "=== Starting post-training upload ===" | tee -a train.log
-        bash cloud/post_train.sh 2>&1 | tee -a train.log
-    else
-        echo "=== Training FAILED. Instance will NOT shut down. ===" | tee -a train.log
-        echo "SSH in to investigate: ssh -i KEY ubuntu@$PUBLIC_IP" | tee -a train.log
-    fi
-'
+tmux new-session -d -s train bash $REMOTE_DIR/cloud/run_training.sh
 TRAIN_EOF
+    GUARD_INSTANCE=""      # handed over: the instance now guards itself
+    ATTACHED_INSTANCE=""
 
     log ""
     log "==========================================================="
@@ -472,9 +412,9 @@ TRAIN_EOF
     log "  Cost:      ~\$3-5"
     log ""
     log "  When training completes:"
-    log "    1. Adapter weights + metrics uploaded to GitHub Release"
-    log "       https://github.com/$GITHUB_REPO/releases"
-    log "    2. Instance self-terminates"
+    log "    1. Adapter weights uploaded to $MODEL_STORE_URI/<branch>/"
+    log "    2. Pointer + metrics pushed to a train-results-* branch of $GITHUB_REPO"
+    log "    3. Instance shuts down"
     log ""
     log "  You can close your laptop now."
     log ""
@@ -482,12 +422,17 @@ TRAIN_EOF
     log "    ./aws_train.sh --status"
     log "    ssh -i $KEY_FILE $REMOTE_USER@$PUBLIC_IP 'tail -f $REMOTE_DIR/train.log'"
     log ""
-    log "  If training fails, instance stays running for debugging."
-    log "  Manual cleanup: ./aws_train.sh --terminate"
+    log "  If anything fails, the instance shuts down after ${FAILURE_GRACE_MIN:-30} min"
+    log "  (ssh in and run 'sudo shutdown -c' to keep it); it shuts down after"
+    log "  ${MAX_RUNTIME_MIN:-720} min regardless. Manual cleanup: ./aws_train.sh --terminate"
     log "==========================================================="
 }
 
 # ─── Download results from GitHub ────────────────────────────────────────────
+#
+# Runs before 132.82 published their adapter as a GitHub Release asset; this
+# fetches those. Runs since then store it at the URI in the results branch's
+# adapter-weights.pointer.json.
 
 download_from_github() {
     if [[ -z "$GITHUB_TOKEN" ]]; then
@@ -590,19 +535,21 @@ usage() {
 Usage: $0 [OPTIONS]
 
   Fire-and-forget cloud training for toke model fine-tuning.
-  Provisions GPU instance, trains, uploads results to GitHub, self-terminates.
+  Provisions GPU instance, trains, runs cloud/post_train.sh, shuts down.
 
 Options:
-  (no flags)          Fire-and-forget: provision -> train -> upload to GitHub -> shutdown
+  (no flags)          Fire-and-forget: provision -> train -> post_train.sh -> shutdown
   --instance-id ID    Attach to specific instance
   --skip-provision    Use existing instance from state file
   --status            Check training status
-  --download          Download results from latest GitHub release
+  --download          Download the latest pre-132.82 GitHub Release
   --terminate         Manually terminate instance
   --help              Show this help
 
 Required environment:
-  GITHUB_TOKEN        GitHub PAT with repo scope (for uploading results)
+  GITHUB_TOKEN        GitHub token that can push to GITHUB_REPO (results branch)
+  MODEL_STORE_URI     Where the adapter goes, e.g. s3://<bucket>/<prefix>
+                      (the instance needs write access to it)
 
 Optional environment:
   AWS_REGION          AWS region (default: us-east-1)
@@ -610,7 +557,12 @@ Optional environment:
   KEY_NAME            EC2 key pair name (default: toke-training)
   KEY_FILE            SSH key file path (default: ~/.ssh/toke-training.pem)
   CORPUS_FILE         Path to corpus.jsonl (default: ~/tk/toke-model/tokenizer/corpus.jsonl)
-  GITHUB_REPO         GitHub repo for releases (default: karwalski/toke-models)
+  GITHUB_REPO         GitHub repo for results branches (default: karwalski/toke-models)
+  KEEP_INSTANCE_ON_ERROR=1  Keep an instance this run provisioned if launch fails
+  MAX_RUNTIME_MIN     Instance dead-man's switch in minutes (default 720; 0 = off)
+  FAILURE_GRACE_MIN   Minutes between a failure on the instance and shutdown (default 30)
+  KEEP_ALIVE_ON_FAILURE=1   On the instance: do not shut down after a failure
+  POST_TRAIN_PUSH, POST_TRAIN_SHUTDOWN   Passed to post_train.sh (see it)
 EOF
 }
 
@@ -650,15 +602,20 @@ if $DO_DOWNLOAD; then
     exit 0
 fi
 
-# Validate GitHub token before spending money on an instance.
+# Validate settings before spending money on an instance.
 if [[ -z "$GITHUB_TOKEN" ]]; then
     die "GITHUB_TOKEN is required. Create a PAT at https://github.com/settings/tokens with 'repo' scope.\n  Export it:  export GITHUB_TOKEN=ghp_..."
+fi
+if [[ -z "$MODEL_STORE_URI" ]]; then
+    die "MODEL_STORE_URI is required (e.g. s3://<bucket>/<prefix>): post_train.sh uploads the adapter there. Weights never go to git or a GitHub Release."
 fi
 
 # Provision or attach.
 if $SKIP_PROVISION; then
     load_state || die "No state file found. Run without --skip-provision first."
+    ATTACHED_INSTANCE="$INSTANCE_ID"
 elif [[ -n "$INSTANCE_ID" ]]; then
+    ATTACHED_INSTANCE="$INSTANCE_ID"
     PUBLIC_IP=$(aws ec2 describe-instances \
         --region "$REGION" \
         --instance-ids "$INSTANCE_ID" \
