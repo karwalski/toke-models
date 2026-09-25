@@ -59,7 +59,7 @@ Copy the following into the cloned repo:
 ## Step 6: Commit and push
 
     git add .
-    git commit -m "Initial upload: toke-coder-7b (Gate 1 PASS)"
+    git commit -m "Initial upload: toke-coder-7b (Gate 1 NOT PASSED, owner decision 2026-09-22)"
     git push
 
 ## Step 7: Verify
