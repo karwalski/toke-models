@@ -238,6 +238,12 @@ Epic 128's preamble cites `spec/gate2-decision.md`. No such file exists in `toke
 The only copy is at `archive/toke-legacy-20260819/docs/spec/gate2-decision.md` (local archive). Recorded
 here so the citation resolves; the archive copy is the one this protocol read.
 
+**Resolved 2026-10-01 (128.18).** The file was moved out of `toke` on 2026-08-19 (130.3).
+Its last published version, `docs/spec/gate2-decision.md` at toke `1c5ffce`, is
+byte-identical to the archive copy. The live citations (the whitepaper and the research
+request) now link that version. The Epic 128 preamble in `docs/progress.md` is edited
+only by the main thread and still needs the same change.
+
 ### K9 — `tokenizer_manifest_v04.json` does not exist yet
 
 Row 128.1's hard constraint names `tokenizer_manifest_v04.json` (131.22). On disk there is
