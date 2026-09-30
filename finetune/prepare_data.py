@@ -199,9 +199,11 @@ def make_comparison_example(entry: dict) -> dict | None:
 def format_chatml(messages: list[dict]) -> str:
     """Format messages into ChatML template for Qwen models."""
     parts = [
-        "<|im_start|>system\n"
-        "You are a toke programming language expert. "
-        "Write correct, idiomatic toke code.<|im_end|>"
+        (
+            "<|im_start|>system\n"
+            "You are a toke programming language expert. "
+            "Write correct, idiomatic toke code.<|im_end|>"
+        )
     ]
     for msg in messages:
         role = msg["role"]
