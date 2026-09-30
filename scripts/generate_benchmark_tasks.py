@@ -16,11 +16,17 @@ Each benchmark task contains:
   - expected_output: majority_output from differential testing
   - reference_source: the known-good toke source (for debugging, not shown to model)
 
+WARNING (128.16): the output is drawn from the training corpus, so it can
+never be a held-out benchmark for a model trained on that corpus. The two sets
+this script produced (benchmark/tasks.jsonl, tasks_v2.jsonl) had 160 of 161 and
+272 of 272 families in the corpus and are quarantined. Held-out evaluation uses
+BENCH-128 (toke-model/docs/training-reset-128.md section 5).
+
 Usage:
     python scripts/generate_benchmark_tasks.py \
         --corpus /path/to/toke-corpus/data/corpus_default.jsonl \
         --training-data /path/to/toke-corpus/data/train.jsonl \
-        --output benchmark/tasks.jsonl \
+        --output /tmp/corpus_derived_tasks.jsonl \
         --max-tasks 400
 """
 from __future__ import annotations

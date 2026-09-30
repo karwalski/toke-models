@@ -31,6 +31,22 @@ import time
 from pathlib import Path
 
 
+# 128.16: these task sets were generated FROM the training corpus and are
+# quarantined in ~/tk/archive/toke-model-contaminated-benchmarks-20261001/.
+# A score on them is a score on training data. Refused by content, so a copy
+# under another name is refused too.
+QUARANTINED_TASK_SETS = {
+    "7abbc3c6f274aa0ef8d154e1f4e120782f46342a1f778bf2aa345df7fd800ac6": "tasks_v2.jsonl",
+    "cbe234a78820f2300414d5c3c854c6f528c3473527cfd375faa1d577ca88151c": "tasks.jsonl",
+}
+
+
+def quarantined_task_set(path: Path) -> str | None:
+    """Name of the quarantined set `path` is a copy of, or None."""
+    import hashlib
+    return QUARANTINED_TASK_SETS.get(hashlib.sha256(path.read_bytes()).hexdigest())
+
+
 def discover_tasks(benchmark_dir: Path) -> list[dict]:
     """Discover benchmark tasks from YAML or JSONL files.
 
@@ -42,6 +58,10 @@ def discover_tasks(benchmark_dir: Path) -> list[dict]:
     # Check for tasks.jsonl
     jsonl_file = benchmark_dir / "tasks.jsonl"
     if jsonl_file.exists():
+        bad = quarantined_task_set(jsonl_file)
+        if bad is not None:
+            raise SystemExit(f"ERROR: {jsonl_file} is the quarantined, corpus-derived "
+                             f"{bad} (story 128.16). Use BENCH-128.")
         with open(jsonl_file) as f:
             for line in f:
                 line = line.strip()

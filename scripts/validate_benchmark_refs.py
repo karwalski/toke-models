@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 """Validate benchmark task reference programs: compile, execute, compare output.
 
-Runs each reference_source from benchmark/tasks.jsonl through tkc, executes
+Runs each reference_source from a tasks JSONL through tkc, executes
 the binary in a sandbox, and checks stdout against expected_output. Reports
 which tasks have broken references so they can be excluded from eval.
 
 Usage:
     python scripts/validate_benchmark_refs.py \
-        --tasks benchmark/tasks.jsonl \
-        --output benchmark/validation_report.json
+        --tasks <tasks.jsonl> \
+        --output <validation_report.json>
+
+benchmark/validation_report.json is this script's report on the quarantined,
+corpus-derived benchmark/tasks.jsonl (128.16); it validates references only.
 """
 from __future__ import annotations
 

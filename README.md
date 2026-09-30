@@ -33,7 +33,7 @@ and nowhere else.*
 | `model/`, `train/` | Experimental from-scratch model definition and training loop |
 | `scripts/` | Utilities for benchmark generation, adapter evaluation, and data conversion |
 | `eval/` | Model safety evaluation via adversarial prompt testing |
-| `benchmark/` | Benchmark task sets and validation reports |
+| `benchmark/` | Validation reports and test-program sets. The corpus-derived task sets `tasks.jsonl` and `tasks_v2.jsonl` were quarantined in story 128.16: their families are in the training corpus, so they cannot be held out. Held-out evaluation uses BENCH-128 (`docs/training-reset-128.md` §5) |
 | `ollama/` | Conversion + publishing of a merged model to the Ollama registry (`karwalski/toke`) |
 | `docker/` | Self-hosted inference via HuggingFace TGI (GPU and CPU compose files) |
 | `huggingface/` | Model card and upload assets for Hugging Face releases |
