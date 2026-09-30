@@ -225,11 +225,24 @@ plausibly maps to `toke-model/benchmark/tasks.jsonl` — and that file is genera
 A refresh pass cannot fix them: they are derived from the training pool by construction. The
 "v0.4 refresh" obligation in row 128.1 is discharged by building BENCH-128 (§5) instead.
 
+**Done 2026-10-01 (128.16).** Both files were moved, byte-identical, to
+`~/tk/archive/toke-model-contaminated-benchmarks-20261001/` with a MANIFEST that
+records their sha256 values. `eval_pass1_cuda.py` and `eval_adapter.py` now refuse
+either set by content hash, so a copy under another name is refused too. No
+number was ever measured on `tasks_v2.jsonl`. Whether the Gate-2 "200 eval"
+half is `tasks.jsonl` is still unproven, and that question is left to 132.24.
+
 ### K8 — A cited input does not exist at its cited path
 
 Epic 128's preamble cites `spec/gate2-decision.md`. No such file exists in `toke/docs/spec/`.
 The only copy is at `archive/toke-legacy-20260819/docs/spec/gate2-decision.md` (local archive). Recorded
 here so the citation resolves; the archive copy is the one this protocol read.
+
+**Resolved 2026-10-01 (128.18).** The file was moved out of `toke` on 2026-08-19 (130.3).
+Its last published version, `docs/spec/gate2-decision.md` at toke `1c5ffce`, is
+byte-identical to the archive copy. The live citations (the whitepaper and the research
+request) now link that version. The Epic 128 preamble in `docs/progress.md` is edited
+only by the main thread and still needs the same change.
 
 ### K9 — `tokenizer_manifest_v04.json` does not exist yet
 

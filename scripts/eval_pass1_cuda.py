@@ -22,13 +22,16 @@ Usage:
     # Full evaluation (requires GPU + tkc in PATH):
     python scripts/eval_pass1_cuda.py \
         --adapter-dir output/7b-qlora-p2/adapter \
-        --tasks benchmark/tasks.jsonl \
+        --tasks <BENCH-128 tasks, once frozen (128.1a)> \
         --system-prompt corpus/system_prompt_phase2.txt
 
     # Dry-run (no model, synthetic results):
     python scripts/eval_pass1_cuda.py \
-        --tasks benchmark/tasks.jsonl \
+        --tasks <BENCH-128 tasks> \
         --dry-run
+
+    benchmark/tasks.jsonl and benchmark/tasks_v2.jsonl are corpus-derived and
+    quarantined (128.16); this script refuses them.
 """
 from __future__ import annotations
 
@@ -100,6 +103,21 @@ def _sandbox_preexec() -> None:
 # ---------------------------------------------------------------------------
 # Task loading
 # ---------------------------------------------------------------------------
+
+# 128.16: these task sets were generated FROM the training corpus and are
+# quarantined in ~/tk/archive/toke-model-contaminated-benchmarks-20261001/.
+# A score on them is a score on training data. Refused by content, so a copy
+# under another name is refused too.
+QUARANTINED_TASK_SETS = {
+    "7abbc3c6f274aa0ef8d154e1f4e120782f46342a1f778bf2aa345df7fd800ac6": "tasks_v2.jsonl",
+    "cbe234a78820f2300414d5c3c854c6f528c3473527cfd375faa1d577ca88151c": "tasks.jsonl",
+}
+
+
+def quarantined_task_set(path: Path) -> str | None:
+    """Name of the quarantined set `path` is a copy of, or None."""
+    import hashlib
+    return QUARANTINED_TASK_SETS.get(hashlib.sha256(path.read_bytes()).hexdigest())
 
 def load_tasks(path: Path) -> list[dict]:
     """Load benchmark tasks from JSONL.
@@ -442,6 +460,12 @@ def main(argv: list[str] | None = None) -> int:
     # Load tasks.
     if not args.tasks.exists():
         print(f"ERROR: tasks file not found: {args.tasks}", file=sys.stderr)
+        return 1
+    bad = quarantined_task_set(args.tasks)
+    if bad is not None:
+        print(f"ERROR: {args.tasks} is the quarantined, corpus-derived {bad} "
+              f"(story 128.16); scores on it are scores on training data. "
+              f"Use BENCH-128.", file=sys.stderr)
         return 1
     tasks = load_tasks(args.tasks)
     if args.max_tasks:
