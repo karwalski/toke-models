@@ -28,12 +28,45 @@ def test_prompt_falls_back_for_unknown_category_and_no_function() -> None:
     assert prompt.startswith("Write a toke program for general programming.")
 
 
-@pytest.mark.xfail(strict=True, reason=(
-    "defect found by 128.21: the signature is found by splitting the source on ';', "
-    "which is also toke's parameter separator, so any multi-parameter function loses "
-    "its signature and gets the generic prompt"))
 def test_prompt_keeps_multi_param_signature() -> None:
+    # 128.26: this was a strict xfail — splitting the source on ';' (also toke's
+    # parameter separator) lost every multi-parameter signature.
     assert "`add(a:i64;b:i64):i64`" in pd.task_id_to_prompt("A-MTH-0002v1", TWO_PARAM)
+
+
+def test_prompt_keeps_three_param_legacy_signature() -> None:
+    src = 'M=isBetween;F=isBetween(x:u64;lo:u64;hi:u64):bool{if(x>hi){<false};<true};'
+    assert "`isBetween(x:u64;lo:u64;hi:u64):bool`" in pd.task_id_to_prompt(
+        "A-CND-0003v1", src)
+
+
+@pytest.mark.parametrize("sig", [
+    "lookup(m:@(str:i64);k:str):i64!$err",
+    "apply(g:(i64;i64):i64;xs:@i64):@i64",
+    "count(xs:[[i64]];m:[Str:i64]):i64",
+])
+def test_extract_signature_handles_nested_types(sig: str) -> None:
+    src = f'm=t;\ni=io:std.io;\nf={sig}{{let s="a;b{{";<0}};\nf=other(a:i64):i64{{<a}};'
+    assert pd.extract_signature(src) == sig
+
+
+def test_extract_signature_skips_body_assignments_and_strings() -> None:
+    # 'f=' inside a body or a string is not a declaration.
+    assert pd.extract_signature('m=x;c="f=no(a:i64):i64{":str;') == ""
+    src = 'm=x;f=main():i64{let f=mut.0;f=f+1;<f};'
+    assert pd.extract_signature(src) == "main():i64"
+
+
+def test_extract_signature_skips_bodyless_declaration() -> None:
+    src = ("M=p;T=CalcErr{Bad:Str};F=strToF64(s:Str):f64!CalcErr;"
+           "F=divide(a:Str;b:Str):f64!CalcErr{<strToF64(a)!CalcErr};")
+    assert pd.extract_signature(src) == "divide(a:Str;b:Str):f64!CalcErr"
+    assert pd.extract_signature("M=p;F=ext(s:Str):Str;") == ""
+
+
+def test_extract_signature_rejects_malformed_declaration() -> None:
+    assert pd.extract_signature("m=x;f=broken(a:i64;") == ""
+    assert pd.extract_signature("m=x;f=(a:i64):i64{<a};") == ""
 
 
 def test_direct_example_pairs_prompt_with_source_verbatim() -> None:

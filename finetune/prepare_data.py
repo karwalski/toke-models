@@ -2,10 +2,14 @@
 """Prepare toke corpus for QLoRA fine-tuning.
 
 Converts corpus.jsonl entries into instruction-tuning format per RFC Section 15.3.
-Produces three example types:
+Produces two example types:
   1. Direct generation — prompt -> toke code
-  2. Correction — broken code + error -> fixed code
-  3. Multi-language comparison — side-by-side with token counts
+  2. Multi-language comparison — side-by-side with token counts
+
+(Story 128.26: an earlier docstring also promised "Correction" examples — broken
+code + error -> fixed code. None were ever generated, and the corpus records this
+script reads carry no broken-code or diagnostic fields to build them from, so the
+promise is removed rather than implemented. Repair pairs are corpus-side work.)
 
 Usage:
     python prepare_data.py --corpus ../tokenizer/corpus.jsonl --output-dir training-data/
@@ -33,23 +37,98 @@ CATEGORY_DESC: dict[str, str] = {
 }
 
 
+def _skip_string(src: str, i: int) -> int:
+    """Return the index just past the string literal whose opening quote is at i."""
+    j = i + 1
+    while j < len(src):
+        if src[j] == "\\":
+            j += 2
+            continue
+        if src[j] == '"':
+            return j + 1
+        j += 1
+    return j
+
+
+def extract_signature(tk_source: str) -> str:
+    """Return the signature of the first top-level function definition, or "".
+
+    A toke function definition is ``f=name(p1:T1;p2:T2):R{body};`` (``F=`` in
+    legacy sources). ``;`` separates parameters as well as declarations, and a
+    type may itself contain parentheses (``@(str:i64)``, ``(i64;i64):bool``),
+    so the signature is read with a scanner rather than by splitting on ``;``:
+    a declaration starts at depth 0 after the start of the source or a ``;``,
+    its parameter list runs to the matching ``)``, and the return spec runs to
+    the first ``{`` outside any bracket. The result is ``name(params):R``.
+    Body-less declarations (``F=ext(s:Str):f64!Err;``, an extern) are skipped,
+    so the prompt names the function the source actually defines.
+    """
+    n = len(tk_source)
+    i = 0
+    depth = 0  # {} nesting: only depth-0 text holds declarations
+    at_decl_start = True
+    while i < n:
+        c = tk_source[i]
+        if c.isspace():
+            i += 1
+            continue
+        if c == '"':
+            i = _skip_string(tk_source, i)
+            at_decl_start = False
+            continue
+        if depth == 0 and at_decl_start and tk_source.startswith(("f=", "F="), i):
+            sig, end = _read_signature(tk_source, i + 2)
+            if sig or end < 0:
+                return sig
+            i = end  # body-less declaration: resume at its terminating ';'
+            continue
+        if c == "{":
+            depth += 1
+        elif c == "}":
+            depth = max(depth - 1, 0)
+        at_decl_start = depth == 0 and c == ";"
+        i += 1
+    return ""
+
+
+def _read_signature(src: str, start: int) -> tuple[str, int]:
+    """Read ``name(params):R{`` from start.
+
+    Returns ``(signature, -1)`` for a definition, ``("", index of ';')`` for a
+    body-less declaration, and ``("", -1)`` if the text is not well formed.
+    """
+    paren = src.find("(", start)
+    if paren <= start or not src[start:paren].strip().isidentifier():
+        return "", -1
+    depth = 0
+    closed = False
+    for i in range(paren, len(src)):
+        c = src[i]
+        if c == '"':
+            return "", -1
+        if c in "([":
+            depth += 1
+        elif c in ")]":
+            depth -= 1
+            if depth == 0 and c == ")":
+                closed = True
+        elif depth == 0 and closed:
+            if c == "{":
+                return src[start:i].strip(), -1
+            if c == ";":
+                return "", i
+            if c == "}":
+                return "", -1
+    return "", -1
+
+
 def task_id_to_prompt(task_id: str, tk_source: str) -> str:
     """Generate a natural-language instruction from task metadata and source."""
     parts = task_id.split("-")
     cat = "-".join(parts[:2]) if len(parts) >= 2 else task_id
     cat_desc = CATEGORY_DESC.get(cat, "general programming")
 
-    # Extract function name and signature from source.
-    func_sig = ""
-    for line in tk_source.split(";"):
-        line = line.strip()
-        if line.startswith("F=") or line.startswith("f="):
-            sig_part = line[2:]
-            paren = sig_part.find("(")
-            brace = sig_part.find("{")
-            if paren > 0 and brace > paren:
-                func_sig = sig_part[:brace]
-            break
+    func_sig = extract_signature(tk_source)
 
     if func_sig:
         return (
@@ -120,9 +199,11 @@ def make_comparison_example(entry: dict) -> dict | None:
 def format_chatml(messages: list[dict]) -> str:
     """Format messages into ChatML template for Qwen models."""
     parts = [
-        "<|im_start|>system\n"
-        "You are a toke programming language expert. "
-        "Write correct, idiomatic toke code.<|im_end|>"
+        (
+            "<|im_start|>system\n"
+            "You are a toke programming language expert. "
+            "Write correct, idiomatic toke code.<|im_end|>"
+        )
     ]
     for msg in messages:
         role = msg["role"]
