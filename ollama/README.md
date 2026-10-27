@@ -1,11 +1,15 @@
 # Publishing toke to Ollama
 
-## Registry description (story 132.4 — not yet published)
+## Registry description (story 132.4 — description not yet applied)
 
-`ollama.com/library/karwalski/toke` **does not exist yet** (checked 2026-09-19: 404).
-Nothing is live to correct; the text below is what the description field must say when
-the owner first pushes. It is the canonical one-liner plus the two qualifiers this model
-cannot be published without.
+**The model is published; its description is not.** `ollama.com/karwalski/toke` shows
+`toke:latest`, 4.7 GB (Q4\_K\_M GGUF), "Updated 5 months ago" and **"No readme"**
+(re-read 2026-10-27, toke story 132.37a). The 2026-09-19 note here said "does not exist
+yet (404)": it probed `ollama.com/library/karwalski/toke`, the official-library path,
+which 404s for any user-namespace model. The text below is what the readme must say --
+the canonical one-liner plus the two qualifiers this model cannot be published without.
+Whether to keep the model up at all is an owner decision (toke 132.24 was decided on the
+404).
 
 > toke: a compiled language designed for LLM code generation, with a small grammar, one
 > canonical form and compiler verification. This is the Gate 2 research artefact: Qwen
