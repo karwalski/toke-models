@@ -27,4 +27,4 @@ for toke programs.
 
 ## Licence
 
-Apache 2.0.
+Apache 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE).

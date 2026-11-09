@@ -123,4 +123,4 @@ Add `--dry-run` to exercise the harness without model weights. See [docs/securit
 
 ## Licence
 
-Apache 2.0. Model weights released under Apache 2.0 consistent with the Qwen 2.5 base model licence.
+Apache 2.0. See [LICENSE](LICENSE) and [NOTICE](NOTICE). Model weights released under Apache 2.0 consistent with the Qwen 2.5 base model licence.
