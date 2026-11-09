@@ -1,0 +1,26 @@
+m=upperall;
+i=io:std.io;
+i=s:std.str;
+f=upperone(x:str):str{
+  <s.upper(x)
+};
+f=upperall(first:@str):@str{
+  if(first.len==0){
+    <@()
+  }el{
+    <first.map(&upperone)
+  }
+};
+f=fmtarr(a:@str):str{
+  let inner=mut."";
+  lp(let i=0;i<a.len;i=i+1){
+    inner=if(i==0){"'\(a.get(i))'"}el{"\(inner), '\(a.get(i))'"};
+  };
+  <"[\(inner)]"
+};
+f=main():i64{
+  io.println(fmtarr(upperall(@("hello";"World"))));
+  io.println(fmtarr(upperall(@("ABC"))));
+  io.println(fmtarr(upperall(@())));
+  <0
+};

@@ -1,0 +1,71 @@
+{
+ "about": "Story 128.2 tier (d): one broken/fixed pair per diagnostic code the syntax card names (plus E4027, an invented stdlib member). The builder checks each pair with the pinned tkc: the broken program must draw exactly this error_code first, and the fixed one must build, run to exit 0 and carry no lint warning or error. Authored for the pack, not taken from a corpus.",
+ "cases": [
+  {
+   "code": "E1003",
+   "hint": "An identifier contains `_`: rename it to lowercase letters and digits only (`maxval`, not `max_val`).",
+   "broken": "m=demo;\ni=io:std.io;\nf=main():i64{\n  let max_val=3;\n  io.println(\"\\(max_val)\");\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\nf=main():i64{\n  let maxval=3;\n  io.println(\"\\(maxval)\");\n  <0\n};\n"
+  },
+  {
+   "code": "E2001",
+   "hint": "Declarations are out of order: move every `i=` import above the first `t=` type, and every type above the first `f=` function.",
+   "broken": "m=demo;\ni=io:std.io;\nt=$pt{x:i64;y:i64};\ni=s:std.str;\nf=main():i64{\n  io.println(\"\\(s.len(\"ab\"))\");\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\ni=s:std.str;\nt=$pt{x:i64;y:i64};\nf=main():i64{\n  io.println(\"\\(s.len(\"ab\"))\");\n  <0\n};\n"
+  },
+  {
+   "code": "E2002",
+   "hint": "A single `=` inside an expression: equality is `==`.",
+   "broken": "m=demo;\nf=main():i64{\n  let n=3;\n  if(n=3){<1};\n  <0\n};\n",
+   "fixed": "m=demo;\nf=main():i64{\n  let n=3;\n  if(n==3){<0};\n  <1\n};\n"
+  },
+  {
+   "code": "E3011",
+   "hint": "A name is used before it is declared: bind it with `let` (or fix the spelling) before the use.",
+   "broken": "m=demo;\ni=io:std.io;\nf=main():i64{\n  io.println(\"\\(total)\");\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\nf=main():i64{\n  let total=4;\n  io.println(\"\\(total)\");\n  <0\n};\n"
+  },
+  {
+   "code": "E3020",
+   "hint": "`!` propagates only inside a function that itself returns `T!$err`: in any other function consume the result with `mt`.",
+   "broken": "m=demo;\ni=s:std.str;\nf=main():i64{\n  let n=s.toint(\"12\")!$err;\n  <n-12\n};\n",
+   "fixed": "m=demo;\ni=s:std.str;\nf=main():i64{\n  let n=mt s.toint(\"12\") {$ok:v v;$err:e 0};\n  <n-12\n};\n"
+  },
+  {
+   "code": "E4010",
+   "hint": "A match is missing a variant: add an arm for every variant (`$ok` and `$err` for a result).",
+   "broken": "m=demo;\ni=s:std.str;\nf=main():i64{\n  <mt s.toint(\"0\") {$ok:v v}\n};\n",
+   "fixed": "m=demo;\ni=s:std.str;\nf=main():i64{\n  <mt s.toint(\"0\") {$ok:v v;$err:e 1}\n};\n"
+  },
+  {
+   "code": "E4011",
+   "hint": "Match arms yield different types: make every arm yield the same type (or early-return with `<` in the odd arm).",
+   "broken": "m=demo;\nt=$er{$bad:bool};\nf=half(x:i64):i64!$er{\n  if(x%2!=0){<$er{$bad:true}};\n  <x/2\n};\nf=main():i64{\n  let v=mt half(8) {$ok:n n;$err:e \"odd\"};\n  <v-4\n};\n",
+   "fixed": "m=demo;\nt=$er{$bad:bool};\nf=half(x:i64):i64!$er{\n  if(x%2!=0){<$er{$bad:true}};\n  <x/2\n};\nf=main():i64{\n  let v=mt half(8) {$ok:n n;$err:e -1};\n  <v-4\n};\n"
+  },
+  {
+   "code": "E4026",
+   "hint": "A call has the wrong number of arguments: match the function's signature exactly.",
+   "broken": "m=demo;\ni=io:std.io;\ni=s:std.str;\nf=main():i64{\n  io.println(\"\\(s.len())\");\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\ni=s:std.str;\nf=main():i64{\n  io.println(\"\\(s.len(\"abc\"))\");\n  <0\n};\n"
+  },
+  {
+   "code": "E4027",
+   "hint": "The module has no function by that name: call only stdlib functions listed on the card or in the task, or write the helper yourself.",
+   "broken": "m=demo;\ni=io:std.io;\ni=s:std.str;\nf=main():i64{\n  io.println(s.mirror(\"abc\"));\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\ni=s:std.str;\nf=main():i64{\n  io.println(s.upper(\"abc\"));\n  <0\n};\n"
+  },
+  {
+   "code": "E4031",
+   "hint": "An operator or argument has the wrong type, most often `+` on strings or a map lookup used as a plain value: build strings by interpolation, and consume `m.get(k)` with `mt` or `m.getor(k;d)`.",
+   "broken": "m=demo;\ni=io:std.io;\nf=main():i64{\n  let a=\"x\";\n  io.println(a+\"y\");\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\nf=main():i64{\n  let a=\"x\";\n  io.println(\"\\(a)y\");\n  <0\n};\n"
+  },
+  {
+   "code": "E4073",
+   "hint": "An interpolated string is nested inside another interpolation: bind the inner string to a `let`, then interpolate that.",
+   "broken": "m=demo;\ni=io:std.io;\nf=tag(x:str):str{<\"<\\(x)>\"};\nf=main():i64{\n  let n=5;\n  io.println(\"\\(tag(\"\\(n)\"))\");\n  <0\n};\n",
+   "fixed": "m=demo;\ni=io:std.io;\nf=tag(x:str):str{<\"<\\(x)>\"};\nf=main():i64{\n  let n=5;\n  let inner=\"\\(n)\";\n  io.println(\"\\(tag(inner))\");\n  <0\n};\n"
+  }
+ ]
+}

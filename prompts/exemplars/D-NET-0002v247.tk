@@ -1,0 +1,15 @@
+m=urlhost;
+i=io:std.io;
+i=s:std.str;
+f=extracthost(left:str):str{
+  let mark=s.indexof(left;"://");
+  let rest=if(mark<0){left}el{s.slice(left;mark+3;s.len(left))};
+  let cut=s.indexof(rest;"/");
+  <if(cut<0){rest}el{s.slice(rest;0;cut)}
+};
+f=main():i64{
+  io.println(extracthost("http://example.com/path"));
+  io.println(extracthost("https://api.io:8080/v1"));
+  io.println(extracthost("http://localhost/"));
+  <0
+};

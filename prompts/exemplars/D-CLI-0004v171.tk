@@ -1,0 +1,21 @@
+m=argfilter;
+i=io:std.io;
+i=s:std.str;
+f=nonflags(lhs:@str):@str{
+  let out=mut.@();
+  lp(let i=0;i<lhs.len;i=i+1){
+    let item=lhs.get(i);
+    if(!s.starts(item;"--")){out=out.append(item)}
+  };
+  <out
+};
+f=fmtlist(xs:@str):str{
+  if(xs.len==0){<"[]"};
+  <"['\(s.join("', '";xs))']"
+};
+f=main():i64{
+  io.println(fmtlist(nonflags(@("--verbose";"input.txt";"--output";"out.txt"))));
+  io.println(fmtlist(nonflags(@("file1";"file2"))));
+  io.println(fmtlist(nonflags(@("--all"))));
+  <0
+};

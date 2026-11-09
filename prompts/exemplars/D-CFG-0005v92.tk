@@ -1,0 +1,14 @@
+m=inisection;
+i=io:std.io;
+i=s:std.str;
+f=sectionname(first:str):str{
+  if(!s.startswith(first;"[")){<""};
+  if(!s.endswith(first;"]")){<""};
+  <s.slice(first;1;s.len(first)-1)
+};
+f=main():i64{
+  io.println("\(sectionname("[database]"))");
+  io.println("\(sectionname("[server]"))");
+  io.println("\(sectionname("[app.settings]"))");
+  <0
+};

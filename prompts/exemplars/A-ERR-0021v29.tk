@@ -1,0 +1,19 @@
+m=errvalidatelength;
+i=io:std.io;
+i=s:std.str;
+t=$validationerr{$tooshort:str;$toolong:str;$invalidchar:str};
+f=validatelength(p:str;minlen:i64;maxlen:i64):str!$validationerr{
+  let n=s.len(p) as i64;
+  if(n<minlen){<$validationerr{$tooshort:"too short"}};
+  if(n>maxlen){<$validationerr{$toolong:"too long"}};
+  <p
+};
+f=describe(p:str;minlen:i64;maxlen:i64):str{
+  <mt validatelength(p;minlen;maxlen) {$ok:v v;$err:e "invalid"}
+};
+f=main():i64{
+  io.println(describe("hello";3;10));
+  io.println(describe("hi";3;10));
+  io.println(describe("hellothere";3;5));
+  <0
+};
