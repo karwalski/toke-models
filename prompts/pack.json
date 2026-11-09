@@ -1,0 +1,70 @@
+{
+ "about": "Story 128.2: the graduated 'how to write toke' prompt pack. scripts/build_prompt_pack.py reads this file and writes tier-*.md and MANIFEST.json beside it. Do not edit the tier files by hand: change an input and rebuild.",
+ "pack_version": "1.0.0",
+ "sources": {
+  "card": {"repo": "toke-corpus", "path": "regen/syntax_card.md"},
+  "card_snippet": {"repo": "toke", "path": "patterns/card_snippet.md"},
+  "catalogue": {"repo": "toke", "path": "patterns/catalogue.json"}
+ },
+ "tkc_pin": {
+  "story": "131.103",
+  "path": "archive/pins/tkc-131.103/toke",
+  "version": "toke 3.1.0 (git 1f39c2998110)",
+  "sha256": "d400375946fbae74dac24adc52bbc45bb1d4c94678d6ba0d297aef3c3dd35bb2"
+ },
+ "tiers": {
+  "a": {"file": "tier-a-minimal.md", "title": "minimal card",
+        "about": "The card's opening and its rule sections with the prose cut to the code: fences only where a section has them, the short reference sections whole. No Patterns block, no task hygiene.",
+        "sections": {
+         "File structure (order STRICTLY enforced, E2001)": "fences",
+         "Character set — 59 characters, 14 keywords": "full",
+         "Types": "full",
+         "Bindings and assignment": "fences",
+         "Operators": "full",
+         "if is an EXPRESSION — prefer it over mut-flags": "fences",
+         "Loops": "fences",
+         "Match expression": "full",
+         "Error handling": "fences",
+         "Strings — no + concatenation": "fences",
+         "Arrays and maps — VALUE SEMANTICS: mutations return a NEW collection": "fences",
+         "Std modules (import as `i=alias:std.name;` — call names lowercase, NO underscores)": "full",
+         "Program conventions and idiom": "full",
+         "Patterns — measured canonical forms": "drop",
+         "Task hygiene": "drop"
+        }},
+  "b": {"file": "tier-b-full.md", "title": "full card",
+        "about": "Syntax card v2 verbatim, including the Patterns block, which must equal the pattern catalogue's card snippet. This is the tier the 128.1 protocol fixes for scoring (training-reset-128.md section 9.1)."},
+  "c": {"file": "tier-c-exemplars.md", "title": "card + curated exemplar programs",
+        "about": "Tier b followed by whole programs taken from the v0.4 corpus, each built, run and lint-checked with the pin."},
+  "d": {"file": "tier-d-repair.md", "title": "card + diagnostics/repair guide",
+        "about": "Tier b followed by how to read a tkc diagnostic and one broken/fixed pair per code the card names."}
+ },
+ "exemplars": {
+  "about": "Taken from toke-corpus corpus/regen_v04 full_program records (accepted, 129 freeze, outside the 131.22 pre131 tokenizer holdout). Screened by scripts in the 128.2 batch: no legacy spelling, imports only io/str, lint-clean, build and run with the pin. Curated by hand for the canonical forms they show. Their task families must stay out of BENCH-128 S2 (128.1a): see MANIFEST.json bench128_exclude_families.",
+  "programs": [
+   {"id": "A-ERR-0021v29", "title": "Validate a length: an error union, guard returns, a match with a default",
+    "patterns": ["err-validate-early"], "source_sha256": "a24cecabc898dc59f9d433f575c5ca2461cf5b81c59608a8dc67598f1a64c1c2",
+    "record": "corpus/regen_v04/A-ERR/A-ERR-0021v29.json", "stdout": "hello\ninvalid\ninvalid\n"},
+   {"id": "D-NET-0002v247", "title": "Extract the host from a URL: expression-if bindings",
+    "patterns": ["cond-bind-if"], "source_sha256": "280f97d1d6f75f4aee3e4eef85179e0413e0e7ceec1487608ddf5ac23aaf3064",
+    "record": "corpus/regen_v04/D-NET/D-NET-0002v247.json", "stdout": "example.com\napi.io:8080\nlocalhost\n"},
+   {"id": "D-TST-0015v60", "title": "Build an array and render it: an append accumulator and a string builder",
+    "patterns": ["acc-array", "str-build-loop"], "source_sha256": "7ec5c2f78a8763abd649aea66636611e4b8638ec246e9831a3eeea61c932f481",
+    "record": "corpus/regen_v04/D-TST/D-TST-0015v60.json", "stdout": "[0, 1, 0, 1]\n[5, 10, 5]\n[]\n"},
+   {"id": "D-CLI-0004v171", "title": "Drop command-line flags and print the rest: append, then join inside an interpolation",
+    "patterns": ["acc-array", "str-interp-vs-join"], "source_sha256": "97fdfbdad2d9ccf3c1b599cb74e1e469252f425695825636f85e2708f0f50a80",
+    "record": "corpus/regen_v04/D-CLI/D-CLI-0004v171.json", "stdout": "['input.txt', 'out.txt']\n['file1', 'file2']\n[]\n"},
+   {"id": "D-DAT-0024v188", "title": "Upper-case every string: map with a function reference",
+    "patterns": ["iter-map"], "source_sha256": "bbecc949864e2ef6961ee6f40c87aa7811a95997bb46a1f088c9c17cbfa598f1",
+    "record": "corpus/regen_v04/D-DAT/D-DAT-0024v188.json", "stdout": "['HELLO', 'WORLD']\n['ABC']\n[]\n"},
+   {"id": "A-MTH-0060v30", "title": "Count primes with a sieve: lp, reassigned set, a counter",
+    "patterns": ["acc-count-if"], "source_sha256": "177b53db631ee1e4405298a9f88fb4737b866bb4d6168885c9cfa56d81c12a55",
+    "record": "corpus/regen_v04/A-MTH/A-MTH-0060v30.json", "stdout": "0\n4\n25\n"},
+   {"id": "D-CFG-0005v92", "title": "Read an INI section name: guard returns and slicing",
+    "patterns": ["err-validate-early"], "source_sha256": "311b05e21935ab379c254ebb606c227f64e6dfae4fd693f75ee575a1a534d172",
+    "record": "corpus/regen_v04/D-CFG/D-CFG-0005v92.json", "stdout": "database\nserver\napp.settings\n"}
+  ]
+ },
+ "repair": {"cases": "repair_cases.json", "sample": "E2002",
+            "sample_about": "The case whose real diagnostic is shown. Not E1003: its message still says 'v0.2 syntax ... convert to v0.3' and lists A-Z as allowed (filed as a bug)."}
+}

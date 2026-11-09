@@ -1,0 +1,26 @@
+m=alternate;
+i=io:std.io;
+i=s:std.str;
+f=alternate(first:i64;second:i64;n:i64):@i64{
+  let result=mut.@();
+  lp(let i=0;i<n;i=i+1){
+    if(i%2==0){result=result.append(first)}el{result=result.append(second)}
+  };
+  <result
+};
+f=fmtarr(arr:@i64):str{
+  let b=s.builder();
+  s.add(b;"[");
+  lp(let i=0;i<arr.len;i=i+1){
+    if(i>0){s.add(b;", ")};
+    s.add(b;"\(arr.get(i))")
+  };
+  s.add(b;"]");
+  <s.build(b)
+};
+f=main():i64{
+  io.println(fmtarr(alternate(0;1;4)));
+  io.println(fmtarr(alternate(5;10;3)));
+  io.println(fmtarr(alternate(1;2;0)));
+  <0
+};

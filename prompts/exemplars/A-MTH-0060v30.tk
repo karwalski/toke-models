@@ -1,0 +1,23 @@
+m=primes;
+i=io:std.io;
+f=countprimes(n:i64):i64{
+  if(n<2){<0};
+  let sieve=mut.@(false;false);
+  lp(let i=2;i<=n;i=i+1){sieve=sieve.append(true)};
+  lp(let p=2;p*p<=n;p=p+1){
+    if(sieve.get(p)){
+      lp(let q=p*p;q<=n;q=q+p){sieve=sieve.set(q;false)}
+    }
+  };
+  let cnt=mut.0;
+  lp(let k=2;k<=n;k=k+1){
+    if(sieve.get(k)){cnt=cnt+1}
+  };
+  <cnt
+};
+f=main():i64{
+  io.println("\(countprimes(1))");
+  io.println("\(countprimes(10))");
+  io.println("\(countprimes(100))");
+  <0
+};

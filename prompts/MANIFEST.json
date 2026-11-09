@@ -1,0 +1,146 @@
+{
+ "story": "128.2",
+ "pack_version": "1.0.0",
+ "inputs": {
+  "card_sha": "d8495db38b93",
+  "card": "toke-corpus:regen/syntax_card.md",
+  "catalogue_sha": "c42dcc38a16c",
+  "card_snippet_sha256": "ef4831f76dbeeac5e9b22bec1a10320c5734839f44dbbe97150f7f9aecc8ebb5",
+  "repair_cases_sha256": "d91b0762285730dac5de69c634311e25f9d87e22779ffd245489e94ff1694c49",
+  "errors_doc": "toke:docs/reference/errors.md (titles only)"
+ },
+ "tkc_pin": {
+  "story": "131.103",
+  "path": "archive/pins/tkc-131.103/toke",
+  "version": "toke 3.1.0 (git 1f39c2998110)",
+  "sha256": "d400375946fbae74dac24adc52bbc45bb1d4c94678d6ba0d297aef3c3dd35bb2"
+ },
+ "tiers": {
+  "a": {
+   "file": "tier-a-minimal.md",
+   "title": "minimal card",
+   "sha256": "33045a12a9e8db0037af211c2d61512f4e653e6fae7424b2145a401f5b53f9c0",
+   "bytes": 7200,
+   "fences": 9,
+   "card_gate": {
+    "MISMATCH": 0,
+    "summary": "fragments 50: compile-clean 37 | rejected-as-the-card-says 0 | documented-runtime-bug, compiles 0 | style-banned, compiles 0 | MISMATCH 0 | template 6 | not-checkable 2 | unmarked-span, compiles 5"
+   }
+  },
+  "b": {
+   "file": "tier-b-full.md",
+   "title": "full card",
+   "sha256": "d8495db38b93d85f1b24bd5148e2a95969ca606d841c8270b4697bbcd09849c6",
+   "bytes": 13215,
+   "fences": 9,
+   "card_gate": {
+    "MISMATCH": 0,
+    "summary": "fragments 74: compile-clean 44 | rejected-as-the-card-says 5 | documented-runtime-bug, compiles 2 | style-banned, compiles 1 | MISMATCH 0 | template 6 | not-checkable 3 | unmarked-span, compiles 13"
+   }
+  },
+  "c": {
+   "file": "tier-c-exemplars.md",
+   "title": "card + curated exemplar programs",
+   "sha256": "dc993b5c422092cd7fab39ee98b5c5a203aa264fe29db3a2900eb93462226625",
+   "bytes": 17575,
+   "fences": 23,
+   "card_gate": {
+    "MISMATCH": 0,
+    "summary": "fragments 74: compile-clean 44 | rejected-as-the-card-says 5 | documented-runtime-bug, compiles 2 | style-banned, compiles 1 | MISMATCH 0 | template 6 | not-checkable 3 | unmarked-span, compiles 13"
+   }
+  },
+  "d": {
+   "file": "tier-d-repair.md",
+   "title": "card + diagnostics/repair guide",
+   "sha256": "0415b9913115108d0fd73ecdbbfec019884ae6ce9cffce85ad4e8f0cf21e1e69",
+   "bytes": 18280,
+   "fences": 32,
+   "card_gate": {
+    "MISMATCH": 0,
+    "summary": "fragments 74: compile-clean 44 | rejected-as-the-card-says 5 | documented-runtime-bug, compiles 2 | style-banned, compiles 1 | MISMATCH 0 | template 6 | not-checkable 3 | unmarked-span, compiles 13"
+   }
+  }
+ },
+ "exemplars": [
+  {
+   "id": "A-ERR-0021v29",
+   "record": "corpus/regen_v04/A-ERR/A-ERR-0021v29.json",
+   "source_sha256": "a24cecabc898dc59f9d433f575c5ca2461cf5b81c59608a8dc67598f1a64c1c2",
+   "patterns": [
+    "err-validate-early"
+   ]
+  },
+  {
+   "id": "D-NET-0002v247",
+   "record": "corpus/regen_v04/D-NET/D-NET-0002v247.json",
+   "source_sha256": "280f97d1d6f75f4aee3e4eef85179e0413e0e7ceec1487608ddf5ac23aaf3064",
+   "patterns": [
+    "cond-bind-if"
+   ]
+  },
+  {
+   "id": "D-TST-0015v60",
+   "record": "corpus/regen_v04/D-TST/D-TST-0015v60.json",
+   "source_sha256": "7ec5c2f78a8763abd649aea66636611e4b8638ec246e9831a3eeea61c932f481",
+   "patterns": [
+    "acc-array",
+    "str-build-loop"
+   ]
+  },
+  {
+   "id": "D-CLI-0004v171",
+   "record": "corpus/regen_v04/D-CLI/D-CLI-0004v171.json",
+   "source_sha256": "97fdfbdad2d9ccf3c1b599cb74e1e469252f425695825636f85e2708f0f50a80",
+   "patterns": [
+    "acc-array",
+    "str-interp-vs-join"
+   ]
+  },
+  {
+   "id": "D-DAT-0024v188",
+   "record": "corpus/regen_v04/D-DAT/D-DAT-0024v188.json",
+   "source_sha256": "bbecc949864e2ef6961ee6f40c87aa7811a95997bb46a1f088c9c17cbfa598f1",
+   "patterns": [
+    "iter-map"
+   ]
+  },
+  {
+   "id": "A-MTH-0060v30",
+   "record": "corpus/regen_v04/A-MTH/A-MTH-0060v30.json",
+   "source_sha256": "177b53db631ee1e4405298a9f88fb4737b866bb4d6168885c9cfa56d81c12a55",
+   "patterns": [
+    "acc-count-if"
+   ]
+  },
+  {
+   "id": "D-CFG-0005v92",
+   "record": "corpus/regen_v04/D-CFG/D-CFG-0005v92.json",
+   "source_sha256": "311b05e21935ab379c254ebb606c227f64e6dfae4fd693f75ee575a1a534d172",
+   "patterns": [
+    "err-validate-early"
+   ]
+  }
+ ],
+ "bench128_exclude_families": [
+  "A-ERR-0021",
+  "A-MTH-0060",
+  "D-CFG-0005",
+  "D-CLI-0004",
+  "D-DAT-0024",
+  "D-NET-0002",
+  "D-TST-0015"
+ ],
+ "repair_codes": [
+  "E1003",
+  "E2001",
+  "E2002",
+  "E3011",
+  "E3020",
+  "E4010",
+  "E4011",
+  "E4026",
+  "E4027",
+  "E4031",
+  "E4073"
+ ]
+}
