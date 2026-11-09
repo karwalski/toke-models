@@ -40,7 +40,7 @@
     "pass_at_1_minimum": 0.60,
     "compilation_rate_minimum": 0.90
   },
-  "gate_result": "OPEN",
+  "gate_result": "NOT_PASSED",
   "gate_result_as_originally_published": "PASS",
-  "gate_result_note": "Recorded as PASS on 2026-04-03 against the withdrawn 0.637 figure. The corrected Pass@1 of 0.588 is BELOW the declared pass_at_1_minimum of 0.60, so on its own criterion Gate 1 is not met. The compilation_rate criterion (0.923 >= 0.90) is still met. Re-deciding the Gate 1 verdict is an owner action and is deliberately not made here (story 128.19)."
+  "gate_result_note": "Recorded as PASS on 2026-04-03 against the withdrawn 0.637 figure. The corrected Pass@1 of 0.588 is BELOW the declared pass_at_1_minimum of 0.60, so on its own criterion Gate 1 is not met. The compilation_rate criterion (0.923 >= 0.90) is still met. The verdict was re-opened on 2026-09-19 and on 2026-09-22 the owner decided Gate 1 NOT PASSED: criterion 2 (Pass@1 >= 0.60) is not met; criterion 1 (token reduction) stands. Source: toke/docs/metrics-baseline.md (story 128.19)."
 }
