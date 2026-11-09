@@ -172,6 +172,20 @@ def test_load_corpus_skips_blank_malformed_and_sourceless(tmp_path: Path) -> Non
     assert [e["task_id"] for e in pd.load_corpus(p)] == ["a", "d"]
 
 
+def test_load_corpus_excludes_the_retired_w1010_bifi_record(tmp_path: Path) -> None:
+    # 135.34 / owner decision §4.5: the legacy BIFI record carrying tkc 0.1.0's
+    # retired W1010 fix string never reaches training prep.
+    bad = "BIFI-missing_semicolon-21952-7371771c"
+    assert bad in pd.EXCLUDED_RECORD_IDS
+    p = tmp_path / "c.jsonl"
+    p.write_text("".join(json.dumps(r) + "\n" for r in [
+        {"id": bad, "task_id": "BIFI-missing_semicolon", "tk_source": ONE_PARAM},
+        {"id": "BIFI-missing_semicolon-1-aaaaaaaa", "task_id": "BIFI-missing_semicolon",
+         "tk_source": TWO_PARAM},
+    ]))
+    assert [e["id"] for e in pd.load_corpus(p)] == ["BIFI-missing_semicolon-1-aaaaaaaa"]
+
+
 def test_process_corpus_adds_comparison_only_where_references_exist() -> None:
     entries = [{"task_id": "A-MTH-1", "tk_source": ONE_PARAM},
                {"task_id": "A-MTH-2", "tk_source": ONE_PARAM, "tk_tokens": 4,

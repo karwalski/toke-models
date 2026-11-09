@@ -38,6 +38,15 @@ CATEGORY_DESC: dict[str, str] = {
 }
 
 
+# Corpus records excluded from training prep by owner decision, matched on the
+# record's "id". Story 135.34 / toke/docs/owner-decisions-2026-10-01.md §4.5: this
+# legacy phase2 BIFI record carries tkc 0.1.0's retired W1010 advice-as-fix string
+# in references.diagnostic. Keep in step with toke-corpus
+# scripts/prepare_training_data.py EXCLUDED_RECORD_IDS.
+EXCLUDED_RECORD_IDS: frozenset[str] = frozenset({
+    "BIFI-missing_semicolon-21952-7371771c",
+})
+
 def _skip_string(src: str, i: int) -> int:
     """Return the index just past the string literal whose opening quote is at i."""
     j = i + 1
@@ -220,6 +229,7 @@ def format_chatml(messages: list[dict]) -> str:
 def load_corpus(path: Path) -> list[dict]:
     """Load corpus JSONL file."""
     entries = []
+    excluded = 0
     with open(path, encoding="utf-8") as f:
         for lineno, line in enumerate(f, 1):
             line = line.strip()
@@ -232,7 +242,12 @@ def load_corpus(path: Path) -> list[dict]:
                 continue
             if not entry.get("tk_source"):
                 continue
+            if entry.get("id") in EXCLUDED_RECORD_IDS:
+                excluded += 1
+                continue
             entries.append(entry)
+    if excluded:
+        print(f"  Excluded {excluded} record(s) by owner decision (EXCLUDED_RECORD_IDS)")
     return entries
 
 
