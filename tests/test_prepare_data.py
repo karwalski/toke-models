@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
+import os
+import re
 import sys
 from pathlib import Path
 
@@ -86,8 +89,8 @@ def test_comparison_example_needs_python_source_and_both_counts() -> None:
                                 "c_source": "int f(){}", "c_tokens": 5}})
     assert ex is not None and ex["type"] == "comparison"
     user, assistant = (m["content"] for m in ex["messages"])
-    assert "[PYTHON 7t]" in user and "[C 5t]" in user
-    assert assistant == f"[TK 10t]\n{ONE_PARAM}"
+    assert "[PYTHON]\ndef f(): pass" in user and "[C]\nint f(){}" in user
+    assert assistant == f"[TK]\n{ONE_PARAM}"
 
 
 def test_comparison_example_makes_no_ratio_claim() -> None:
@@ -98,6 +101,53 @@ def test_comparison_example_makes_no_ratio_claim() -> None:
     assert ex is not None
     text = json.dumps(ex)
     assert "RATIO" not in text and "fewer tokens" not in text
+
+
+# The marker shape toke-corpus scripts/export_guards.py COUNT_MARKER blocks (131.93).
+_COUNT_MARKER = re.compile(
+    r"\[(PYTHON|TK|TOKE|C|CPP|JAVA|JS|JAVASCRIPT|TS|TYPESCRIPT|RUST|GO)\s+\d+t")
+
+
+def test_comparison_example_carries_no_unsourced_token_counts() -> None:
+    # 131.97: no tokenizer is named for python_tokens / c_tokens / tk_tokens, so
+    # the per-side "[LANG Nt]" counts are dropped rather than published.
+    ex = pd.make_comparison_example(
+        {"tk_source": ONE_PARAM, "tk_tokens": 3,
+         "references": {"python_source": "x", "python_tokens": 9,
+                        "c_source": "int x;", "c_tokens": 4}})
+    assert ex is not None
+    text = json.dumps(ex)
+    assert not _COUNT_MARKER.search(text)
+    assert "9" not in text and "3t" not in text and "4t" not in text
+
+
+def _export_guards():
+    """toke-corpus's export_guards module, if a sibling checkout is available."""
+    root = os.environ.get("TOKE_CORPUS_DIR") or str(
+        Path(__file__).resolve().parents[2] / "toke-corpus")
+    path = Path(root) / "scripts" / "export_guards.py"
+    if not path.is_file():
+        pytest.skip(f"toke-corpus export_guards.py not found at {path} (set TOKE_CORPUS_DIR)")
+    spec = importlib.util.spec_from_file_location("export_guards", path)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_exporter_output_passes_toke_corpus_export_guards(tmp_path: Path) -> None:
+    # 131.97: run the real 131.63/131.93 guard over this exporter's output.
+    guards = _export_guards()
+    corpus = tmp_path / "corpus.jsonl"
+    corpus.write_text("".join(json.dumps({
+        "task_id": f"A-MTH-{i:04d}", "tk_source": ONE_PARAM, "tk_tokens": 5 + i,
+        "references": {"python_source": "def neg(a): return -a", "python_tokens": 9 + i,
+                       "c_source": "long neg(long a){return -a;}", "c_tokens": 12 + i},
+    }) + "\n" for i in range(6)))
+    out = tmp_path / "out"
+    assert pd.main(["--corpus", str(corpus), "--output-dir", str(out), "--split", "0.5"]) == 0
+    for name in ("train.jsonl", "eval.jsonl"):
+        n, bad = guards.scan_jsonl(out / name)
+        assert n > 0 and bad == []
 
 
 def test_format_chatml_wraps_system_and_every_message() -> None:
@@ -120,6 +170,20 @@ def test_load_corpus_skips_blank_malformed_and_sourceless(tmp_path: Path) -> Non
         json.dumps({"task_id": "d", "tk_source": TWO_PARAM}),
     ]) + "\n")
     assert [e["task_id"] for e in pd.load_corpus(p)] == ["a", "d"]
+
+
+def test_load_corpus_excludes_the_retired_w1010_bifi_record(tmp_path: Path) -> None:
+    # 135.34 / owner decision §4.5: the legacy BIFI record carrying tkc 0.1.0's
+    # retired W1010 fix string never reaches training prep.
+    bad = "BIFI-missing_semicolon-21952-7371771c"
+    assert bad in pd.EXCLUDED_RECORD_IDS
+    p = tmp_path / "c.jsonl"
+    p.write_text("".join(json.dumps(r) + "\n" for r in [
+        {"id": bad, "task_id": "BIFI-missing_semicolon", "tk_source": ONE_PARAM},
+        {"id": "BIFI-missing_semicolon-1-aaaaaaaa", "task_id": "BIFI-missing_semicolon",
+         "tk_source": TWO_PARAM},
+    ]))
+    assert [e["id"] for e in pd.load_corpus(p)] == ["BIFI-missing_semicolon-1-aaaaaaaa"]
 
 
 def test_process_corpus_adds_comparison_only_where_references_exist() -> None:

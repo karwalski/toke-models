@@ -4,7 +4,8 @@
 Converts corpus.jsonl entries into instruction-tuning format per RFC Section 15.3.
 Produces two example types:
   1. Direct generation — prompt -> toke code
-  2. Multi-language comparison — side-by-side with token counts
+  2. Multi-language comparison — side-by-side Python (and C) and toke source
+     (no token counts: story 131.97)
 
 (Story 128.26: an earlier docstring also promised "Correction" examples — broken
 code + error -> fixed code. None were ever generated, and the corpus records this
@@ -36,6 +37,15 @@ CATEGORY_DESC: dict[str, str] = {
     "D-APP": "application-level program",
 }
 
+
+# Corpus records excluded from training prep by owner decision, matched on the
+# record's "id". Story 135.34 / toke/docs/owner-decisions-2026-10-01.md §4.5: this
+# legacy phase2 BIFI record carries tkc 0.1.0's retired W1010 advice-as-fix string
+# in references.diagnostic. Keep in step with toke-corpus
+# scripts/prepare_training_data.py EXCLUDED_RECORD_IDS.
+EXCLUDED_RECORD_IDS: frozenset[str] = frozenset({
+    "BIFI-missing_semicolon-21952-7371771c",
+})
 
 def _skip_string(src: str, i: int) -> int:
     """Return the index just past the string literal whose opening quote is at i."""
@@ -169,23 +179,27 @@ def make_comparison_example(entry: dict) -> dict | None:
         return None
 
     c_source = refs.get("c_source", "")
-    c_tokens = refs.get("c_tokens", 0)
 
     # Story 132.15: this used to append "[RATIO] {x}x fewer tokens than Python" to every
     # comparison example, baking a withdrawn claim into the training data — and a
     # direction the measurements contradict (under one shared tokenizer toke costs
     # 1.34x [1.22, 1.48] the tokens of equivalent Python, N = 60; see
-    # toke/docs/metrics-baseline.md). The token counts stay; the claim about them does
-    # not, and nothing here establishes that both sides were counted with the same
-    # tokenizer.
+    # toke/docs/metrics-baseline.md).
+    # Story 131.97: the per-side counts went too. They were written as
+    # "[PYTHON Nt]" / "[C Nt]" / "[TK Nt]" with no tokenizer named, and nothing in
+    # the corpus record says which tokenizer produced python_tokens, c_tokens or
+    # tk_tokens, or that it was the same one for every side — two such counts are
+    # the same unsourced ratio in two numbers (TEMSpec §6.3; owner decision §4.14).
+    # The section markers stay, bare. Which records get a comparison example is
+    # unchanged (the counts must still be present on the record).
     prompt = (
         f"Show equivalent implementations in Python and toke.\n"
-        f"[PYTHON {py_tokens}t]\n{py_source}"
+        f"[PYTHON]\n{py_source}"
     )
     if c_source:
-        prompt += f"\n[C {c_tokens}t]\n{c_source}"
+        prompt += f"\n[C]\n{c_source}"
 
-    response = f"[TK {tk_tokens}t]\n{tk_source}"
+    response = f"[TK]\n{tk_source}"
 
     return {
         "type": "comparison",
@@ -215,6 +229,7 @@ def format_chatml(messages: list[dict]) -> str:
 def load_corpus(path: Path) -> list[dict]:
     """Load corpus JSONL file."""
     entries = []
+    excluded = 0
     with open(path, encoding="utf-8") as f:
         for lineno, line in enumerate(f, 1):
             line = line.strip()
@@ -227,7 +242,12 @@ def load_corpus(path: Path) -> list[dict]:
                 continue
             if not entry.get("tk_source"):
                 continue
+            if entry.get("id") in EXCLUDED_RECORD_IDS:
+                excluded += 1
+                continue
             entries.append(entry)
+    if excluded:
+        print(f"  Excluded {excluded} record(s) by owner decision (EXCLUDED_RECORD_IDS)")
     return entries
 
 
