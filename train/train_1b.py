@@ -13,7 +13,6 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import sys
 import time
 from pathlib import Path
 
@@ -180,7 +179,6 @@ def train(config: TrainConfig, root: Path, resume_path: str | None = None):
         #   loss, grad_norm = train_step(model, optimizer, batch)
         #   lr = get_current_lr(optimizer, step)
         #   log_step(log_path, step, loss, lr, grad_norm, time.time() - t0)
-        pass
 
         # Checkpoint
         if (step + 1) % config.checkpoint_every == 0:

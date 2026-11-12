@@ -64,7 +64,7 @@ def sandbox(tmp_path: Path) -> dict:
 
 def _run(sb: dict) -> subprocess.CompletedProcess:
     return subprocess.run(
-        ["bash", str(SCRIPT)], env=sb["env"], capture_output=True, text=True
+        ["bash", str(SCRIPT)], env=sb["env"], capture_output=True, check=False, text=True
     )
 
 

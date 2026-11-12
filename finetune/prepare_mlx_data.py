@@ -84,8 +84,7 @@ def process_file(input_path: Path, output_path: Path | None) -> tuple[int, int, 
     if output_path is not None:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, "w", encoding="utf-8") as f:
-            for rec in output_records:
-                f.write(json.dumps(rec, ensure_ascii=False) + "\n")
+            f.writelines(json.dumps(rec, ensure_ascii=False) + "\n" for rec in output_records)
 
     return total, valid, all_issues
 
@@ -133,7 +132,7 @@ def main(argv: list[str] | None = None) -> int:
             if len(issues) > 10:
                 print(f"    ... and {len(issues) - 10} more")
         else:
-            print(f"  No issues found.")
+            print("  No issues found.")
 
         if output_path:
             print(f"  Written to {output_path}")

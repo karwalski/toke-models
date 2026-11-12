@@ -79,15 +79,14 @@ def main():
     args = parse_args()
 
     corpus_path = Path(args.corpus)
-    output_dir = Path(args.output)
     vocab_size = args.vocab_size
 
     logger.info("Training BPE tokenizer (vocab_size=%d) on %s", vocab_size, corpus_path)
 
     # TODO: Uncomment when implemented:
     # tokenizer = train_tokenizer(corpus_path, vocab_size)
-    # save_tokenizer(tokenizer, output_dir)
-    # logger.info("Tokenizer saved to %s", output_dir)
+    # save_tokenizer(tokenizer, Path(args.output))
+    # logger.info("Tokenizer saved to %s", args.output)
 
     logger.info("train_bpe.py is a stub — implementation pending")
 

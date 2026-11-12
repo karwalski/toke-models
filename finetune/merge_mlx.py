@@ -74,7 +74,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"Adapter: {args.adapter}")
     print(f"Output: {args.output}")
     if args.de_quantize:
-        print(f"De-quantize: yes")
+        print("De-quantize: yes")
 
     # Fuse adapter into base model.
     print("\nFusing adapter into base model...")

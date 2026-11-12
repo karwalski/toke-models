@@ -19,7 +19,7 @@ import pytest
 REPO = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(REPO / "scripts"))
 
-import build_prompt_pack as bp  # noqa: E402
+import build_prompt_pack as bp
 
 PROMPTS = REPO / "prompts"
 CFG = json.loads((PROMPTS / "pack.json").read_text(encoding="utf-8"))

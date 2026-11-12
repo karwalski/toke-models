@@ -172,7 +172,7 @@ def sb(tmp_path: Path) -> dict:
 def _run(sb: dict, *args: str) -> subprocess.CompletedProcess:
     return subprocess.run(
         ["bash", str(sb["proj"] / "cloud" / "aws_train.sh"), *args],
-        env=sb["env"], capture_output=True, text=True, timeout=120,
+        env=sb["env"], capture_output=True, check=False, text=True, timeout=120,
         stdin=subprocess.DEVNULL,
     )
 

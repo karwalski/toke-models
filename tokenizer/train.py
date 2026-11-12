@@ -103,7 +103,9 @@ def train(config: dict) -> int:
 
     try:
         spm.SentencePieceTrainer.train(**sp_config)
-    except Exception as exc:
+    # sentencepiece's C++ trainer surfaces open-ended, version-dependent exception types;
+    # every one of them must become exit 1 with a message, not a traceback.
+    except Exception as exc:  # noqa: BLE001 -- third-party boundary, see comment above
         print(f"ERROR: training failed: {exc}", file=sys.stderr)
         return 1
 

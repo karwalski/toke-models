@@ -25,7 +25,10 @@ mlx = [
 ]
 dev = [
     "pytest>=7",
-    "ruff>=0.4",
+    # Pinned to one minor on purpose (story 130.24, as 130.19 did for toke-tokenizer):
+    # ruff's DEFAULT rule set grows between minors, so an unpinned `ruff>=0.4` makes the
+    # CI lint step pass or fail by calendar date rather than by the code.
+    "ruff>=0.16,<0.17",
     "mypy>=1.8",
 ]
 

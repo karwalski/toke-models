@@ -78,7 +78,7 @@ PACK_JSON = PROMPTS / "pack.json"
 FORBIDDEN = re.compile(r"hidden_tests|toke-eval|benchmark/")
 LEGACY = re.compile(r"\$(?:i8|i16|i32|i64|u8|u16|u32|u64|f32|f64|bool|str|void)\b")
 STRING_LIT = re.compile(r'"(?:\\.|[^"\\])*"')
-FENCE = re.compile(r"^```[^\n]*\n(.*?)^```[ \t]*$", re.S | re.M)
+FENCE = re.compile(r"^```[^\n]*\n(.*?)^```[ \t]*$", re.DOTALL | re.MULTILINE)
 SUMMARY = re.compile(r"MISMATCH (\d+)")
 
 
@@ -105,7 +105,7 @@ def read_from_main(root: Path, path: str) -> str:
     """The file's text on the checkout's ``main`` branch."""
     check_source_path(path)
     r = subprocess.run(["git", "-C", str(root), "show", f"main:{path}"],
-                       capture_output=True, text=True)
+                       capture_output=True, check=False, text=True)
     if r.returncode != 0:
         raise PackError(f"cannot read main:{path} in {root}: {r.stderr.strip()}")
     return r.stdout
@@ -212,8 +212,8 @@ def build_tier_a(card: str, modes: dict[str, str]) -> str:
 
 def exemplar_section(exemplars: list[Exemplar]) -> str:
     parts = ["\n## Exemplar programs\n",
-             "Whole programs that pass `tkc --check`, build, run and print exactly the output\n"
-             "shown. Write in the same style.\n"]
+             ("Whole programs that pass `tkc --check`, build, run and print exactly the output\n"
+              "shown. Write in the same style.\n")]
     for e in exemplars:
         parts.append(f"\n### {e.title}\n")
         parts.append(fence(e.source))
@@ -225,16 +225,16 @@ def exemplar_section(exemplars: list[Exemplar]) -> str:
 def repair_section(repairs: list[RepairCase], sample_diagnostic: str,
                    errors_titles: dict[str, str], sample_code: str) -> str:
     parts = ["\n## Diagnostics and repair\n",
-             "`tkc --check` reports every error as one JSON object per line. The fields that\n"
-             "matter for a repair: `error_code` (stable, never renumbered), `message`, `pos`\n"
-             "(`line`, `col`), `source_line`, and `fix` when the compiler knows the one correct\n"
-             f"edit. The record for the {sample_code} program below:\n",
+             ("`tkc --check` reports every error as one JSON object per line. The fields that\n"
+              "matter for a repair: `error_code` (stable, never renumbered), `message`, `pos`\n"
+              "(`line`, `col`), `source_line`, and `fix` when the compiler knows the one correct\n"
+              f"edit. The record for the {sample_code} program below:\n"),
              fence(sample_diagnostic, "json"),
-             "Repair rules:\n"
-             "- Fix the first diagnostic first; later ones are often its consequences.\n"
-             "- When a record carries `fix`, apply it exactly. When it does not, change only the\n"
-             "  construct at `pos` and keep the function signatures.\n"
-             "- Re-check after every edit; stop after 3 rounds and report what still fails.\n",
+             ("Repair rules:\n"
+              "- Fix the first diagnostic first; later ones are often its consequences.\n"
+              "- When a record carries `fix`, apply it exactly. When it does not, change only the\n"
+              "  construct at `pos` and keep the function signatures.\n"
+              "- Re-check after every edit; stop after 3 rounds and report what still fails.\n"),
              ]
     for c in repairs:
         title = errors_titles.get(c.code, "")
@@ -265,7 +265,7 @@ def build_tiers(inp: Inputs, errors_titles: dict[str, str] | None = None) -> Bui
 # ---------------------------------------------------------------------- gates
 
 def _run(cmd: list[str], **kw: Any) -> subprocess.CompletedProcess[str]:
-    return subprocess.run(cmd, capture_output=True, text=True, timeout=120, **kw)
+    return subprocess.run(cmd, capture_output=True, check=False, text=True, timeout=120, **kw)
 
 
 def check_pin(tkc: Path, pin: dict[str, str]) -> None:
@@ -405,7 +405,7 @@ def errors_titles(toke_root: Path) -> dict[str, str]:
     """Each code's title line from toke's docs/reference/errors.md."""
     text = read_from_main(toke_root, "docs/reference/errors.md")
     return {m.group(1): m.group(2).strip()
-            for m in re.finditer(r"^### (E\d{4})\s*\n\s*\n\*\*(.+?)\*\*\s*$", text, re.M)}
+            for m in re.finditer(r"^### (E\d{4})\s*\n\s*\n\*\*(.+?)\*\*\s*$", text, re.MULTILINE)}
 
 
 def build(corpus_root: Path, toke_root: Path, tkc: Path) -> tuple[dict[str, str], dict[str, Any]]:

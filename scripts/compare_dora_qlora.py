@@ -262,8 +262,8 @@ def format_markdown(report: dict) -> str:
         lines.extend([
             f"- Chi-squared statistic: {mcn['statistic']:.4f}",
             f"- p-value: {mcn['p_value']:.6f}",
-            f"- Both pass: {mcn['both_pass']}, QLoRA only: {mcn['qlora_only']}, "
-            f"DoRA only: {mcn['dora_only']}, Both fail: {mcn['both_fail']}",
+            (f"- Both pass: {mcn['both_pass']}, QLoRA only: {mcn['qlora_only']}, "
+             f"DoRA only: {mcn['dora_only']}, Both fail: {mcn['both_fail']}"),
             f"- N tasks: {mcn['n_tasks']}",
             f"- Significant (p<0.05): {'Yes' if mcn['p_value'] < 0.05 else 'No'}",
         ])

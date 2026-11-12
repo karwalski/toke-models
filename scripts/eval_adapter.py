@@ -30,7 +30,6 @@ import tempfile
 import time
 from pathlib import Path
 
-
 # 128.16: these task sets were generated FROM the training corpus and are
 # quarantined in ~/tk/archive/toke-model-contaminated-benchmarks-20261001/.
 # A score on them is a score on training data. Refused by content, so a copy
@@ -125,7 +124,7 @@ def check_with_tkc(source_code: str) -> dict:
     try:
         result = subprocess.run(
             ["tkc", "--check", tmp_path],
-            capture_output=True,
+            capture_output=True, check=False,
             text=True,
             timeout=30,
         )

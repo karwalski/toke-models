@@ -8,7 +8,7 @@ from pathlib import Path
 # Import this checkout's model package, whichever clone or worktree runs the test.
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from model.model import TokeModel, TokeModelConfig, count_parameters, _BACKEND
+from model.model import _BACKEND, TokeModel, TokeModelConfig, count_parameters
 
 if _BACKEND == "mlx":
     import mlx.core as mx

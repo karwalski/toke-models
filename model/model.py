@@ -8,16 +8,16 @@ Fallback: PyTorch (for cloud GPU training).
 
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 
 try:
     import mlx.core as mx
-    import mlx.nn as nn
+    from mlx import nn
 
     _BACKEND = "mlx"
 except ImportError:
     import torch
-    import torch.nn as nn  # type: ignore[no-redef]
+    from torch import nn  # type: ignore[no-redef]
 
     _BACKEND = "torch"
 
@@ -156,7 +156,7 @@ if _BACKEND == "mlx":
             Returns:
                 Logits, shape (batch, seq_len, vocab_size).
             """
-            B, L = tokens.shape
+            _batch, L = tokens.shape
             x = self.embedding(tokens)
 
             # Causal mask: upper-triangular -inf
@@ -188,7 +188,6 @@ if _BACKEND == "mlx":
 # ===================================================================
 
 elif _BACKEND == "torch":
-    import math
 
     class _RMSNorm(nn.Module):  # type: ignore[no-redef]
         def __init__(self, dim: int, eps: float = 1e-5) -> None:
@@ -288,7 +287,7 @@ elif _BACKEND == "torch":
             self.head = nn.Linear(cfg.hidden_dim, cfg.vocab_size, bias=False)
 
         def forward(self, tokens: torch.Tensor) -> torch.Tensor:  # type: ignore[name-defined]
-            B, L = tokens.shape
+            _batch, L = tokens.shape
             x = self.embedding(tokens)
 
             mask = torch.full((L, L), float("-inf"), device=tokens.device)  # type: ignore[attr-defined]

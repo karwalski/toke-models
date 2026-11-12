@@ -17,14 +17,12 @@ from __future__ import annotations
 
 import json
 import os
-import platform
 import resource
 import subprocess
 import sys
 import tempfile
 import time
 from pathlib import Path
-
 
 SANDBOX_CPU_SECONDS = 5
 SANDBOX_MEM_BYTES = 256 * 1024 * 1024
@@ -86,7 +84,7 @@ def validate_one(task: dict) -> dict:
         try:
             comp = subprocess.run(
                 ["tkc", src_path, "--out", bin_path],
-                capture_output=True, text=True, timeout=COMPILE_TIMEOUT_S,
+                capture_output=True, check=False, text=True, timeout=COMPILE_TIMEOUT_S,
             )
         except FileNotFoundError:
             return {"task_id": task_id, "compiled": False, "error": "tkc not found"}
@@ -106,7 +104,7 @@ def validate_one(task: dict) -> dict:
             exe = subprocess.run(
                 [bin_path],
                 input=stdin_input,
-                capture_output=True, text=True,
+                capture_output=True, check=False, text=True,
                 timeout=SANDBOX_TIMEOUT_S,
                 preexec_fn=_sandbox_preexec,
                 cwd=tmpdir,
@@ -200,7 +198,7 @@ def main() -> int:
     total = len(tasks)
 
     print(f"\n{'='*60}")
-    print(f"  Benchmark Reference Validation")
+    print("  Benchmark Reference Validation")
     print(f"{'='*60}")
     print(f"  Total tasks:    {total}")
     print(f"  Compiled:       {n_compiled}/{total} ({100*n_compiled/total:.1f}%)")

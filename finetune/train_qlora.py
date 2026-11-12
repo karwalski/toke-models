@@ -24,8 +24,8 @@ from transformers import (
     AutoTokenizer,
     BitsAndBytesConfig,
     DataCollatorForLanguageModeling,
-    TrainingArguments,
     Trainer,
+    TrainingArguments,
 )
 
 

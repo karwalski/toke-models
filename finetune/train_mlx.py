@@ -18,14 +18,14 @@ import sys
 import time
 from pathlib import Path
 
-import mlx.core as mx
-import mlx.nn as nn
 import mlx.optimizers as optim
 import mlx.utils
 import yaml
+from mlx import nn
 from mlx_lm import load as mlx_load
 from mlx_lm.tuner.datasets import ChatDataset
-from mlx_lm.tuner.trainer import TrainingArgs, train as mlx_train
+from mlx_lm.tuner.trainer import TrainingArgs
+from mlx_lm.tuner.trainer import train as mlx_train
 from mlx_lm.tuner.utils import linear_to_lora_layers
 
 
@@ -173,7 +173,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Load data and create tokenized datasets.
     # Data uses OpenAI messages format: {"messages": [{role, content}, ...]}
-    print(f"\nLoading training data...")
+    print("\nLoading training data...")
     data_cfg = config["data"]
     train_path = Path(data_cfg["train_file"])
     eval_path = Path(data_cfg["eval_file"])
@@ -231,7 +231,7 @@ def main(argv: list[str] | None = None) -> int:
     optimizer = optim.AdamW(learning_rate=lr_schedule)
 
     # Train.
-    print(f"\nStarting training...")
+    print("\nStarting training...")
     print(f"  Adapter output: {adapter_dir}")
     start_time = time.time()
 

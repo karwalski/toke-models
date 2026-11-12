@@ -39,7 +39,7 @@ def convert_file(input_path: Path, output_path: Path) -> int:
             record = json.loads(line)
             messages = record.get("messages")
             if not messages:
-                print(f"WARNING: record missing 'messages' field, skipping", file=sys.stderr)
+                print("WARNING: record missing 'messages' field, skipping", file=sys.stderr)
                 continue
             text = messages_to_chatml(messages)
             fout.write(json.dumps({"text": text}, ensure_ascii=False) + "\n")

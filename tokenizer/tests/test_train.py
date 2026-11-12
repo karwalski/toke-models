@@ -11,7 +11,6 @@ import pytest
 # repository's top-level train/ package whenever tests/ was collected first.
 from tokenizer import train
 
-
 # ---------------------------------------------------------------------------
 # Config generation
 # ---------------------------------------------------------------------------

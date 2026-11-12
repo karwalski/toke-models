@@ -47,7 +47,6 @@ import tempfile
 import time
 from pathlib import Path
 
-
 # ---------------------------------------------------------------------------
 # Sandbox configuration
 # ---------------------------------------------------------------------------
@@ -74,7 +73,7 @@ def _check_unshare_net() -> bool:
     try:
         r = subprocess.run(
             ["unshare", "--net", "true"],
-            capture_output=True, timeout=5,
+            capture_output=True, check=False, timeout=5,
         )
         _UNSHARE_NET = r.returncode == 0
     except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -212,7 +211,7 @@ def compile_toke(source_code: str, tmpdir: str) -> dict:
     try:
         result = subprocess.run(
             ["tkc", src_path, "--out", bin_path],
-            capture_output=True,
+            capture_output=True, check=False,
             text=True,
             timeout=COMPILE_TIMEOUT_S,
         )
@@ -254,7 +253,7 @@ def execute_sandboxed(binary_path: str, stdin_data: str = "",
         result = subprocess.run(
             cmd,
             input=stdin_data,
-            capture_output=True,
+            capture_output=True, check=False,
             text=True,
             timeout=timeout,
             preexec_fn=_sandbox_preexec,
@@ -527,7 +526,7 @@ def main(argv: list[str] | None = None) -> int:
                 compiled = passed or rng.random() < 0.20
                 result = {
                     "task_id": task_id,
-                    "prediction": f"m=eval;f=main():$i64{{<0}};",
+                    "prediction": "m=eval;f=main():$i64{<0};",
                     "compiled": compiled,
                     "executed": compiled,
                     "exit_zero": passed,
@@ -595,7 +594,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Print results.
     print(f"\n{'='*60}")
-    print(f"  Pass@1 Evaluation Results")
+    print("  Pass@1 Evaluation Results")
     print(f"{'='*60}")
     print(f"  Tasks:          {total}")
     print(f"  Compile rate:   {compile_rate:.4f} ({n_compiled}/{total})")
