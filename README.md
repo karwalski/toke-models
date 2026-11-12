@@ -2,7 +2,7 @@
 
 toke-model fine-tunes open-source language models to write code in the [toke](https://github.com/karwalski/toke) programming language. It takes a corpus of example toke programs (produced by the toke-corpus pipeline), prepares it into chat-format training data, and trains and evaluates adapters on top of open base models.
 
-**Status.** Every trained-model result on record is historical and v0.3-era. Gate 1 (2026-04-03): **58.8% functional Pass@1** (588 passed / 1,000 generated), Qwen 2.5 Coder 7B + QLoRA; the compile rate was 92.3% (923/1,000). *Corrected 2026-09-19 (story 128.19): this line previously read "63.7% compile Pass@1" and was wrong twice over.* The number was 588/**923** — the harness dropped the 77 generated solutions that failed to compile out of the denominator, which measures Pass@1 *given that the solution compiled*, not Pass@1; a solution that fails to compile is a failed attempt, not an absent one, so the denominator is the 1,000 solutions generated. And the label was wrong: the figure is *functional* Pass@1 (passes every hidden test), not a compile rate. **58.8% is below Gate 1's own declared `pass_at_1_minimum: 0.60`; the verdict was re-opened on 2026-09-19, and on 2026-09-22 the owner decided Gate 1 NOT PASSED** (story 128.19, `toke/docs/decisions/gate1-decision.md`) — see `huggingface/eval_results.json` and `toke-eval/docs/suspect-numbers-128-1c.md`. Gate 2 (2026-05-22): **100% compile Pass@1** and **55.6% functional** (272/489) — on the *curated* 500-hidden + 200-eval set the model was optimised against, and the 100% is never to be quoted without it. The honest floor is the full-local re-audit of all 1,748 v0.3.9 corpus programs: **37.5% compile** (655/1,748), **about 2.2% fully correct** (38 PASS). No v0.4-native model exists. Epic 128 — the training strategy reset (base-model bake-off, fine-tune vs from-scratch; see `toke/docs/progress.md`) — supersedes that pipeline choice. The next training run follows the Epic 128 plan against the Epic 129 corpus freeze, so treat the commands below as the mechanics of the previous runs, not a statement of the current strategy.
+**Status.** Every trained-model result on record is historical and v0.3-era. Gate 1 (2026-04-03): **58.8% functional Pass@1** (588 passed / 1,000 generated), Qwen 2.5 Coder 7B + QLoRA; 923 of the 1,000 generated solutions compiled. *Corrected 2026-09-19 (story 128.19): this line previously read "63.7% compile Pass@1" and was wrong twice over.* The number was 588/**923** — the harness dropped the 77 generated solutions that failed to compile out of the denominator, which measures Pass@1 *given that the solution compiled*, not Pass@1; a solution that fails to compile is a failed attempt, not an absent one, so the denominator is the 1,000 solutions generated. And the label was wrong: the figure is *functional* Pass@1 (passes every hidden test), not a compile rate. **58.8% is below Gate 1's own declared `pass_at_1_minimum: 0.60`; the verdict was re-opened on 2026-09-19, and on 2026-09-22 the owner decided Gate 1 NOT PASSED** (story 128.19, `toke/docs/decisions/gate1-decision.md`) — see `huggingface/eval_results.json` and `toke-eval/docs/suspect-numbers-128-1c.md`. Gate 2 (2026-05-22): **100% compile Pass@1** and **55.6% functional** (272/489) — on the *curated* 500-hidden + 200-eval set the model was optimised against, and the 100% is never to be quoted without it. The honest floor is the full-local re-audit of all 1,748 v0.3.9 corpus programs: **37.5% compile** (655/1,748), **about 2.2% fully correct** (38 PASS). No v0.4-native model exists. Epic 128 — the training strategy reset (base-model bake-off, fine-tune vs from-scratch; see `toke/docs/progress.md`) — supersedes that pipeline choice. The next training run follows the Epic 128 plan against the corpus Epic 131 re-freezes (the Epic 129 freeze, reopened for pattern rewrites that have not yet run), so treat the commands below as the mechanics of the previous runs, not a statement of the current strategy.
 
 ## About toke
 
@@ -30,7 +30,7 @@ and nowhere else.*
 |-----------|---------|
 | `finetune/` | Fine-tuning scripts for MLX (Apple Silicon) and QLoRA (CUDA), with configs in `finetune/configs/` |
 | `tokenizer/` | BPE tokenizer work for toke syntax (canonical tokenizer development lives in the toke-tokenizer repo) |
-| `model/`, `train/` | Experimental from-scratch model definition and training loop |
+| `model/`, `train/` | Experimental from-scratch model definition and training loop (see [train/README.md](train/README.md)) |
 | `scripts/` | Utilities for benchmark generation, adapter evaluation, and data conversion |
 | `eval/` | Model safety evaluation via adversarial prompt testing |
 | `prompts/` | The graduated "how to write toke" prompt pack (story 128.2): tiers a–d derived from syntax card v2 and the pattern catalogue, every code block gated with the pinned `tkc`. Rebuild with `python3 scripts/build_prompt_pack.py`; `--check` fails when an input has changed |
@@ -38,7 +38,7 @@ and nowhere else.*
 | `ollama/` | Conversion + publishing of a merged model to the Ollama registry (`karwalski/toke`) |
 | `docker/` | Self-hosted inference via HuggingFace TGI (GPU and CPU compose files) |
 | `huggingface/` | Model card and upload assets for Hugging Face releases |
-| `cloud/` | AWS training helper scripts |
+| `cloud/` | AWS training helper scripts (Gate 2 era) |
 | `docs/` | Training methodology, security evaluations, and pointers to relocated assets |
 | `tests/` | Unit tests for the data preparation and model code |
 
@@ -68,7 +68,7 @@ Nothing large is tracked in git:
 
 ### Requirements
 
-- Python 3.10+
+- Python 3.11+ (`pyproject.toml`)
 - Apple Silicon Mac with [MLX](https://github.com/ml-explore/mlx) or an NVIDIA GPU with CUDA
 - The [toke compiler](https://github.com/karwalski/toke) (`tkc`) for validating generated code
 - A corpus JSONL exported from [toke-corpus](https://github.com/karwalski/toke-corpus)
@@ -105,8 +105,11 @@ python finetune/train_qlora.py --config finetune/configs/7b.yaml
 Evaluation uses the [toke-eval](https://github.com/karwalski/toke-eval) benchmark:
 
 ```bash
-python -m toke_eval.pass_at_k --solutions-dir solutions/ --tests-dir hidden_tests/ --compiler tkc
+python -m toke_eval.pass_at_k --solutions-dir solutions/ --tests-dir /path/to/tests/ --compiler tkc
 ```
+
+Held-out (hidden) test cases are graded by the owner only and are never read by
+anything in this repository (`toke/AGENTS.md` §5); point `--tests-dir` at public tests.
 
 ### Model Safety Testing
 
