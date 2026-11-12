@@ -14,6 +14,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import torch
 import yaml
@@ -24,18 +25,19 @@ from transformers import (
     AutoTokenizer,
     BitsAndBytesConfig,
     DataCollatorForLanguageModeling,
-    TrainingArguments,
     Trainer,
+    TrainingArguments,
 )
 
 
-def load_config(config_path: Path) -> dict:
+def load_config(config_path: Path) -> dict[str, Any]:
     """Load YAML training configuration."""
     with open(config_path) as f:
-        return yaml.safe_load(f)
+        cfg: dict[str, Any] = yaml.safe_load(f)
+    return cfg
 
 
-def setup_quantization(config: dict) -> BitsAndBytesConfig:
+def setup_quantization(config: dict[str, Any]) -> BitsAndBytesConfig:
     """Create BitsAndBytes quantization config."""
     model_cfg = config["model"]
     compute_dtype = getattr(torch, model_cfg.get("bnb_4bit_compute_dtype", "bfloat16"))
@@ -47,10 +49,11 @@ def setup_quantization(config: dict) -> BitsAndBytesConfig:
     )
 
 
-def setup_lora(config: dict) -> LoraConfig:
+def setup_lora(config: dict[str, Any]) -> LoraConfig:
     """Create LoRA configuration."""
     lora_cfg = config["lora"]
     target = lora_cfg.get("target_modules", "all-linear")
+    target_modules: str | list[str]
     if target == "all-linear":
         target_modules = "all-linear"
     else:
@@ -66,7 +69,7 @@ def setup_lora(config: dict) -> LoraConfig:
     )
 
 
-def setup_training_args(config: dict, resume_from: str | None = None) -> TrainingArguments:
+def setup_training_args(config: dict[str, Any], resume_from: str | None = None) -> TrainingArguments:
     """Create HuggingFace training arguments."""
     train_cfg = config["training"]
     output_cfg = config["output"]
@@ -96,9 +99,9 @@ def setup_training_args(config: dict, resume_from: str | None = None) -> Trainin
     )
 
 
-def tokenize_dataset(dataset, tokenizer, max_length: int):
+def tokenize_dataset(dataset: Any, tokenizer: Any, max_length: int) -> Any:
     """Tokenize the dataset using the 'text' field."""
-    def tokenize_fn(examples):
+    def tokenize_fn(examples: dict[str, Any]) -> Any:
         return tokenizer(
             examples["text"],
             truncation=True,

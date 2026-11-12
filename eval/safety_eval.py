@@ -28,6 +28,8 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+log = logging.getLogger(__name__)
+
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
@@ -92,7 +94,7 @@ _TASK_VARIANTS: dict[str, list[str]] = {
 # ---------------------------------------------------------------------------
 
 
-def _call_model(prompt: str, model_path: str) -> str:  # noqa: ARG001
+def _call_model(prompt: str, model_path: str) -> str:
     """
     Stub: call the toke model with the given prompt and return its text output.
 
@@ -110,7 +112,7 @@ def _call_model(prompt: str, model_path: str) -> str:  # noqa: ARG001
     return "# stub output\nM=stub;\nF=main():unit{<unit};\n"
 
 
-def _classify(text: str, llamaguard_path: str) -> dict[str, Any]:  # noqa: ARG001
+def _classify(text: str, llamaguard_path: str) -> dict[str, Any]:
     """
     Stub: classify text with LlamaGuard and return a result dict.
 
@@ -145,7 +147,7 @@ def _load_templates(prompts_dir: Path) -> list[dict[str, Any]]:
         )
     with templates_path.open() as f:
         templates: list[dict[str, Any]] = json.load(f)
-    logging.info("Loaded %d adversarial templates from %s", len(templates), templates_path)
+    log.info("Loaded %d adversarial templates from %s", len(templates), templates_path)
     return templates
 
 
@@ -164,7 +166,7 @@ def _expand_templates(
     for tmpl in templates:
         cat = tmpl["category"]
         if cat not in by_category:
-            logging.warning("Unknown category %r in template, skipping", cat)
+            log.warning("Unknown category %r in template, skipping", cat)
             continue
         by_category[cat].append(tmpl)
 
@@ -214,7 +216,7 @@ def _run_evaluation(
     """
     results_path = output_dir / "results.jsonl"
     total_prompts = sum(len(v) for v in prompts_by_category.values())
-    logging.info(
+    log.info(
         "Starting evaluation: %d total prompts across %d categories (dry_run=%s)",
         total_prompts,
         len(CATEGORIES),
@@ -251,7 +253,7 @@ def _run_evaluation(
 
                 completed += 1
                 if completed % 100 == 0 or completed == total_prompts:
-                    logging.info(
+                    log.info(
                         "Progress: %d/%d prompts evaluated", completed, total_prompts
                     )
 
@@ -367,14 +369,14 @@ def main() -> int:
 
     # Validate arguments
     if not args.dry_run and not args.model_path:
-        logging.error("--model-path is required unless --dry-run is specified.")
+        log.error("--model-path is required unless --dry-run is specified.")
         return 2
 
     if args.dry_run:
         prompts_per_category = DRY_RUN_PROMPTS_PER_CATEGORY
         model_path = args.model_path or "dry-run-stub"
         llamaguard_path = args.llamaguard_path or "dry-run-stub"
-        logging.info(
+        log.info(
             "Dry-run mode: using %d prompts per category with stubbed inference.",
             prompts_per_category,
         )
@@ -383,7 +385,7 @@ def main() -> int:
         model_path = args.model_path
         llamaguard_path = args.llamaguard_path
         if prompts_per_category < MIN_PROMPTS_PER_CATEGORY:
-            logging.warning(
+            log.warning(
                 "--prompts-per-category %d is below the minimum %d for a valid evaluation.",
                 prompts_per_category,
                 MIN_PROMPTS_PER_CATEGORY,
@@ -393,7 +395,7 @@ def main() -> int:
     try:
         output_dir.mkdir(parents=True, exist_ok=True)
     except OSError as exc:
-        logging.error("Cannot create output directory %s: %s", output_dir, exc)
+        log.error("Cannot create output directory %s: %s", output_dir, exc)
         return 2
 
     prompts_dir = Path(args.prompts_dir)
@@ -402,7 +404,7 @@ def main() -> int:
     try:
         templates = _load_templates(prompts_dir)
     except FileNotFoundError as exc:
-        logging.error("%s", exc)
+        log.error("%s", exc)
         return 2
 
     prompts_by_category = _expand_templates(templates, prompts_per_category)
@@ -416,15 +418,15 @@ def main() -> int:
             output_dir=output_dir,
             dry_run=args.dry_run,
         )
-    except Exception as exc:  # noqa: BLE001
-        logging.error("Evaluation failed with unexpected error: %s", exc, exc_info=True)
+    except Exception:
+        log.exception("Evaluation failed with unexpected error")
         return 2
 
     # Write summary
     summary_path = output_dir / "summary.json"
     with summary_path.open("w") as f:
         json.dump(summary, f, indent=2)
-    logging.info("Summary written to %s", summary_path)
+    log.info("Summary written to %s", summary_path)
 
     # Print results table
     print(f"\nSafety Evaluation {'(DRY RUN) ' if args.dry_run else ''}Results")

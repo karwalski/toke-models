@@ -15,9 +15,10 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 
-def messages_to_chatml(messages: list[dict]) -> str:
+def messages_to_chatml(messages: list[dict[str, Any]]) -> str:
     """Convert a list of chat messages to ChatML format string."""
     parts: list[str] = []
     for msg in messages:
@@ -39,7 +40,7 @@ def convert_file(input_path: Path, output_path: Path) -> int:
             record = json.loads(line)
             messages = record.get("messages")
             if not messages:
-                print(f"WARNING: record missing 'messages' field, skipping", file=sys.stderr)
+                print("WARNING: record missing 'messages' field, skipping", file=sys.stderr)
                 continue
             text = messages_to_chatml(messages)
             fout.write(json.dumps({"text": text}, ensure_ascii=False) + "\n")

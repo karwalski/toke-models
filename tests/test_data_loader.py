@@ -2,20 +2,18 @@
 from __future__ import annotations
 
 import json
-import tempfile
 from pathlib import Path
 
 import numpy as np
 import pytest
 
 from train.data import (
-    PAD_ID,
     BOS_ID,
-    EOS_ID,
+    PAD_ID,
     TokeDataLoader,
     _CharTokenizer,
-    _extract_text,
     _extract_category,
+    _extract_text,
     _iter_jsonl,
     _iter_tk_files,
 )
@@ -55,8 +53,7 @@ def jsonl_corpus_code_field(tmp_path: Path) -> Path:
     """JSONL using 'code' instead of 'text'."""
     fp = tmp_path / "train.jsonl"
     with open(fp, "w") as f:
-        for prog in SAMPLE_PROGRAMS[:3]:
-            f.write(json.dumps({"code": prog}) + "\n")
+        f.writelines(json.dumps({"code": prog}) + "\n" for prog in SAMPLE_PROGRAMS[:3])
     return fp
 
 

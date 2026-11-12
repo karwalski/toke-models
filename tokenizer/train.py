@@ -14,6 +14,7 @@ from __future__ import annotations
 import argparse
 import sys
 from pathlib import Path
+from typing import Any
 
 # Toke-specific defaults for SentencePiece training.
 DEFAULT_VOCAB_SIZE = 8000
@@ -34,7 +35,7 @@ def build_config(
     output_dir: Path,
     vocab_size: int = DEFAULT_VOCAB_SIZE,
     model_type: str = DEFAULT_MODEL_TYPE,
-) -> dict:
+) -> dict[str, Any]:
     """Build the SentencePiece training configuration dict."""
     model_prefix = str(output_dir / "toke")
     return {
@@ -58,7 +59,7 @@ def build_config(
     }
 
 
-def print_config(config: dict) -> None:
+def print_config(config: dict[str, Any]) -> None:
     """Print the training configuration in a human-readable format."""
     print("Training configuration:")
     for key, value in config.items():
@@ -82,7 +83,7 @@ def print_vocab_stats(vocab_size: int) -> None:
     print(f"  BPE merges:       {vocab_size - special}")
 
 
-def train(config: dict) -> int:
+def train(config: dict[str, Any]) -> int:
     """Run SentencePiece training with the given configuration.
 
     Returns 0 on success, 1 on error.
@@ -103,7 +104,9 @@ def train(config: dict) -> int:
 
     try:
         spm.SentencePieceTrainer.train(**sp_config)
-    except Exception as exc:
+    # sentencepiece's C++ trainer surfaces open-ended, version-dependent exception types;
+    # every one of them must become exit 1 with a message, not a traceback.
+    except Exception as exc:  # noqa: BLE001 -- third-party boundary, see comment above
         print(f"ERROR: training failed: {exc}", file=sys.stderr)
         return 1
 

@@ -46,7 +46,7 @@ import sys
 import tempfile
 import time
 from pathlib import Path
-
+from typing import Any
 
 # ---------------------------------------------------------------------------
 # Sandbox configuration
@@ -74,7 +74,7 @@ def _check_unshare_net() -> bool:
     try:
         r = subprocess.run(
             ["unshare", "--net", "true"],
-            capture_output=True, timeout=5,
+            capture_output=True, check=False, timeout=5,
         )
         _UNSHARE_NET = r.returncode == 0
     except (FileNotFoundError, subprocess.TimeoutExpired):
@@ -119,7 +119,7 @@ def quarantined_task_set(path: Path) -> str | None:
     import hashlib
     return QUARANTINED_TASK_SETS.get(hashlib.sha256(path.read_bytes()).hexdigest())
 
-def load_tasks(path: Path) -> list[dict]:
+def load_tasks(path: Path) -> list[dict[str, Any]]:
     """Load benchmark tasks from JSONL.
 
     Expected fields per record:
@@ -146,7 +146,7 @@ def load_system_prompt(path: Path) -> str:
 # Prompt construction
 # ---------------------------------------------------------------------------
 
-def build_prompt(system: str, task: dict) -> str:
+def build_prompt(system: str, task: dict[str, Any]) -> str:
     """Build a ChatML prompt for the model."""
     desc = task.get("description", "")
     user_msg = (
@@ -198,7 +198,7 @@ def extract_toke_source(response: str) -> str:
 # Compilation and sandboxed execution
 # ---------------------------------------------------------------------------
 
-def compile_toke(source_code: str, tmpdir: str) -> dict:
+def compile_toke(source_code: str, tmpdir: str) -> dict[str, Any]:
     """Compile toke source to a binary via tkc.
 
     Returns dict with keys: compiled, binary_path, diagnostics.
@@ -212,7 +212,7 @@ def compile_toke(source_code: str, tmpdir: str) -> dict:
     try:
         result = subprocess.run(
             ["tkc", src_path, "--out", bin_path],
-            capture_output=True,
+            capture_output=True, check=False,
             text=True,
             timeout=COMPILE_TIMEOUT_S,
         )
@@ -237,7 +237,7 @@ def compile_toke(source_code: str, tmpdir: str) -> dict:
 
 
 def execute_sandboxed(binary_path: str, stdin_data: str = "",
-                      timeout: int = SANDBOX_TIMEOUT_S) -> dict:
+                      timeout: int = SANDBOX_TIMEOUT_S) -> dict[str, Any]:
     """Execute a compiled toke binary inside a sandbox.
 
     Returns dict with keys: executed, exit_code, stdout, stderr, timed_out.
@@ -254,7 +254,7 @@ def execute_sandboxed(binary_path: str, stdin_data: str = "",
         result = subprocess.run(
             cmd,
             input=stdin_data,
-            capture_output=True,
+            capture_output=True, check=False,
             text=True,
             timeout=timeout,
             preexec_fn=_sandbox_preexec,
@@ -317,7 +317,7 @@ def compare_output(actual: str, expected: str) -> bool:
     return True
 
 
-def evaluate_task(source_code: str, task: dict) -> dict:
+def evaluate_task(source_code: str, task: dict[str, Any]) -> dict[str, Any]:
     """Full evaluation pipeline for one task: compile, execute, compare.
 
     Returns a dict with compile/execute/pass status and diagnostics.
@@ -379,7 +379,7 @@ def evaluate_task(source_code: str, task: dict) -> dict:
 # Model loading and generation
 # ---------------------------------------------------------------------------
 
-def load_model_and_tokenizer(adapter_dir: Path | None, model_base: str):
+def load_model_and_tokenizer(adapter_dir: Path | None, model_base: str) -> tuple[Any, Any]:
     """Load quantised base model, optionally with PEFT QLoRA adapter."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
@@ -413,7 +413,7 @@ def load_model_and_tokenizer(adapter_dir: Path | None, model_base: str):
     return model, tokenizer
 
 
-def generate(model, tokenizer, prompt: str, max_new_tokens: int = 512) -> str:
+def generate(model: Any, tokenizer: Any, prompt: str, max_new_tokens: int = 512) -> str:
     """Generate a single completion (greedy)."""
     import torch
 
@@ -428,7 +428,8 @@ def generate(model, tokenizer, prompt: str, max_new_tokens: int = 512) -> str:
         )
 
     generated_ids = outputs[0][inputs["input_ids"].shape[1]:]
-    return tokenizer.decode(generated_ids, skip_special_tokens=True)
+    text: str = tokenizer.decode(generated_ids, skip_special_tokens=True)
+    return text
 
 
 # ---------------------------------------------------------------------------
@@ -527,7 +528,7 @@ def main(argv: list[str] | None = None) -> int:
                 compiled = passed or rng.random() < 0.20
                 result = {
                     "task_id": task_id,
-                    "prediction": f"m=eval;f=main():$i64{{<0}};",
+                    "prediction": "m=eval;f=main():$i64{<0};",
                     "compiled": compiled,
                     "executed": compiled,
                     "exit_zero": passed,
@@ -595,7 +596,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Print results.
     print(f"\n{'='*60}")
-    print(f"  Pass@1 Evaluation Results")
+    print("  Pass@1 Evaluation Results")
     print(f"{'='*60}")
     print(f"  Tasks:          {total}")
     print(f"  Compile rate:   {compile_rate:.4f} ({n_compiled}/{total})")

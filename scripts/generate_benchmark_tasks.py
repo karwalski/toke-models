@@ -37,16 +37,17 @@ import random
 import re
 import sys
 from pathlib import Path
+from typing import Any
 
 # ---------------------------------------------------------------------------
 # Import Phase 2 autofix from the corpus pipeline
 # ---------------------------------------------------------------------------
 CORPUS_SCRIPTS = Path(__file__).resolve().parent.parent.parent / "toke-corpus" / "scripts"
 sys.path.insert(0, str(CORPUS_SCRIPTS))
-from phase2_syntax_audit import autofix_source, detect_violations  # noqa: E402
+from phase2_syntax_audit import autofix_source, detect_violations
 
 
-def load_jsonl(path: Path) -> list[dict]:
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
     records = []
     with open(path, encoding="utf-8") as f:
         for line in f:
@@ -113,7 +114,8 @@ def phase2_clean_source(src: str) -> str | None:
     """Apply Phase 2 autofix and return cleaned source, or None if unfixable."""
     if is_phase2_clean(src):
         return src
-    fixed, collisions, fixable = autofix_source(src)
+    fixed: str
+    fixed, _collisions, fixable = autofix_source(src)
     if not fixable:
         return None
     # Verify the fix actually worked
@@ -141,7 +143,7 @@ def _toke_signature_hint(tk_source: str) -> str:
     return "; ".join(hints) if hints else ""
 
 
-def derive_description(record: dict) -> str:
+def derive_description(record: dict[str, Any]) -> str:
     """Derive a natural-language task description from a corpus record.
 
     Uses only toke syntax and natural language — no Python/C/Java code.
@@ -167,7 +169,7 @@ def derive_description(record: dict) -> str:
             if line.strip().startswith("def ") and "main" not in line:
                 for j in range(i + 1, min(i + 10, len(lines))):
                     stripped = lines[j].strip()
-                    if stripped.startswith('"""') or stripped.startswith("'''"):
+                    if stripped.startswith(('"""', "'''")):
                         doc = stripped.strip("\"'").strip()
                         if doc:
                             py_doc = doc
@@ -336,7 +338,7 @@ def main() -> int:
         rec["tk_source"] = cleaned
         eligible.append(rec)
 
-    print(f"\n  Filtering results:")
+    print("\n  Filtering results:")
     print(f"    No differential output:  {skipped_no_diff:,}")
     print(f"    Insufficient agreement:  {skipped_no_agree:,}")
     print(f"    Not judge-accepted:      {skipped_no_judge:,}")
@@ -406,8 +408,8 @@ def main() -> int:
         cat = parts[2] if len(parts) >= 4 else (parts[1] if len(parts) >= 2 else "UNK")
         categories[cat] = categories.get(cat, 0) + 1
 
-    print(f"\n  Category distribution:")
-    for cat in sorted(categories, key=categories.get, reverse=True):
+    print("\n  Category distribution:")
+    for cat in sorted(categories, key=lambda c: categories[c], reverse=True):
         print(f"    {cat:12s}  {categories[cat]:4d}")
 
     return 0

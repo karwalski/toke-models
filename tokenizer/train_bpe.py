@@ -12,7 +12,9 @@ from __future__ import annotations
 
 import argparse
 import logging
+from collections.abc import Iterator
 from pathlib import Path
+from typing import Any
 
 logger = logging.getLogger(__name__)
 
@@ -33,7 +35,7 @@ def parse_args() -> argparse.Namespace:
     return p.parse_args()
 
 
-def corpus_iterator(corpus_path: Path):
+def corpus_iterator(corpus_path: Path) -> Iterator[str]:
     """Yield text content from each line of the JSONL corpus.
 
     TODO:
@@ -59,7 +61,7 @@ def train_tokenizer(corpus_path: Path, vocab_size: int) -> object:
     raise NotImplementedError("Tokenizer training not yet implemented")
 
 
-def save_tokenizer(tokenizer, output_dir: Path) -> None:
+def save_tokenizer(tokenizer: Any, output_dir: Path) -> None:
     """Save trained tokenizer to disk.
 
     TODO:
@@ -71,7 +73,7 @@ def save_tokenizer(tokenizer, output_dir: Path) -> None:
     raise NotImplementedError("Tokenizer saving not yet implemented")
 
 
-def main():
+def main() -> None:
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",
@@ -79,15 +81,14 @@ def main():
     args = parse_args()
 
     corpus_path = Path(args.corpus)
-    output_dir = Path(args.output)
     vocab_size = args.vocab_size
 
     logger.info("Training BPE tokenizer (vocab_size=%d) on %s", vocab_size, corpus_path)
 
     # TODO: Uncomment when implemented:
     # tokenizer = train_tokenizer(corpus_path, vocab_size)
-    # save_tokenizer(tokenizer, output_dir)
-    # logger.info("Tokenizer saved to %s", output_dir)
+    # save_tokenizer(tokenizer, Path(args.output))
+    # logger.info("Tokenizer saved to %s", args.output)
 
     logger.info("train_bpe.py is a stub — implementation pending")
 

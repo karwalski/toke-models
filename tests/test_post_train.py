@@ -11,6 +11,7 @@ import os
 import shutil
 import subprocess
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -25,7 +26,7 @@ def _git(repo: Path, *args: str) -> str:
 
 
 @pytest.fixture
-def sandbox(tmp_path: Path) -> dict:
+def sandbox(tmp_path: Path) -> dict[str, Any]:
     if shutil.which("git") is None:
         pytest.skip("git not available")
     work = tmp_path / "work"
@@ -62,13 +63,13 @@ def sandbox(tmp_path: Path) -> dict:
     return {"repo": repo, "env": env, "calls": calls}
 
 
-def _run(sb: dict) -> subprocess.CompletedProcess:
+def _run(sb: dict[str, Any]) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
-        ["bash", str(SCRIPT)], env=sb["env"], capture_output=True, text=True
+        ["bash", str(SCRIPT)], env=sb["env"], capture_output=True, check=False, text=True
     )
 
 
-def test_weights_uploaded_not_committed(sandbox: dict) -> None:
+def test_weights_uploaded_not_committed(sandbox: dict[str, Any]) -> None:
     r = _run(sandbox)
     assert r.returncode == 0, r.stdout + r.stderr
     repo = sandbox["repo"]
@@ -89,7 +90,7 @@ def test_weights_uploaded_not_committed(sandbox: dict) -> None:
     assert "adapter-weights.tar.gz " + pointer["uri"] in calls
 
 
-def test_no_store_means_no_commit(sandbox: dict) -> None:
+def test_no_store_means_no_commit(sandbox: dict[str, Any]) -> None:
     sandbox["env"]["MODEL_STORE_URI"] = ""
     head = _git(sandbox["repo"], "rev-parse", "HEAD")
     r = _run(sandbox)

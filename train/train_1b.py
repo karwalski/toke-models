@@ -13,9 +13,9 @@ from __future__ import annotations
 import argparse
 import json
 import logging
-import sys
 import time
 from pathlib import Path
+from typing import Any
 
 from train.config import TrainConfig
 
@@ -37,7 +37,7 @@ def parse_args() -> argparse.Namespace:
 
 # ── Tokenizer ───────────────────────────────────────────────────────
 
-def load_tokenizer(path: Path):
+def load_tokenizer(path: Path) -> Any:
     """Load trained BPE tokenizer from disk.
 
     TODO: Load tokenizers.Tokenizer from ``path / tokenizer.json``
@@ -48,7 +48,7 @@ def load_tokenizer(path: Path):
 
 # ── Data ────────────────────────────────────────────────────────────
 
-def create_data_loader(corpus_path: Path, tokenizer, config: TrainConfig):
+def create_data_loader(corpus_path: Path, tokenizer: Any, config: TrainConfig) -> Any:
     """Create a streaming data loader over the JSONL corpus.
 
     TODO:
@@ -62,7 +62,7 @@ def create_data_loader(corpus_path: Path, tokenizer, config: TrainConfig):
 
 # ── Model ───────────────────────────────────────────────────────────
 
-def build_model(config: TrainConfig):
+def build_model(config: TrainConfig) -> Any:
     """Instantiate the 1B decoder-only transformer.
 
     TODO:
@@ -75,7 +75,7 @@ def build_model(config: TrainConfig):
 
 # ── Optimizer ───────────────────────────────────────────────────────
 
-def build_optimizer(model, config: TrainConfig):
+def build_optimizer(model: Any, config: TrainConfig) -> Any:
     """Create AdamW optimizer with cosine learning rate schedule.
 
     TODO:
@@ -88,7 +88,7 @@ def build_optimizer(model, config: TrainConfig):
 
 # ── Checkpointing ──────────────────────────────────────────────────
 
-def save_checkpoint(model, optimizer, step: int, config: TrainConfig,
+def save_checkpoint(model: Any, optimizer: Any, step: int, config: TrainConfig,
                     checkpoint_dir: Path) -> Path:
     """Save model weights, optimizer state, and training step.
 
@@ -99,7 +99,7 @@ def save_checkpoint(model, optimizer, step: int, config: TrainConfig,
     raise NotImplementedError("Checkpoint saving not yet implemented")
 
 
-def load_checkpoint(path: Path, model, optimizer):
+def load_checkpoint(path: Path, model: Any, optimizer: Any) -> int:
     """Resume training from a saved checkpoint.
 
     TODO:
@@ -140,7 +140,7 @@ def log_step(log_path: Path, step: int, loss: float, lr: float,
 
 # ── Training loop ──────────────────────────────────────────────────
 
-def train(config: TrainConfig, root: Path, resume_path: str | None = None):
+def train(config: TrainConfig, root: Path, resume_path: str | None = None) -> None:
     """Main training entry point."""
     paths = config.resolve_paths(root)
 
@@ -180,7 +180,6 @@ def train(config: TrainConfig, root: Path, resume_path: str | None = None):
         #   loss, grad_norm = train_step(model, optimizer, batch)
         #   lr = get_current_lr(optimizer, step)
         #   log_step(log_path, step, loss, lr, grad_norm, time.time() - t0)
-        pass
 
         # Checkpoint
         if (step + 1) % config.checkpoint_every == 0:
@@ -198,7 +197,7 @@ def train(config: TrainConfig, root: Path, resume_path: str | None = None):
 
 # ── Entry point ─────────────────────────────────────────────────────
 
-def main():
+def main() -> None:
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(levelname)s %(name)s: %(message)s",

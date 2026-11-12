@@ -12,8 +12,9 @@ from __future__ import annotations
 import json
 import os
 import random
+from collections.abc import Iterator
 from pathlib import Path
-from typing import Any, Iterator
+from typing import Any
 
 import numpy as np
 
@@ -25,7 +26,7 @@ try:
 
     _HAS_MLX = True
 except ImportError:
-    mx = None  # type: ignore[assignment]
+    mx = None
     _HAS_MLX = False
 
 # ---------------------------------------------------------------------------
@@ -61,10 +62,12 @@ class _SPTokenizer:
         self._sp.Load(str(model_path))
 
     def encode(self, text: str) -> list[int]:
-        return self._sp.Encode(text)  # type: ignore[no-any-return]
+        ids: list[int] = self._sp.Encode(text)
+        return ids
 
     def vocab_size(self) -> int:
-        return self._sp.GetPieceSize()  # type: ignore[no-any-return]
+        size: int = self._sp.GetPieceSize()
+        return size
 
 
 def _load_tokenizer(
@@ -131,19 +134,25 @@ def _iter_corpus(corpus_path: Path) -> Iterator[dict[str, Any]]:
 def _extract_text(record: dict[str, Any]) -> str:
     """Extract the text payload from a corpus record."""
     # Support both "text" and "code" fields
+    text: str
     if "text" in record:
-        return record["text"]
+        text = record["text"]
+        return text
     if "code" in record:
-        return record["code"]
+        text = record["code"]
+        return text
     raise KeyError(f"Record has neither 'text' nor 'code' field: {list(record.keys())}")
 
 
 def _extract_category(record: dict[str, Any]) -> str:
     """Extract a category string for curriculum weighting."""
+    category: str
     if "category" in record:
-        return record["category"]
+        category = record["category"]
+        return category
     if "type" in record:
-        return record["type"]
+        category = record["type"]
+        return category
     if "path" in record:
         return Path(record["path"]).parent.name
     return "default"

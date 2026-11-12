@@ -17,28 +17,30 @@ import math
 import sys
 import time
 from pathlib import Path
+from typing import Any
 
-import mlx.core as mx
-import mlx.nn as nn
 import mlx.optimizers as optim
 import mlx.utils
 import yaml
+from mlx import nn
 from mlx_lm import load as mlx_load
 from mlx_lm.tuner.datasets import ChatDataset
-from mlx_lm.tuner.trainer import TrainingArgs, train as mlx_train
+from mlx_lm.tuner.trainer import TrainingArgs
+from mlx_lm.tuner.trainer import train as mlx_train
 from mlx_lm.tuner.utils import linear_to_lora_layers
 
 
-def load_config(config_path: Path) -> dict:
+def load_config(config_path: Path) -> dict[str, Any]:
     """Load YAML training configuration."""
     with open(config_path) as f:
-        return yaml.safe_load(f)
+        cfg: dict[str, Any] = yaml.safe_load(f)
+    return cfg
 
 
-def build_lora_config(config: dict) -> dict:
+def build_lora_config(config: dict[str, Any]) -> dict[str, Any]:
     """Build LoRA/DoRA layer configuration dict for mlx-lm."""
     lora_cfg = config["lora"]
-    result: dict = {
+    result: dict[str, Any] = {
         "rank": lora_cfg.get("rank", 64),
         "alpha": lora_cfg.get("alpha", 128.0),
         "dropout": lora_cfg.get("dropout", 0.05),
@@ -60,7 +62,7 @@ def count_parameters(model: nn.Module) -> tuple[int, int]:
     return total, trainable
 
 
-def setup_training_args(config: dict, adapter_dir: str) -> TrainingArgs:
+def setup_training_args(config: dict[str, Any], adapter_dir: str) -> TrainingArgs:
     """Create MLX TrainingArgs from config."""
     train_cfg = config["training"]
 
@@ -81,7 +83,7 @@ def setup_training_args(config: dict, adapter_dir: str) -> TrainingArgs:
     )
 
 
-def load_jsonl(path: Path) -> list[dict]:
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
     """Load JSONL data as a list of dicts."""
     examples = []
     with open(path, encoding="utf-8") as f:
@@ -173,7 +175,7 @@ def main(argv: list[str] | None = None) -> int:
 
     # Load data and create tokenized datasets.
     # Data uses OpenAI messages format: {"messages": [{role, content}, ...]}
-    print(f"\nLoading training data...")
+    print("\nLoading training data...")
     data_cfg = config["data"]
     train_path = Path(data_cfg["train_file"])
     eval_path = Path(data_cfg["eval_file"])
@@ -231,7 +233,7 @@ def main(argv: list[str] | None = None) -> int:
     optimizer = optim.AdamW(learning_rate=lr_schedule)
 
     # Train.
-    print(f"\nStarting training...")
+    print("\nStarting training...")
     print(f"  Adapter output: {adapter_dir}")
     start_time = time.time()
 

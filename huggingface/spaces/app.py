@@ -5,6 +5,8 @@ Generates toke programming language code from natural language descriptions
 using the fine-tuned toke-coder-7b model.
 """
 
+from typing import Any
+
 import gradio as gr
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -15,11 +17,11 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL_ID = "karwalski/toke-coder-7b"
 
-_model = None
-_tokenizer = None
+_model: Any = None
+_tokenizer: Any = None
 
 
-def _load_model():
+def _load_model() -> tuple[Any, Any]:
     """Load model and tokenizer once, caching for subsequent calls."""
     global _model, _tokenizer
     if _model is None:
@@ -37,7 +39,7 @@ def _load_model():
 # Token counting helpers
 # ---------------------------------------------------------------------------
 
-def _count_toke_tokens(code: str, tokenizer) -> int:
+def _count_toke_tokens(code: str, tokenizer: Any) -> int:
     """Count tokens in the generated toke code."""
     return len(tokenizer.encode(code, add_special_tokens=False))
 
@@ -56,7 +58,7 @@ def _count_toke_tokens(code: str, tokenizer) -> int:
 # Generation
 # ---------------------------------------------------------------------------
 
-def generate_toke(prompt: str, max_tokens: int, temperature: float) -> tuple:
+def generate_toke(prompt: str, max_tokens: int, temperature: float) -> tuple[str, str]:
     """Generate toke code from a natural language description.
 
     Returns:
