@@ -23,6 +23,7 @@ import json
 import random
 import sys
 from pathlib import Path
+from typing import Any
 
 # Task category descriptions for generating natural-language prompts.
 CATEGORY_DESC: dict[str, str] = {
@@ -152,7 +153,7 @@ def task_id_to_prompt(task_id: str, tk_source: str) -> str:
     )
 
 
-def make_direct_example(entry: dict) -> dict:
+def make_direct_example(entry: dict[str, Any]) -> dict[str, Any]:
     """Create a direct generation training example."""
     tk_source = entry["tk_source"]
     prompt = task_id_to_prompt(entry.get("task_id", ""), tk_source)
@@ -166,7 +167,7 @@ def make_direct_example(entry: dict) -> dict:
     }
 
 
-def make_comparison_example(entry: dict) -> dict | None:
+def make_comparison_example(entry: dict[str, Any]) -> dict[str, Any] | None:
     """Create a multi-language comparison example if references exist."""
     refs = entry.get("references", {})
     tk_source = entry["tk_source"]
@@ -210,7 +211,7 @@ def make_comparison_example(entry: dict) -> dict | None:
     }
 
 
-def format_chatml(messages: list[dict]) -> str:
+def format_chatml(messages: list[dict[str, Any]]) -> str:
     """Format messages into ChatML template for Qwen models."""
     parts = [
         (
@@ -226,7 +227,7 @@ def format_chatml(messages: list[dict]) -> str:
     return "\n".join(parts)
 
 
-def load_corpus(path: Path) -> list[dict]:
+def load_corpus(path: Path) -> list[dict[str, Any]]:
     """Load corpus JSONL file."""
     entries = []
     excluded = 0
@@ -251,9 +252,9 @@ def load_corpus(path: Path) -> list[dict]:
     return entries
 
 
-def process_corpus(entries: list[dict]) -> list[dict]:
+def process_corpus(entries: list[dict[str, Any]]) -> list[dict[str, Any]]:
     """Convert corpus entries into training examples."""
-    examples: list[dict] = []
+    examples: list[dict[str, Any]] = []
 
     for entry in entries:
         # Every entry gets a direct generation example.
@@ -267,7 +268,7 @@ def process_corpus(entries: list[dict]) -> list[dict]:
     return examples
 
 
-def write_jsonl(path: Path, examples: list[dict]) -> None:
+def write_jsonl(path: Path, examples: list[dict[str, Any]]) -> None:
     """Write examples as JSONL with ChatML-formatted text field."""
     with open(path, "w", encoding="utf-8") as f:
         for ex in examples:

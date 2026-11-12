@@ -29,6 +29,7 @@ import sys
 import tempfile
 import time
 from pathlib import Path
+from typing import Any
 
 # 128.16: these task sets were generated FROM the training corpus and are
 # quarantined in ~/tk/archive/toke-model-contaminated-benchmarks-20261001/.
@@ -46,7 +47,7 @@ def quarantined_task_set(path: Path) -> str | None:
     return QUARANTINED_TASK_SETS.get(hashlib.sha256(path.read_bytes()).hexdigest())
 
 
-def discover_tasks(benchmark_dir: Path) -> list[dict]:
+def discover_tasks(benchmark_dir: Path) -> list[dict[str, Any]]:
     """Discover benchmark tasks from YAML or JSONL files.
 
     Each task must have at minimum a task_id and a prompt.
@@ -94,15 +95,15 @@ def discover_tasks(benchmark_dir: Path) -> list[dict]:
 
 
 def generate_prediction_mlx(
-    model,
-    tokenizer,
+    model: Any,
+    tokenizer: Any,
     prompt: str,
     max_tokens: int = 512,
 ) -> str:
     """Generate a prediction using the loaded MLX model."""
     from mlx_lm import generate as mlx_generate
 
-    response = mlx_generate(
+    response: str = mlx_generate(
         model,
         tokenizer,
         prompt=prompt,
@@ -112,7 +113,7 @@ def generate_prediction_mlx(
     return response
 
 
-def check_with_tkc(source_code: str) -> dict:
+def check_with_tkc(source_code: str) -> dict[str, Any]:
     """Run tkc --check on generated source code.
 
     Returns dict with 'compiled' (bool), 'passed' (bool), and 'diagnostics' (str).
@@ -155,7 +156,7 @@ def count_tokens(text: str) -> int:
     return len(text.split())
 
 
-def generate_dry_run_prediction(task: dict, seed: int) -> dict:
+def generate_dry_run_prediction(task: dict[str, Any], seed: int) -> dict[str, Any]:
     """Generate synthetic prediction for dry-run mode.
 
     Uses deterministic randomness based on task_id hash for reproducibility.

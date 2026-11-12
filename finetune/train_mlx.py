@@ -17,6 +17,7 @@ import math
 import sys
 import time
 from pathlib import Path
+from typing import Any
 
 import mlx.optimizers as optim
 import mlx.utils
@@ -29,16 +30,17 @@ from mlx_lm.tuner.trainer import train as mlx_train
 from mlx_lm.tuner.utils import linear_to_lora_layers
 
 
-def load_config(config_path: Path) -> dict:
+def load_config(config_path: Path) -> dict[str, Any]:
     """Load YAML training configuration."""
     with open(config_path) as f:
-        return yaml.safe_load(f)
+        cfg: dict[str, Any] = yaml.safe_load(f)
+    return cfg
 
 
-def build_lora_config(config: dict) -> dict:
+def build_lora_config(config: dict[str, Any]) -> dict[str, Any]:
     """Build LoRA/DoRA layer configuration dict for mlx-lm."""
     lora_cfg = config["lora"]
-    result: dict = {
+    result: dict[str, Any] = {
         "rank": lora_cfg.get("rank", 64),
         "alpha": lora_cfg.get("alpha", 128.0),
         "dropout": lora_cfg.get("dropout", 0.05),
@@ -60,7 +62,7 @@ def count_parameters(model: nn.Module) -> tuple[int, int]:
     return total, trainable
 
 
-def setup_training_args(config: dict, adapter_dir: str) -> TrainingArgs:
+def setup_training_args(config: dict[str, Any], adapter_dir: str) -> TrainingArgs:
     """Create MLX TrainingArgs from config."""
     train_cfg = config["training"]
 
@@ -81,7 +83,7 @@ def setup_training_args(config: dict, adapter_dir: str) -> TrainingArgs:
     )
 
 
-def load_jsonl(path: Path) -> list[dict]:
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
     """Load JSONL data as a list of dicts."""
     examples = []
     with open(path, encoding="utf-8") as f:

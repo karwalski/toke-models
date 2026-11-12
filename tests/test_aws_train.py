@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Any
 
 import pytest
 
@@ -124,7 +125,7 @@ def _git(repo: Path, *args: str) -> str:
 
 
 @pytest.fixture
-def sb(tmp_path: Path) -> dict:
+def sb(tmp_path: Path) -> dict[str, Any]:
     if shutil.which("git") is None:
         pytest.skip("git not available")
     t = tmp_path
@@ -169,7 +170,7 @@ def sb(tmp_path: Path) -> dict:
     return {"t": t, "proj": proj, "env": env}
 
 
-def _run(sb: dict, *args: str) -> subprocess.CompletedProcess:
+def _run(sb: dict[str, Any], *args: str) -> subprocess.CompletedProcess[str]:
     return subprocess.run(
         ["bash", str(sb["proj"] / "cloud" / "aws_train.sh"), *args],
         env=sb["env"], capture_output=True, check=False, text=True, timeout=120,
@@ -177,25 +178,25 @@ def _run(sb: dict, *args: str) -> subprocess.CompletedProcess:
     )
 
 
-def _log(sb: dict, name: str) -> str:
+def _log(sb: dict[str, Any], name: str) -> str:
     p = sb["t"] / "log" / name
     return p.read_text() if p.exists() else ""
 
 
-def _shutdowns(sb: dict) -> list[str]:
+def _shutdowns(sb: dict[str, Any]) -> list[str]:
     return [" ".join(ln.split()[:3]) for ln in _log(sb, "sudo").splitlines()
             if ln.startswith("shutdown")]
 
 
-def _ctl(sb: dict, name: str) -> None:
+def _ctl(sb: dict[str, Any], name: str) -> None:
     (sb["t"] / "ctl" / name).write_text("1")
 
 
-def _out(r: subprocess.CompletedProcess, sb: dict) -> str:
+def _out(r: subprocess.CompletedProcess[str], sb: dict[str, Any]) -> str:
     return r.stdout + r.stderr + _log(sb, "tmux.out")
 
 
-def test_uploads_the_checked_in_post_train_script(sb: dict) -> None:
+def test_uploads_the_checked_in_post_train_script(sb: dict[str, Any]) -> None:
     r = _run(sb)
     assert r.returncode == 0, _out(r, sb)
     on_instance = sb["t"] / "remote/toke-model/cloud/post_train.sh"
@@ -211,27 +212,27 @@ def test_uploads_the_checked_in_post_train_script(sb: dict) -> None:
     assert not (sb["t"] / "remote/.git-credentials").exists()
 
 
-def test_success_arms_the_dead_mans_switch_then_shuts_down(sb: dict) -> None:
+def test_success_arms_the_dead_mans_switch_then_shuts_down(sb: dict[str, Any]) -> None:
     r = _run(sb)
     assert r.returncode == 0, _out(r, sb)
     assert _shutdowns(sb) == ["shutdown -h +720", "shutdown -h +1"], _log(sb, "sudo")
 
 
-def test_training_failure_shuts_the_instance_down(sb: dict) -> None:
+def test_training_failure_shuts_the_instance_down(sb: dict[str, Any]) -> None:
     _ctl(sb, "train_fail")
     r = _run(sb)
     assert r.returncode == 0, _out(r, sb)  # the launch itself succeeded
     assert _shutdowns(sb) == ["shutdown -h +720", "shutdown -h +30"], _log(sb, "sudo")
 
 
-def test_post_train_failure_shuts_the_instance_down(sb: dict) -> None:
+def test_post_train_failure_shuts_the_instance_down(sb: dict[str, Any]) -> None:
     _ctl(sb, "s3_fail")
     r = _run(sb)
     assert r.returncode == 0, _out(r, sb)
     assert _shutdowns(sb) == ["shutdown -h +720", "shutdown -h +30"], _log(sb, "sudo")
 
 
-def test_keep_alive_opt_out_is_explicit_and_loud(sb: dict) -> None:
+def test_keep_alive_opt_out_is_explicit_and_loud(sb: dict[str, Any]) -> None:
     _ctl(sb, "train_fail")
     sb["env"]["KEEP_ALIVE_ON_FAILURE"] = "1"
     r = _run(sb)
@@ -240,14 +241,14 @@ def test_keep_alive_opt_out_is_explicit_and_loud(sb: dict) -> None:
     assert "stays UP" in _out(r, sb)
 
 
-def test_local_failure_after_provisioning_terminates_the_instance(sb: dict) -> None:
+def test_local_failure_after_provisioning_terminates_the_instance(sb: dict[str, Any]) -> None:
     _ctl(sb, "scp_fail")
     r = _run(sb)
     assert r.returncode != 0
     assert "ec2 terminate-instances --region us-east-1 --instance-ids i-test" in _log(sb, "aws"), _log(sb, "aws")
 
 
-def test_local_failure_opt_out_keeps_the_instance_and_says_so(sb: dict) -> None:
+def test_local_failure_opt_out_keeps_the_instance_and_says_so(sb: dict[str, Any]) -> None:
     _ctl(sb, "scp_fail")
     sb["env"]["KEEP_INSTANCE_ON_ERROR"] = "1"
     r = _run(sb)
@@ -256,7 +257,7 @@ def test_local_failure_opt_out_keeps_the_instance_and_says_so(sb: dict) -> None:
     assert "i-test" in r.stderr and "still running" in r.stderr, r.stderr
 
 
-def test_model_store_is_required_before_any_instance_is_requested(sb: dict) -> None:
+def test_model_store_is_required_before_any_instance_is_requested(sb: dict[str, Any]) -> None:
     del sb["env"]["MODEL_STORE_URI"]
     r = _run(sb)
     assert r.returncode != 0

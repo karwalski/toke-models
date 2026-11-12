@@ -16,6 +16,7 @@ import json
 import statistics
 import sys
 from pathlib import Path
+from typing import Any, Protocol
 
 
 def load_programs(path: Path) -> list[str]:
@@ -33,14 +34,26 @@ def load_programs(path: Path) -> list[str]:
     return [p.strip() for p in programs if p.strip()]
 
 
-def tokenize_programs_sp(sp_model: object, programs: list[str]) -> list[list[int]]:
+class _SentencePieceEncoder(Protocol):
+    """The part of ``sentencepiece.SentencePieceProcessor`` this module uses."""
+
+    def encode(self, text: str, out_type: type[int]) -> list[int]: ...
+
+
+class _TiktokenEncoder(Protocol):
+    """The part of ``tiktoken.Encoding`` this module uses."""
+
+    def encode(self, text: str) -> list[int]: ...
+
+
+def tokenize_programs_sp(sp_model: _SentencePieceEncoder, programs: list[str]) -> list[list[int]]:
     """Tokenize each program using a SentencePiece model."""
-    return [sp_model.encode(p, out_type=int) for p in programs]  # type: ignore[union-attr]
+    return [sp_model.encode(p, out_type=int) for p in programs]
 
 
-def tokenize_programs_tiktoken(enc: object, programs: list[str]) -> list[list[int]]:
+def tokenize_programs_tiktoken(enc: _TiktokenEncoder, programs: list[str]) -> list[list[int]]:
     """Tokenize each program using a tiktoken encoding."""
-    return [enc.encode(p) for p in programs]  # type: ignore[union-attr]
+    return [enc.encode(p) for p in programs]
 
 
 def compute_token_stats(token_lists: list[list[int]]) -> dict[str, float]:
@@ -101,7 +114,7 @@ def build_report(
     toke_tokens: list[list[int]],
     baseline_tokens: list[list[int]],
     vocab_size: int,
-) -> dict:
+) -> dict[str, Any]:
     """Build the full evaluation report as a dictionary."""
     return {
         "program_count": len(programs),
@@ -114,7 +127,7 @@ def build_report(
     }
 
 
-def format_summary(report: dict) -> str:
+def format_summary(report: dict[str, Any]) -> str:
     """Format a human-readable summary table from the report."""
     lines = [
         "Tokenizer Evaluation Report",
@@ -187,12 +200,12 @@ def main(argv: list[str] | None = None) -> int:
 
     # Load tokenizers (deferred imports so dry-run works without deps)
     try:
-        import sentencepiece as spm  # type: ignore[import-untyped]
+        import sentencepiece as spm
     except ImportError:
         print("ERROR: sentencepiece is not installed", file=sys.stderr)
         return 1
     try:
-        import tiktoken  # type: ignore[import-untyped]
+        import tiktoken
     except ImportError:
         print("ERROR: tiktoken is not installed", file=sys.stderr)
         return 1

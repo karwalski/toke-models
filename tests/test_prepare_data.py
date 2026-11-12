@@ -8,6 +8,8 @@ import os
 import re
 import sys
 from pathlib import Path
+from types import ModuleType
+from typing import Any
 
 import pytest
 
@@ -121,7 +123,7 @@ def test_comparison_example_carries_no_unsourced_token_counts() -> None:
     assert "9" not in text and "3t" not in text and "4t" not in text
 
 
-def _export_guards():
+def _export_guards() -> ModuleType:
     """toke-corpus's export_guards module, if a sibling checkout is available."""
     root = os.environ.get("TOKE_CORPUS_DIR") or str(
         Path(__file__).resolve().parents[2] / "toke-corpus")
@@ -129,6 +131,8 @@ def _export_guards():
     if not path.is_file():
         pytest.skip(f"toke-corpus export_guards.py not found at {path} (set TOKE_CORPUS_DIR)")
     spec = importlib.util.spec_from_file_location("export_guards", path)
+    if spec is None or spec.loader is None:
+        pytest.fail(f"cannot load {path} as a module")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     return mod
@@ -187,7 +191,7 @@ def test_load_corpus_excludes_the_retired_w1010_bifi_record(tmp_path: Path) -> N
 
 
 def test_process_corpus_adds_comparison_only_where_references_exist() -> None:
-    entries = [{"task_id": "A-MTH-1", "tk_source": ONE_PARAM},
+    entries: list[dict[str, Any]] = [{"task_id": "A-MTH-1", "tk_source": ONE_PARAM},
                {"task_id": "A-MTH-2", "tk_source": ONE_PARAM, "tk_tokens": 4,
                 "references": {"python_source": "x", "python_tokens": 8}}]
     assert [e["type"] for e in pd.process_corpus(entries)] == [

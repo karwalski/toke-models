@@ -37,6 +37,7 @@ import random
 import re
 import sys
 from pathlib import Path
+from typing import Any
 
 # ---------------------------------------------------------------------------
 # Import Phase 2 autofix from the corpus pipeline
@@ -46,7 +47,7 @@ sys.path.insert(0, str(CORPUS_SCRIPTS))
 from phase2_syntax_audit import autofix_source, detect_violations
 
 
-def load_jsonl(path: Path) -> list[dict]:
+def load_jsonl(path: Path) -> list[dict[str, Any]]:
     records = []
     with open(path, encoding="utf-8") as f:
         for line in f:
@@ -113,6 +114,7 @@ def phase2_clean_source(src: str) -> str | None:
     """Apply Phase 2 autofix and return cleaned source, or None if unfixable."""
     if is_phase2_clean(src):
         return src
+    fixed: str
     fixed, _collisions, fixable = autofix_source(src)
     if not fixable:
         return None
@@ -141,7 +143,7 @@ def _toke_signature_hint(tk_source: str) -> str:
     return "; ".join(hints) if hints else ""
 
 
-def derive_description(record: dict) -> str:
+def derive_description(record: dict[str, Any]) -> str:
     """Derive a natural-language task description from a corpus record.
 
     Uses only toke syntax and natural language — no Python/C/Java code.
@@ -407,7 +409,7 @@ def main() -> int:
         categories[cat] = categories.get(cat, 0) + 1
 
     print("\n  Category distribution:")
-    for cat in sorted(categories, key=categories.get, reverse=True):
+    for cat in sorted(categories, key=lambda c: categories[c], reverse=True):
         print(f"    {cat:12s}  {categories[cat]:4d}")
 
     return 0

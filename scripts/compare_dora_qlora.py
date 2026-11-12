@@ -18,12 +18,13 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 import numpy as np
 from scipy import stats
 
 
-def load_predictions(adapter_dir: Path) -> list[dict]:
+def load_predictions(adapter_dir: Path) -> list[dict[str, Any]]:
     """Load predictions JSONL from an adapter's evaluation output."""
     predictions_file = adapter_dir / "predictions.jsonl"
     if not predictions_file.exists():
@@ -37,16 +38,17 @@ def load_predictions(adapter_dir: Path) -> list[dict]:
     return results
 
 
-def load_training_summary(adapter_dir: Path) -> dict | None:
+def load_training_summary(adapter_dir: Path) -> dict[str, Any] | None:
     """Load training_summary.json if available."""
     summary_file = adapter_dir / "training_summary.json"
     if summary_file.exists():
         with open(summary_file) as f:
-            return json.load(f)
+            summary: dict[str, Any] = json.load(f)
+        return summary
     return None
 
 
-def load_training_log(adapter_dir: Path) -> list[dict] | None:
+def load_training_log(adapter_dir: Path) -> list[dict[str, Any]] | None:
     """Load training_log.jsonl for loss curve comparison."""
     log_file = adapter_dir / "training_log.jsonl"
     if not log_file.exists():
@@ -60,7 +62,7 @@ def load_training_log(adapter_dir: Path) -> list[dict] | None:
     return entries
 
 
-def compute_pass_at_1(predictions: list[dict]) -> float:
+def compute_pass_at_1(predictions: list[dict[str, Any]]) -> float:
     """Compute Pass@1 from prediction results."""
     if not predictions:
         return 0.0
@@ -68,7 +70,7 @@ def compute_pass_at_1(predictions: list[dict]) -> float:
     return passed / len(predictions)
 
 
-def compute_compile_rate(predictions: list[dict]) -> float:
+def compute_compile_rate(predictions: list[dict[str, Any]]) -> float:
     """Compute compile rate from prediction results."""
     if not predictions:
         return 0.0
@@ -76,7 +78,7 @@ def compute_compile_rate(predictions: list[dict]) -> float:
     return compiled / len(predictions)
 
 
-def compute_avg_token_count(predictions: list[dict]) -> float:
+def compute_avg_token_count(predictions: list[dict[str, Any]]) -> float:
     """Compute average token count from prediction results."""
     counts = [p["token_count"] for p in predictions if "token_count" in p]
     if not counts:
@@ -84,7 +86,7 @@ def compute_avg_token_count(predictions: list[dict]) -> float:
     return float(np.mean(counts))
 
 
-def mcnemar_test(preds_a: list[dict], preds_b: list[dict]) -> dict:
+def mcnemar_test(preds_a: list[dict[str, Any]], preds_b: list[dict[str, Any]]) -> dict[str, Any]:
     """McNemar's test for paired nominal data.
 
     Compares pass/fail outcomes between two models on the same tasks.
@@ -132,7 +134,7 @@ def mcnemar_test(preds_a: list[dict], preds_b: list[dict]) -> dict:
     }
 
 
-def paired_ttest_token_count(preds_a: list[dict], preds_b: list[dict]) -> dict:
+def paired_ttest_token_count(preds_a: list[dict[str, Any]], preds_b: list[dict[str, Any]]) -> dict[str, Any]:
     """Paired t-test on token counts for the same tasks."""
     a_by_task = {p["task_id"]: p.get("token_count", 0) for p in preds_a if "task_id" in p}
     b_by_task = {p["task_id"]: p.get("token_count", 0) for p in preds_b if "task_id" in p}
@@ -154,7 +156,7 @@ def paired_ttest_token_count(preds_a: list[dict], preds_b: list[dict]) -> dict:
     }
 
 
-def compare_loss_curves(qlora_log: list[dict] | None, dora_log: list[dict] | None) -> dict:
+def compare_loss_curves(qlora_log: list[dict[str, Any]] | None, dora_log: list[dict[str, Any]] | None) -> dict[str, Any]:
     """Compare final training losses from log files."""
     result = {}
     for label, log in [("qlora", qlora_log), ("dora", dora_log)]:
@@ -168,13 +170,13 @@ def compare_loss_curves(qlora_log: list[dict] | None, dora_log: list[dict] | Non
 
 
 def build_comparison(
-    qlora_preds: list[dict],
-    dora_preds: list[dict],
-    qlora_summary: dict | None,
-    dora_summary: dict | None,
-    qlora_log: list[dict] | None,
-    dora_log: list[dict] | None,
-) -> dict:
+    qlora_preds: list[dict[str, Any]],
+    dora_preds: list[dict[str, Any]],
+    qlora_summary: dict[str, Any] | None,
+    dora_summary: dict[str, Any] | None,
+    qlora_log: list[dict[str, Any]] | None,
+    dora_log: list[dict[str, Any]] | None,
+) -> dict[str, Any]:
     """Build full comparison report."""
     qlora_pass1 = compute_pass_at_1(qlora_preds)
     dora_pass1 = compute_pass_at_1(dora_preds)
@@ -229,7 +231,7 @@ def build_comparison(
     return report
 
 
-def format_markdown(report: dict) -> str:
+def format_markdown(report: dict[str, Any]) -> str:
     """Format comparison report as a markdown table."""
     m = report["metrics"]
     lines = [

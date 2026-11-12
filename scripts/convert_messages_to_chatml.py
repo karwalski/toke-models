@@ -15,9 +15,10 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 
-def messages_to_chatml(messages: list[dict]) -> str:
+def messages_to_chatml(messages: list[dict[str, Any]]) -> str:
     """Convert a list of chat messages to ChatML format string."""
     parts: list[str] = []
     for msg in messages:

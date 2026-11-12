@@ -15,6 +15,7 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 from mlx_lm import fuse as mlx_fuse
 
@@ -26,8 +27,8 @@ def detect_base_model(adapter_dir: Path) -> str | None:
     if config_path.exists():
         import yaml
         with open(config_path) as f:
-            cfg = yaml.safe_load(f)
-        base = cfg.get("model", {}).get("base")
+            cfg: dict[str, Any] = yaml.safe_load(f)
+        base: str | None = cfg.get("model", {}).get("base")
         if base:
             return base
 
@@ -36,7 +37,8 @@ def detect_base_model(adapter_dir: Path) -> str | None:
     if adapter_config.exists():
         with open(adapter_config) as f:
             cfg = json.load(f)
-        return cfg.get("model", None)
+        model: str | None = cfg.get("model", None)
+        return model
 
     return None
 

@@ -19,9 +19,10 @@ import argparse
 import json
 import sys
 from pathlib import Path
+from typing import Any
 
 
-def validate_example(record: dict, lineno: int) -> list[str]:
+def validate_example(record: dict[str, Any], lineno: int) -> list[str]:
     """Validate a single training example. Returns list of issues."""
     issues: list[str] = []
 
@@ -57,7 +58,7 @@ def process_file(input_path: Path, output_path: Path | None) -> tuple[int, int, 
     total = 0
     valid = 0
     all_issues: list[str] = []
-    output_records: list[dict] = []
+    output_records: list[dict[str, Any]] = []
 
     with open(input_path, encoding="utf-8") as f:
         for lineno, line in enumerate(f, 1):

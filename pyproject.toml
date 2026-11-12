@@ -30,6 +30,9 @@ dev = [
     # CI lint step pass or fail by calendar date rather than by the code.
     "ruff>=0.16,<0.17",
     "mypy>=1.8",
+    # Typed dep that the checked sources import (tokenizer/eval.py, tests): mypy must see
+    # the same numpy types in CI as locally, not degrade them to Any (130.24, as 130.19).
+    "numpy",
 ]
 
 [tool.ruff]
@@ -39,3 +42,36 @@ target-version = "py311"
 [tool.mypy]
 strict = true
 python_version = "3.11"
+
+# Training-box / optional dependencies (story 130.24). None of these is in the `dev` extra
+# that CI installs, and some are installed on one machine and not another (torch and
+# sentencepiece locally, peft/datasets/mlx_lm only on a training box, gradio only on the
+# Space). Left to default, mypy's verdict would depend on which machine ran it: a typed
+# package that happens to be installed (torch, mlx) is analysed in full, an absent one is
+# an import error. `follow_imports = "skip"` + `ignore_missing_imports` makes every one of
+# them `Any` everywhere, so `mypy .` gives the same result in CI as locally.
+# `phase2_syntax_audit` is a toke-corpus script put on sys.path at runtime, not a package.
+[[tool.mypy.overrides]]
+module = [
+    "datasets.*",
+    "gradio.*",
+    "mlx.*",
+    "mlx_lm.*",
+    "peft.*",
+    "phase2_syntax_audit",
+    "scipy.*",
+    "sentencepiece.*",
+    "tiktoken.*",
+    "tokenizers.*",
+    "torch.*",
+    "transformers.*",
+    "yaml.*",
+]
+follow_imports = "skip"
+ignore_missing_imports = true
+
+# model/model.py defines its layers as subclasses of `nn.Module` from mlx or torch, which
+# the override above makes `Any` on purpose; subclassing it is the design, not an accident.
+[[tool.mypy.overrides]]
+module = ["model.model"]
+disallow_subclassing_any = false

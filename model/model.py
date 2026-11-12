@@ -9,6 +9,7 @@ Fallback: PyTorch (for cloud GPU training).
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 try:
     import mlx.core as mx
@@ -17,7 +18,7 @@ try:
     _BACKEND = "mlx"
 except ImportError:
     import torch
-    from torch import nn  # type: ignore[no-redef]
+    from torch import nn
 
     _BACKEND = "torch"
 
@@ -173,7 +174,7 @@ if _BACKEND == "mlx":
         leaves = model.parameters()
         return sum(p.size for p in _flatten(leaves))
 
-    def _flatten(tree: dict | list | mx.array) -> list[mx.array]:
+    def _flatten(tree: dict[str, Any] | list[Any] | mx.array) -> list[mx.array]:
         """Recursively flatten a nested dict/list of mx.arrays."""
         if isinstance(tree, mx.array):
             return [tree]
@@ -189,28 +190,28 @@ if _BACKEND == "mlx":
 
 elif _BACKEND == "torch":
 
-    class _RMSNorm(nn.Module):  # type: ignore[no-redef]
+    class _RMSNorm(nn.Module):
         def __init__(self, dim: int, eps: float = 1e-5) -> None:
             super().__init__()
             self.eps = eps
-            self.weight = nn.Parameter(torch.ones(dim))  # type: ignore[attr-defined]
+            self.weight = nn.Parameter(torch.ones(dim))
 
-        def forward(self, x: torch.Tensor) -> torch.Tensor:  # type: ignore[name-defined]
+        def forward(self, x: torch.Tensor) -> torch.Tensor:
             norm = x.float().pow(2).mean(-1, keepdim=True).add(self.eps).rsqrt()
             return (x.float() * norm).type_as(x) * self.weight
 
-    def _precompute_freqs(dim: int, max_len: int, base: float = 10_000.0) -> torch.Tensor:  # type: ignore[name-defined]
-        freqs = 1.0 / (base ** (torch.arange(0, dim, 2).float() / dim))  # type: ignore[attr-defined]
-        t = torch.arange(max_len).float()  # type: ignore[attr-defined]
-        freqs = torch.outer(t, freqs)  # type: ignore[attr-defined]
-        return torch.polar(torch.ones_like(freqs), freqs)  # type: ignore[attr-defined]
+    def _precompute_freqs(dim: int, max_len: int, base: float = 10_000.0) -> torch.Tensor:
+        freqs = 1.0 / (base ** (torch.arange(0, dim, 2).float() / dim))
+        t = torch.arange(max_len).float()
+        freqs = torch.outer(t, freqs)
+        return torch.polar(torch.ones_like(freqs), freqs)
 
     def _apply_rope(
-        x: torch.Tensor, freqs: torch.Tensor  # type: ignore[name-defined]
-    ) -> torch.Tensor:  # type: ignore[name-defined]
-        x_complex = torch.view_as_complex(x.float().reshape(*x.shape[:-1], -1, 2))  # type: ignore[attr-defined]
+        x: torch.Tensor, freqs: torch.Tensor
+    ) -> torch.Tensor:
+        x_complex = torch.view_as_complex(x.float().reshape(*x.shape[:-1], -1, 2))
         freqs = freqs[:x.shape[-2], :].unsqueeze(0).unsqueeze(0)
-        return torch.view_as_real(x_complex * freqs).flatten(-2).type_as(x)  # type: ignore[attr-defined]
+        return torch.view_as_real(x_complex * freqs).flatten(-2).type_as(x)
 
     class GroupQueryAttention(nn.Module):  # type: ignore[no-redef]
         def __init__(self, cfg: TokeModelConfig) -> None:
@@ -229,7 +230,7 @@ elif _BACKEND == "torch":
                 "freqs", _precompute_freqs(self.head_dim, cfg.max_seq_len, cfg.rope_base)
             )
 
-        def forward(self, x: torch.Tensor, mask: torch.Tensor | None = None) -> torch.Tensor:  # type: ignore[name-defined]
+        def forward(self, x: torch.Tensor, mask: torch.Tensor | None = None) -> torch.Tensor:
             B, L, _ = x.shape
             q = self.q_proj(x).view(B, L, self.num_heads, self.head_dim).transpose(1, 2)
             k = self.k_proj(x).view(B, L, self.num_kv_heads, self.head_dim).transpose(1, 2)
@@ -246,7 +247,7 @@ elif _BACKEND == "torch":
             attn = (q @ k.transpose(-2, -1)) * self.scale
             if mask is not None:
                 attn = attn + mask
-            attn = torch.softmax(attn, dim=-1)  # type: ignore[attr-defined]
+            attn = torch.softmax(attn, dim=-1)
 
             out = (attn @ v).transpose(1, 2).reshape(B, L, -1)
             return self.o_proj(out)
@@ -258,8 +259,8 @@ elif _BACKEND == "torch":
             self.w_up = nn.Linear(cfg.hidden_dim, cfg.ffn_dim, bias=False)
             self.w_down = nn.Linear(cfg.ffn_dim, cfg.hidden_dim, bias=False)
 
-        def forward(self, x: torch.Tensor) -> torch.Tensor:  # type: ignore[name-defined]
-            return self.w_down(torch.nn.functional.silu(self.w_gate(x)) * self.w_up(x))  # type: ignore[attr-defined]
+        def forward(self, x: torch.Tensor) -> torch.Tensor:
+            return self.w_down(torch.nn.functional.silu(self.w_gate(x)) * self.w_up(x))
 
     class TransformerBlock(nn.Module):  # type: ignore[no-redef]
         def __init__(self, cfg: TokeModelConfig) -> None:
@@ -269,7 +270,7 @@ elif _BACKEND == "torch":
             self.ffn_norm = _RMSNorm(cfg.hidden_dim, eps=cfg.rms_norm_eps)
             self.ffn = SwiGLU(cfg)
 
-        def forward(self, x: torch.Tensor, mask: torch.Tensor | None = None) -> torch.Tensor:  # type: ignore[name-defined]
+        def forward(self, x: torch.Tensor, mask: torch.Tensor | None = None) -> torch.Tensor:
             x = x + self.attn(self.attn_norm(x), mask=mask)
             x = x + self.ffn(self.ffn_norm(x))
             return x
@@ -286,12 +287,12 @@ elif _BACKEND == "torch":
             self.norm = _RMSNorm(cfg.hidden_dim, eps=cfg.rms_norm_eps)
             self.head = nn.Linear(cfg.hidden_dim, cfg.vocab_size, bias=False)
 
-        def forward(self, tokens: torch.Tensor) -> torch.Tensor:  # type: ignore[name-defined]
+        def forward(self, tokens: torch.Tensor) -> torch.Tensor:
             _batch, L = tokens.shape
             x = self.embedding(tokens)
 
-            mask = torch.full((L, L), float("-inf"), device=tokens.device)  # type: ignore[attr-defined]
-            mask = torch.triu(mask, diagonal=1)  # type: ignore[attr-defined]
+            mask = torch.full((L, L), float("-inf"), device=tokens.device)
+            mask = torch.triu(mask, diagonal=1)
 
             for layer in self.layers:
                 x = layer(x, mask=mask)
@@ -299,7 +300,7 @@ elif _BACKEND == "torch":
             x = self.norm(x)
             return self.head(x)
 
-    def count_parameters(model: TokeModel) -> int:  # type: ignore[no-redef]
+    def count_parameters(model: TokeModel) -> int:
         return sum(p.numel() for p in model.parameters())
 
 
@@ -324,7 +325,7 @@ if __name__ == "__main__":
         print(f"Output shape: {logits.shape}")
         assert logits.shape == (batch, seq_len, cfg.vocab_size), f"Bad shape: {logits.shape}"
     else:
-        tokens = torch.randint(0, cfg.vocab_size, (batch, seq_len))  # type: ignore[attr-defined]
+        tokens = torch.randint(0, cfg.vocab_size, (batch, seq_len))
         logits = model(tokens)
         print(f"Input shape:  ({batch}, {seq_len})")
         print(f"Output shape: {tuple(logits.shape)}")

@@ -189,7 +189,7 @@ class TestTrainFunction:
 
         mock_spm = type(sys)("sentencepiece")
         mock_trainer = type("Trainer", (), {"train": staticmethod(lambda **kw: None)})
-        mock_spm.SentencePieceTrainer = mock_trainer
+        setattr(mock_spm, "SentencePieceTrainer", mock_trainer)  # noqa: B010 -- ModuleType declares no SentencePieceTrainer; a stub module gets it by setattr
 
         with patch.dict("sys.modules", {"sentencepiece": mock_spm}):
             rc = train.train(config)
@@ -204,7 +204,7 @@ class TestTrainFunction:
 
         mock_spm = type(sys)("sentencepiece")
         mock_trainer = type("Trainer", (), {"train": staticmethod(raise_error)})
-        mock_spm.SentencePieceTrainer = mock_trainer
+        setattr(mock_spm, "SentencePieceTrainer", mock_trainer)  # noqa: B010 -- ModuleType declares no SentencePieceTrainer; a stub module gets it by setattr
 
         with patch.dict("sys.modules", {"sentencepiece": mock_spm}):
             rc = train.train(config)

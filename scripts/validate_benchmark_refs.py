@@ -23,6 +23,7 @@ import sys
 import tempfile
 import time
 from pathlib import Path
+from typing import Any
 
 SANDBOX_CPU_SECONDS = 5
 SANDBOX_MEM_BYTES = 256 * 1024 * 1024
@@ -67,7 +68,7 @@ def compare_output(actual: str, expected: str) -> bool:
     return True
 
 
-def validate_one(task: dict) -> dict:
+def validate_one(task: dict[str, Any]) -> dict[str, Any]:
     source = task.get("reference_source", "")
     expected = task.get("expected_output", "")
     task_id = task.get("task_id", "?")
@@ -221,8 +222,8 @@ def main() -> int:
 
         if compile_fail:
             print(f"\n  Compile failures ({len(compile_fail)}):")
-            for f in compile_fail[:10]:
-                diag = f.get("diagnostics", "")
+            for rec in compile_fail[:10]:
+                diag = rec.get("diagnostics", "")
                 # Extract error code
                 err = ""
                 if "error_code" in diag:
@@ -233,27 +234,27 @@ def main() -> int:
                     import re
                     m = re.search(r'error\[(E\d+)\]', diag)
                     err = m.group(1) if m else ""
-                print(f"    {f['task_id']}: {err or diag[:80]}")
+                print(f"    {rec['task_id']}: {err or diag[:80]}")
             if len(compile_fail) > 10:
                 print(f"    ... and {len(compile_fail) - 10} more")
 
         if exec_fail:
             print(f"\n  Execution failures ({len(exec_fail)}):")
-            for f in exec_fail[:10]:
-                print(f"    {f['task_id']}: {f.get('error', '')}")
+            for rec in exec_fail[:10]:
+                print(f"    {rec['task_id']}: {rec.get('error', '')}")
 
         if crash:
             print(f"\n  Runtime crashes ({len(crash)}):")
-            for f in crash[:10]:
-                print(f"    {f['task_id']}: exit={f.get('exit_code')} "
-                      f"stderr={f.get('stderr', '')[:60]}")
+            for rec in crash[:10]:
+                print(f"    {rec['task_id']}: exit={rec.get('exit_code')} "
+                      f"stderr={rec.get('stderr', '')[:60]}")
 
         if wrong_output:
             print(f"\n  Wrong output ({len(wrong_output)}):")
-            for f in wrong_output[:10]:
-                actual = f.get("actual_stdout", "")[:60].replace("\n", "\\n")
-                expected = f.get("expected_stdout", "")[:60].replace("\n", "\\n")
-                print(f"    {f['task_id']}:")
+            for rec in wrong_output[:10]:
+                actual = rec.get("actual_stdout", "")[:60].replace("\n", "\\n")
+                expected = rec.get("expected_stdout", "")[:60].replace("\n", "\\n")
+                print(f"    {rec['task_id']}:")
                 print(f"      expected: {expected}")
                 print(f"      actual:   {actual}")
 
