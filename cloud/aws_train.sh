@@ -43,7 +43,7 @@ REGION="${AWS_REGION:-us-east-1}"
 INSTANCE_TYPE="g5.xlarge"              # A10G 24GB, 4 vCPU, 16GB RAM
 AMI_ID="${AMI_ID:-}"                    # Auto-detected if empty
 KEY_NAME="${KEY_NAME:-toke-training}"   # EC2 key pair name
-KEY_FILE="${KEY_FILE:-$HOME/.ssh/toke-training.pem}"
+KEY_FILE="${KEY_FILE:-}"                # SSH key path; required, never committed (public repo)
 SPOT_MAX_PRICE="0.60"                  # Max spot bid (on-demand is ~$1.01)
 VOLUME_SIZE=50                         # GB — model weights (~4GB) + data + checkpoints + OS
 
@@ -547,6 +547,8 @@ Options:
   --help              Show this help
 
 Required environment:
+  KEY_FILE            SSH private key path, e.g. ~/.ssh/<your-key>
+                      (written there if the key pair is created by this run)
   GITHUB_TOKEN        GitHub token that can push to GITHUB_REPO (results branch)
   MODEL_STORE_URI     Where the adapter goes, e.g. s3://<bucket>/<prefix>
                       (the instance needs write access to it)
@@ -555,7 +557,6 @@ Optional environment:
   AWS_REGION          AWS region (default: us-east-1)
   AMI_ID              Override AMI (auto-detected if empty)
   KEY_NAME            EC2 key pair name (default: toke-training)
-  KEY_FILE            SSH key file path (default: ~/.ssh/toke-training.pem)
   CORPUS_FILE         Path to corpus.jsonl (default: ~/tk/toke-model/tokenizer/corpus.jsonl)
   GITHUB_REPO         GitHub repo for results branches (default: karwalski/toke-models)
   KEEP_INSTANCE_ON_ERROR=1  Keep an instance this run provisioned if launch fails
@@ -603,6 +604,9 @@ if $DO_DOWNLOAD; then
 fi
 
 # Validate settings before spending money on an instance.
+if [[ -z "$KEY_FILE" ]]; then
+    die "KEY_FILE is required: path to the SSH private key for the instance (e.g. ~/.ssh/<your-key>)."
+fi
 if [[ -z "$GITHUB_TOKEN" ]]; then
     die "GITHUB_TOKEN is required. Create a PAT at https://github.com/settings/tokens with 'repo' scope.\n  Export it:  export GITHUB_TOKEN=ghp_..."
 fi
