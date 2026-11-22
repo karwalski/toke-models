@@ -24,7 +24,7 @@ model-index:
           - name: Compilation Pass@1 (curated 500-hidden + 200-eval set, 2026-05-22)
             type: pass@1
             value: 100
-          - name: Functional Pass@1 (same curated set, 272/489)
+          - name: Functional Pass@1 (same curated set, 272/489; its 200-eval half may be corpus-derived; the Gate 2 PASS was withdrawn 2026-11-15, no standing verdict)
             type: pass@1
             value: 55.6
           - name: Compilation Pass@1 (full-local re-audit, all 1,748 v0.3.9 corpus programs)
@@ -99,19 +99,14 @@ compiler; it is published as the Gate 2 research artefact, not as a current tool
 
 ## Results, with the set they were measured on
 
-**Gate 2, 2026-05-22 — curated set.** On the curated 500-hidden + 200-eval set, the model
-reached **100% compile Pass@1** and **55.6% functional** (272/489).
+No v0.4-native model exists and none has been trained since April 2026. The most recent model gate run is Gate 2, 2026-05-22: Qwen 2.5 Coder 7B + QLoRA on v0.3 syntax, 100% compile Pass@1 and 55.6% functional (272/489) on the curated 500-hidden + 200-eval set, whose 200-eval half may be corpus-derived. The PASS recorded on it was withdrawn on 2026-11-15 (owner decision D4): Gate 2 has no standing verdict, and Gate 3 never ran and is void. The honest floor is the full-local re-audit of all 1,748 v0.3.9 corpus programs: 37.5% compile (655/1,748) and about 2.2% fully correct (38 PASS).
 
-**The honest floor — full-local re-audit.** Across all 1,748 v0.3.9 corpus programs the
-same artefact compiles **37.5%** (655/1,748) and is **about 2.2% fully correct**
-(38 PASS).
-
-Never quote the 100% without the curated set it was measured on. The August 2026 corpus
-work was a training-data quality freeze, not a model gate: the most recent model gate
-remains Gate 2 above.
+Never quote the 100% without the curated set it was measured on, never quote the 55.6% without the caveat that the 200-eval half may be corpus-derived, never call Gate 2 passed (its PASS was withdrawn on 2026-11-15, owner decision D4), and never present the August 2026 corpus freeze as a model gate.
 
 *Source: [`docs/metrics-baseline.md`](https://github.com/karwalski/toke/blob/main/docs/metrics-baseline.md)
-§ Correctness and § 2026-08.*
+§ Correctness and § 2026-08; [`docs/decisions/gate2-decision.md`](https://github.com/karwalski/toke/blob/main/docs/decisions/gate2-decision.md)
+(owner decision D4). This paragraph is the canonical `models` fact, copied word for word
+(`docs/about/canonical.json`).*
 
 ## Token efficiency
 

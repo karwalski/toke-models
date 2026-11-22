@@ -14,13 +14,22 @@ Whether to keep the model up at all is an owner decision (toke 132.24 was decide
 > toke: a compiled language designed for LLM code generation, with a small grammar, one
 > canonical form and compiler verification. This is the Gate 2 research artefact: Qwen
 > 2.5 Coder 7B + QLoRA, fine-tuned on toke **v0.3** syntax, so its output does not match
-> the current v0.4 specification. Gate 2 (2026-05-22) measured 100% compile Pass@1 and
-> 55.6% functional on a curated 500-hidden + 200-eval set; across all 1,748 v0.3.9 corpus
-> programs the same artefact compiles 37.5%. Details: tokelang.dev ·
+> the current v0.4 specification. No v0.4-native model exists and none has been trained
+> since April 2026. The most recent model gate run is Gate 2, 2026-05-22: Qwen 2.5 Coder
+> 7B + QLoRA on v0.3 syntax, 100% compile Pass@1 and 55.6% functional (272/489) on the
+> curated 500-hidden + 200-eval set, whose 200-eval half may be corpus-derived. The PASS
+> recorded on it was withdrawn on 2026-11-15 (owner decision D4): Gate 2 has no standing
+> verdict, and Gate 3 never ran and is void. The honest floor is the full-local re-audit
+> of all 1,748 v0.3.9 corpus programs: 37.5% compile (655/1,748) and about 2.2% fully
+> correct (38 PASS). Details: tokelang.dev ·
 > github.com/karwalski/toke
 
-**Two things travel with this model and must not be dropped:** the 100% is a *curated
-set* number, and the model writes v0.3, not v0.4.
+**Three things travel with this model and must not be dropped:** the 100% is a *curated
+set* number; the 55.6% carries the caveat that the 200-eval half of that set may be
+corpus-derived, and the Gate 2 PASS was withdrawn on 2026-11-15 (owner decision D4), so
+Gate 2 has no standing verdict; and the model writes v0.3, not v0.4. The Gate 2 sentences
+of the description are the canonical `models` fact (`toke/docs/about/canonical.json`),
+copied word for word.
 
 **The `Modelfile` SYSTEM prompt is v0.3 too** — it lists the superseded v0.3 keyword set (13 of them, no `sc`), `$`-prefixed
 types and v0.3 array syntax. That is correct *for this model*, which was trained on that
